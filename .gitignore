@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -34,3 +35,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# GeoJSON processing files (temporary)
+region13.geojson
+region13-new.geojson
+district8-simplified.json
+district8-new-simplified.json
+extract-communes.js
+extract-communes-new.js
+convert-to-ts.js
+convert-to-ts-new.js
