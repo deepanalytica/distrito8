@@ -43,7 +43,7 @@ export function Navbar() {
                         </Link>
                     ))}
                     <a
-                        href="https://www.leydellobby.gob.cl/"
+                        href="https://www.camara.cl/transparencia/FormularioSolicitudAudiencia.aspx"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-blue-900 transition-colors font-medium flex items-center gap-1"
@@ -88,7 +88,7 @@ export function Navbar() {
                             </Link>
                         ))}
                         <a
-                            href="https://www.leydellobby.gob.cl/"
+                            href="https://www.camara.cl/transparencia/FormularioSolicitudAudiencia.aspx"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={closeMenu}
