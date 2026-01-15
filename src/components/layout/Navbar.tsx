@@ -12,9 +12,8 @@ export function Navbar() {
     const navLinks = [
         { href: "/", label: "Inicio" },
         { href: "/compromisos", label: "8 Reformas" },
-        { href: "/mi-comuna", label: "Mi Comuna" },
+        { href: "/mi-comuna", label: "Distrito 8" },
         { href: "/transparencia", label: "Transparencia" },
-        { href: "/voluntarios", label: "Voluntarios" },
         { href: "/agenda", label: "Agenda" },
     ];
 
@@ -41,12 +40,17 @@ export function Navbar() {
                             {link.label}
                         </Link>
                     ))}
+                    <a
+                        href="https://www.leydellobby.gob.cl/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-blue-900 transition-colors font-medium flex items-center gap-1"
+                    >
+                        Audiencia (Ley del Lobby)
+                    </a>
                 </div>
 
                 <div className="hidden lg:flex items-center gap-3">
-                    <Button variant="outline" asChild className="hidden xl:inline-flex">
-                        <Link href="/preocupaciones">Reportar Preocupación</Link>
-                    </Button>
                     <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg transition-all">
                         <Link href="/voluntarios">Ser Voluntario</Link>
                     </Button>
@@ -54,7 +58,7 @@ export function Navbar() {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="lg:hidden p-2 text-gray-700 z-50 relative"
+                    className="lg:hidden p-2 text-gray-700 z-50 relative focus:outline-none"
                     onClick={toggleMenu}
                     aria-label="Toggle menu"
                 >
@@ -81,17 +85,20 @@ export function Navbar() {
                                 {link.label}
                             </Link>
                         ))}
+                        <a
+                            href="https://www.leydellobby.gob.cl/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={closeMenu}
+                            className="py-2 border-b border-gray-100 hover:text-blue-600 transition-colors"
+                        >
+                            Solicitar Audiencia (Ley del Lobby)
+                        </a>
                     </div>
 
                     <div className="flex flex-col gap-4 mt-8">
                         <Button asChild className="w-full bg-indigo-600 hover:bg-indigo-700 text-white h-12 text-lg">
                             <Link href="/voluntarios" onClick={closeMenu}>Ser Voluntario</Link>
-                        </Button>
-                        <Button variant="outline" asChild className="w-full h-12 text-lg border-2">
-                            <Link href="/preocupaciones" onClick={closeMenu}>Reportar Preocupación</Link>
-                        </Button>
-                        <Button variant="ghost" asChild className="w-full">
-                            <Link href="/ingresar-caso" onClick={closeMenu}>Gestión de Casos</Link>
                         </Button>
                     </div>
                 </div>

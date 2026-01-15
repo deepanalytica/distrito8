@@ -1,6 +1,4 @@
-import { ActionButtons } from "@/components/home/ActionButtons";
 import { CommuneSelector } from "@/components/home/CommuneSelector";
-import { FrequentProblems } from "@/components/home/FrequentProblems";
 import { HeroBanner } from "@/components/home/HeroBanner";
 import { SimpleInteractiveMap } from "@/components/home/SimpleInteractiveMap";
 
@@ -26,20 +24,7 @@ export default function Home() {
         {/* Hero Banner */}
         <HeroBanner />
 
-        {/* Quick Access Section */}
-        <section className="bg-white py-12 px-4 border-b border-gray-100">
-          <div className="container mx-auto max-w-6xl">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                ¿Cómo podemos ayudarte hoy?
-              </h2>
-              <p className="text-gray-600">
-                Acceso rápido a los servicios más utilizados
-              </p>
-            </div>
-            <ActionButtons />
-          </div>
-        </section>
+
 
         {/* Commune Selector Section */}
         <section className="bg-gradient-to-br from-blue-50 to-indigo-50 py-16 px-4">
@@ -81,20 +66,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Frequent Problems */}
-        <section className="py-16 px-4 bg-white">
-          <div className="container mx-auto max-w-5xl">
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">
-                Problemas y Trámites Frecuentes
-              </h2>
-              <p className="text-gray-600">
-                Encuentra guías paso a paso para resolver situaciones cotidianas
-              </p>
-            </div>
-            <FrequentProblems />
-          </div>
-        </section>
+
 
         {/* Stats Section */}
         <section className="py-16 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
@@ -221,31 +193,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
-          <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              ¿Necesitas ayuda con un problema en tu comuna?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-              Ingresa tu caso y nuestro equipo parlamentario lo gestionará ante las autoridades correspondientes.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100 h-14 px-8 text-lg rounded-full shadow-2xl">
-                <Link href="/ingresar-caso" className="gap-2">
-                  <CheckCircle2 className="h-5 w-5" />
-                  Ingresar un Caso
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full">
-                <Link href="/seguimiento" className="gap-2">
-                  Rastrear mi Caso
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
       </main>
 
       <footer className="bg-gray-900 text-gray-400 py-12 text-sm">
