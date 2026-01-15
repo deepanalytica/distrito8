@@ -133,7 +133,7 @@ export function HeroBanner() {
             <div className={`absolute inset-0 bg-gradient-to-r ${slide.gradient} opacity-90 transition-all duration-1000`}></div>
 
             {/* Content */}
-            <div className="relative container mx-auto px-4 py-12 md:py-20">
+            <div className="relative container mx-auto px-4 pt-12 pb-24 md:py-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
                     {/* Text Content */}
                     <div className="text-white space-y-6 animate-fade-in order-2 lg:order-1">

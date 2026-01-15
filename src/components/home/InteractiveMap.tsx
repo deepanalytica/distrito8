@@ -85,7 +85,7 @@ export function InteractiveMap() {
                 layout: {
                     "text-field": ["get", "name"],
                     "text-font": ["Open Sans Bold", "Arial Unicode MS Bold"],
-                    "text-size": 14,
+                    "text-size": ["interpolate", ["linear"], ["zoom"], 8, 12, 12, 16],
                     "text-offset": [0, 0],
                 },
                 paint: {
@@ -183,18 +183,22 @@ export function InteractiveMap() {
                 </div>
             )}
 
-            {/* Legend */}
-            <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm text-white px-4 py-3 rounded-lg shadow-lg border border-white/20">
-                <h3 className="text-sm font-bold mb-2">Distrito 8</h3>
-                <p className="text-xs text-gray-300">8 Comunas</p>
-                <div className="mt-2 flex gap-2 flex-wrap">
+            {/* Legend - Responsive Design */}
+            <div className="absolute bottom-0 left-0 right-0 md:bottom-4 md:left-4 md:right-auto bg-gray-900/95 md:bg-black/80 backdrop-blur-md text-white p-4 md:px-4 md:py-3 rounded-t-2xl md:rounded-lg shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] md:shadow-lg border-t md:border border-white/10">
+                <div className="flex items-center justify-between mb-3 md:mb-2">
+                    <div>
+                        <h3 className="text-base md:text-sm font-bold">Distrito 8</h3>
+                        <p className="text-sm md:text-xs text-gray-300">8 Comunas con coordenadas reales</p>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2 md:flex md:gap-2 md:flex-wrap">
                     {communeBoundaries.features.map((feature) => (
-                        <div key={feature.properties.slug} className="flex items-center gap-1">
+                        <div key={feature.properties.slug} className="flex items-center gap-2 md:gap-1">
                             <div
-                                className="w-3 h-3 rounded-sm"
+                                className="w-4 h-4 md:w-3 md:h-3 rounded-full md:rounded-sm shadow-sm"
                                 style={{ backgroundColor: feature.properties.color }}
                             />
-                            <span className="text-xs">{feature.properties.name}</span>
+                            <span className="text-sm md:text-xs font-medium">{feature.properties.name}</span>
                         </div>
                     ))}
                 </div>
