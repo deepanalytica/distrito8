@@ -8,9 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { COMMUNES } from "@/lib/constants";
-import { AlertCircle, CheckCircle2, Shield, Eye, MapPin, FileWarning, Lightbulb } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-
+import { CheckCircle2, Shield, Eye, FileWarning, Lightbulb } from "lucide-react";
 export function ConcernsForm() {
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);

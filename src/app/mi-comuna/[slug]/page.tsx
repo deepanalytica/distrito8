@@ -7,19 +7,16 @@ import {
     MessageSquarePlus,
     Phone,
     Globe,
-    ExternalLink,
     History,
     Utensils,
     Trees,
     Landmark,
-    Calendar,
     ArrowRight
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function CommunePage({ params }: { params: { slug: string } }) {
     const detail = COMMUNE_DETAILS[params.slug];
@@ -209,8 +206,8 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
                                         <div key={idx} className="p-4 hover:bg-gray-50 rounded-xl transition-colors border-b last:border-0 border-gray-50 border-dashed">
                                             <div className="flex items-center gap-2 mb-2">
                                                 <Badge className={`h-5 text-[10px] uppercase font-bold border-none px-2 ${p.status === "CRITICO" ? "bg-red-100 text-red-700" :
-                                                        p.status === "ALTA" ? "bg-orange-100 text-orange-700" :
-                                                            "bg-blue-100 text-blue-700"
+                                                    p.status === "ALTA" ? "bg-orange-100 text-orange-700" :
+                                                        "bg-blue-100 text-blue-700"
                                                     }`}>
                                                     {p.status}
                                                 </Badge>
