@@ -15,6 +15,7 @@ export function Navbar() {
         { href: "/", label: "Inicio" },
         { href: "/compromisos", label: "8 Reformas" },
         { href: "/mi-comuna", label: "Distrito 8" },
+        { href: "/preocupaciones", label: "Inteligencia T." },
         { href: "/transparencia", label: "Transparencia" },
         { href: "/agenda", label: "Agenda" },
     ];
