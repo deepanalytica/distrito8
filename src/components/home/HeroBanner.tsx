@@ -24,65 +24,65 @@ interface Slide {
 
 const SLIDES: Slide[] = [
     {
-        title: "Tu Voz en el Congreso",
-        subtitle: "Gestión Parlamentaria al Servicio del Distrito 8",
-        description: "Reporta problemas, solicita audiencias y sigue el avance de las gestiones en tu comuna. Un canal directo entre vecinos y el trabajo legislativo.",
+        title: "Equilibrio: El Camino hacia un Chile Próspero y Seguro",
+        subtitle: "Cristian Contreras Radovic - Diputado Distrito 8",
+        description: "Transformando el Estado a través de las 8 Grandes Reformas. Un proyecto político basado en sabiduría, justicia, eficiencia y libertad para el bien común.",
         cta: {
-            text: "Ingresar un Caso",
-            href: "/ingresar-caso"
+            text: "Conoce las 8 Reformas",
+            href: "/compromisos"
         },
         stats: [
             { value: "8", label: "Comunas" },
-            { value: "150+", label: "Casos Gestionados" },
-            { value: "24/7", label: "Disponible" }
+            { value: "8", label: "Reformas del Estado" },
+            { value: "11 Mar", label: "Asunción 2026" }
         ],
-        gradient: "from-blue-600 to-blue-800",
+        gradient: "from-indigo-600 to-purple-800",
         image: "/images/hero-parliamentary.png"
     },
     {
-        title: "Transparencia Total",
-        subtitle: "Resultados Semanales y Evidencia Documentada",
-        description: "Accede a oficios enviados, respuestas de autoridades y métricas actualizadas. Cada gestión con su evidencia y seguimiento público.",
+        title: "Sé Parte del Cambio",
+        subtitle: "Portal de Voluntarios",
+        description: "Únete al equipo que está transformando Chile. Buscamos personas comprometidas con el equilibrio, la transparencia y el desarrollo de nuestro país.",
         cta: {
-            text: "Ver Avances",
-            href: "/avances"
+            text: "Quiero ser Voluntario",
+            href: "/voluntarios"
         },
         stats: [
-            { value: "12", label: "Casos Resueltos" },
-            { value: "28", label: "En Gestión" },
-            { value: "8", label: "Oficios Enviados" }
+            { value: "100+", label: "Voluntarios Activos" },
+            { value: "6", label: "Áreas de Trabajo" },
+            { value: "24/7", label: "Disponible" }
         ],
         gradient: "from-emerald-600 to-teal-700",
         image: "/images/transparency.png"
     },
     {
-        title: "Agenda Territorial",
-        subtitle: "Presencia Activa en Cada Comuna",
-        description: "Operativos de salud, reuniones vecinales y visitas en terreno. Conoce dónde y cuándo estará el diputado en tu sector.",
+        title: "Tu Voz Importa",
+        subtitle: "Sistema de Preocupaciones Ciudadanas",
+        description: "Comparte las preocupaciones de tu comuna. Cada reporte es analizado y priorizado para crear soluciones legislativas efectivas.",
         cta: {
-            text: "Ver Agenda",
-            href: "/agenda"
+            text: "Reportar Preocupación",
+            href: "/preocupaciones"
         },
         stats: [
-            { value: "5", label: "Eventos Próximos" },
-            { value: "15", label: "Reuniones/Mes" },
-            { value: "100%", label: "Distrito Cubierto" }
+            { value: "500+", label: "Reportes Recibidos" },
+            { value: "8", label: "Comunas Activas" },
+            { value: "48h", label: "Tiempo de Respuesta" }
         ],
-        gradient: "from-purple-600 to-indigo-700",
+        gradient: "from-blue-600 to-cyan-700",
         image: "/images/agenda.png"
     },
     {
-        title: "Guías y Orientación",
-        subtitle: "Soluciones Paso a Paso para Problemas Cotidianos",
-        description: "Tutoriales prácticos para ruidos molestos, cortes de servicios, trámites municipales y más. Con contactos directos y plazos legales.",
+        title: "Transparencia Total",
+        subtitle: "Rendición de Cuentas Permanente",
+        description: "Accede a votaciones, asistencia, gastos públicos y reuniones. Cada acción documentada y disponible para la ciudadanía.",
         cta: {
-            text: "Explorar Guías",
-            href: "/guias"
+            text: "Ver Panel de Transparencia",
+            href: "/transparencia"
         },
         stats: [
-            { value: "10", label: "Guías Disponibles" },
-            { value: "6", label: "Categorías" },
-            { value: "100%", label: "Gratuito" }
+            { value: "100%", label: "Votaciones Públicas" },
+            { value: "100%", label: "Gastos Documentados" },
+            { value: "24h", label: "Actualización" }
         ],
         gradient: "from-amber-600 to-orange-700",
         image: "/images/guides.png"
@@ -215,8 +215,8 @@ export function HeroBanner() {
                                     key={idx}
                                     onClick={() => goToSlide(idx)}
                                     className={`h-2 rounded-full transition-all ${idx === currentSlide
-                                            ? "w-8 bg-white"
-                                            : "w-2 bg-white/50 hover:bg-white/70"
+                                        ? "w-8 bg-white"
+                                        : "w-2 bg-white/50 hover:bg-white/70"
                                         }`}
                                     aria-label={`Go to slide ${idx + 1}`}
                                 />

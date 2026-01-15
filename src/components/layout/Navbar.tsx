@@ -18,26 +18,29 @@ export function Navbar() {
                     <Link href="/" className="hover:text-blue-900 transition-colors">
                         Inicio
                     </Link>
+                    <Link href="/compromisos" className="hover:text-blue-900 transition-colors">
+                        8 Reformas
+                    </Link>
                     <Link href="/mi-comuna" className="hover:text-blue-900 transition-colors">
                         Mi Comuna
                     </Link>
-                    <Link href="/guias" className="hover:text-blue-900 transition-colors">
-                        Guías
+                    <Link href="/transparencia" className="hover:text-blue-900 transition-colors">
+                        Transparencia
+                    </Link>
+                    <Link href="/voluntarios" className="hover:text-blue-900 transition-colors">
+                        Voluntarios
                     </Link>
                     <Link href="/agenda" className="hover:text-blue-900 transition-colors">
                         Agenda
-                    </Link>
-                    <Link href="/avances" className="hover:text-blue-900 transition-colors">
-                        Transparencia
                     </Link>
                 </div>
 
                 <div className="flex items-center gap-3">
                     <Button variant="outline" asChild className="hidden sm:inline-flex">
-                        <Link href="/audiencia">Pedir Audiencia</Link>
+                        <Link href="/preocupaciones">Reportar Preocupación</Link>
                     </Button>
-                    <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white">
-                        <Link href="/ingresar-caso">Ingresar Caso</Link>
+                    <Button asChild className="bg-indigo-600 hover:bg-indigo-700 text-white">
+                        <Link href="/voluntarios">Ser Voluntario</Link>
                     </Button>
                 </div>
             </div>
