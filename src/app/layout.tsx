@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 
 import { CookieBanner } from "@/components/layout/CookieBanner";
 
+import { Navbar } from "@/components/layout/Navbar";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,6 +27,7 @@ export default function RootLayout({
           inter.variable
         )}
       >
+        <Navbar />
         {children}
         <CookieBanner />
       </body>

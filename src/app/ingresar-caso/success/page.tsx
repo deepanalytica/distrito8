@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/components/layout/Navbar";
+
 import { CheckCircle2, Copy, Search, House } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -67,7 +67,7 @@ function CaseSuccessContent() {
 export default function CaseSuccessPage() {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
-            <Navbar />
+
             <Suspense fallback={<div className="flex-grow flex items-center justify-center">Cargando...</div>}>
                 <CaseSuccessContent />
             </Suspense>

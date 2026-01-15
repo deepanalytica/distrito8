@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/Navbar";
+
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import Link from "next/link";
 export default function AvancesPage() {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-            <Navbar />
+
 
             <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
                 <div className="max-w-5xl mx-auto">

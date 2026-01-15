@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/Navbar";
+
 import { COMMUNE_DETAILS } from "@/lib/commune-data";
 import { notFound } from "next/navigation";
 import {
@@ -24,7 +24,7 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-            <Navbar />
+
 
             <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
                 <div className="max-w-5xl mx-auto">

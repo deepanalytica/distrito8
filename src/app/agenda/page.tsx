@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/components/layout/Navbar";
+
 import { EVENTS } from "@/lib/event-data";
 import {
     CalendarDays,
@@ -36,7 +36,7 @@ export default function AgendaPage() {
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-            <Navbar />
+
 
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
                 <div className="max-w-4xl mx-auto">

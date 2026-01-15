@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar } from "@/components/layout/Navbar";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,7 +33,7 @@ export default function SeguimientoPage() {
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-            <Navbar />
+
 
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20 flex flex-col items-center">
                 <div className="max-w-xl w-full text-center mb-10">

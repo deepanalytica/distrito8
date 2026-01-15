@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/Navbar";
+
 import { COMMUNES } from "@/lib/constants";
 import { MapPin, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 export default function MiComunaIndex() {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-            <Navbar />
+
 
             <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
                 <div className="max-w-3xl mx-auto text-center mb-16">

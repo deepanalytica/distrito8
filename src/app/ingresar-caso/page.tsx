@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/Navbar";
+
 import { CaseForm } from "@/components/forms/CaseForm";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { Suspense } from "react";
 export default function IngresarCasoPage() {
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col">
-            <Navbar />
+
 
             <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
                 <div className="max-w-2xl mx-auto mb-8">

@@ -3,7 +3,7 @@ import { CommuneSelector } from "@/components/home/CommuneSelector";
 import { FrequentProblems } from "@/components/home/FrequentProblems";
 import { HeroBanner } from "@/components/home/HeroBanner";
 import { SimpleInteractiveMap } from "@/components/home/SimpleInteractiveMap";
-import { Navbar } from "@/components/layout/Navbar";
+
 import Link from "next/link";
 import {
   FileText,
@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col font-sans">
-      <Navbar />
+
 
       <main className="flex-grow">
         {/* Hero Banner */}
