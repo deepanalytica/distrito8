@@ -6,7 +6,6 @@ import Link from "next/link";
 import {
   FileText,
   Calendar,
-  CheckCircle2,
   ArrowRight,
   Sparkles,
   Map
