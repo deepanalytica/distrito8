@@ -1,5 +1,6 @@
 import { CommuneSelector } from "@/components/home/CommuneSelector";
 import { HeroBanner } from "@/components/home/HeroBanner";
+import { DeputyProfile } from "@/components/home/DeputyProfile";
 import { SimpleInteractiveMap } from "@/components/home/SimpleInteractiveMap";
 
 import Link from "next/link";
@@ -64,6 +65,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Deputy Profile */}
+        <DeputyProfile />
 
 
 

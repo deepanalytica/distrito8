@@ -24,20 +24,20 @@ interface Slide {
 
 const SLIDES: Slide[] = [
     {
-        title: "Equilibrio: El Camino hacia un Chile Próspero y Seguro",
-        subtitle: "Cristian Contreras Radovic - Diputado Distrito 8",
-        description: "Transformando el Estado a través de las 8 Grandes Reformas. Un proyecto político basado en sabiduría, justicia, eficiencia y libertad para el bien común.",
+        title: "Cristian Contreras Radovic",
+        subtitle: "Diputado Electo Distrito 8",
+        description: "Liderando 'El Camino del Equilibrio' para un Chile próspero y seguro. Transformando el Estado desde la sabiduría, la eficiencia y el compromiso real con las personas.",
         cta: {
-            text: "Conoce las 8 Reformas",
-            href: "/compromisos"
+            text: "Conoce mi Trayectoria",
+            href: "/biografia"
         },
         stats: [
+            { value: "40.000+", label: "Votos" },
             { value: "8", label: "Comunas" },
-            { value: "8", label: "Reformas del Estado" },
-            { value: "11 Mar", label: "Asunción 2026" }
+            { value: "11 Mar", label: "Asunción" }
         ],
-        gradient: "from-indigo-600 to-purple-800",
-        image: "/images/hero-parliamentary.png"
+        gradient: "from-blue-800 to-indigo-900",
+        image: "/images/cristian/cristian_hero_principal.png"
     },
     {
         title: "Sé Parte del Cambio",
@@ -86,6 +86,22 @@ const SLIDES: Slide[] = [
         ],
         gradient: "from-amber-600 to-orange-700",
         image: "/images/guides.png"
+    },
+    {
+        title: "Descubre el Corazón del Distrito 8",
+        subtitle: "Identidad y Territorio",
+        description: "Explora las 8 comunas que integran nuestro distrito. Conoce su historia, su cultura, su gastronomía y la identidad única que define a cada territorio.",
+        cta: {
+            text: "Explorar Comunas",
+            href: "/mi-comuna"
+        },
+        stats: [
+            { value: "8", label: "Comunas" },
+            { value: "Riqueza", label: "Cultural" },
+            { value: "Identidad", label: "Local" }
+        ],
+        gradient: "from-slate-700 to-blue-900",
+        image: "/images/hero-parliamentary.png"
     }
 ];
 
@@ -96,26 +112,23 @@ export function HeroBanner() {
     useEffect(() => {
         if (!isAutoPlaying) return;
 
-        const interval = setInterval(() => {
+        const timer = setTimeout(() => {
             setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
         }, 5000);
 
-        return () => clearInterval(interval);
-    }, [isAutoPlaying]);
+        return () => clearTimeout(timer);
+    }, [currentSlide, isAutoPlaying]);
 
     const goToSlide = (index: number) => {
         setCurrentSlide(index);
-        setIsAutoPlaying(false);
     };
 
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-        setIsAutoPlaying(false);
     };
 
     const prevSlide = () => {
         setCurrentSlide((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
-        setIsAutoPlaying(false);
     };
 
     const slide = SLIDES[currentSlide];
@@ -134,9 +147,9 @@ export function HeroBanner() {
 
             {/* Content */}
             <div className="relative container mx-auto px-4 pt-12 pb-24 md:py-20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
+                <div key={currentSlide} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
                     {/* Text Content */}
-                    <div className="text-white space-y-6 animate-fade-in order-2 lg:order-1">
+                    <div key={`text-${currentSlide}`} className="text-white space-y-6 animate-fade-in order-2 lg:order-1">
                         <div className="inline-block">
                             <span className="text-sm font-bold uppercase tracking-wider bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
                                 {slide.subtitle}
@@ -179,7 +192,7 @@ export function HeroBanner() {
                     </div>
 
                     {/* Image */}
-                    <div className="relative order-1 lg:order-2 animate-fade-in">
+                    <div key={`img-${currentSlide}`} className="relative order-1 lg:order-2 animate-fade-in">
                         <div className="relative w-full aspect-square max-w-md mx-auto lg:max-w-none">
                             <div className="absolute inset-0 bg-white/10 rounded-3xl backdrop-blur-sm"></div>
                             <Image
