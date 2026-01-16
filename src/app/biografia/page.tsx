@@ -65,7 +65,7 @@ export default function BiographyPage() {
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8">
                   <p className="text-white font-serif italic text-lg leading-relaxed opacity-90">
-                    "La política debe recuperar su esencia filosófica: la búsqueda del bien común a través de la razón y la virtud."
+                    &quot;La política debe recuperar su esencia filosófica: la búsqueda del bien común a través de la razón y la virtud.&quot;
                   </p>
                 </div>
               </div>
@@ -141,7 +141,7 @@ export default function BiographyPage() {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Visión Política</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
-                    Fundador de <strong>Centro Unido</strong>. Su propuesta política busca superar la división ideológica tradicional mediante la "Política del Equilibrio", integrando la eficiencia económica con la justicia social y la ética pública.
+                    Fundador de <strong>Centro Unido</strong>. Su propuesta política busca superar la división ideológica tradicional mediante la &quot;Política del Equilibrio&quot;, integrando la eficiencia económica con la justicia social y la ética pública.
                   </p>
                 </CardContent>
               </Card>
@@ -155,7 +155,7 @@ export default function BiographyPage() {
             <Quote className="h-16 w-16 text-white/20 absolute top-8 left-8" />
             <div className="relative z-10 max-w-3xl mx-auto space-y-6">
               <h3 className="text-2xl md:text-4xl font-serif italic leading-relaxed">
-                "El verdadero cambio no está en las estructuras externas, sino en la transformación de la conciencia humana. Chile necesita líderes que piensen, sientan y actúen desde el equilibrio."
+                &quot;El verdadero cambio no está en las estructuras externas, sino en la transformación de la conciencia humana. Chile necesita líderes que piensen, sientan y actúen desde el equilibrio.&quot;
               </h3>
               <div className="flex items-center justify-center gap-2 text-gray-400 font-bold uppercase tracking-widest text-sm">
                 <span className="w-8 h-px bg-gray-600"></span>

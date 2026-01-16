@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Quote } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export function DeputyProfile() {
@@ -25,7 +25,7 @@ export function DeputyProfile() {
                             />
                             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 text-white">
                                 <p className="font-serif italic text-lg opacity-90">
-                                    "El equilibrio es el único camino para ser feliz."
+                                    &quot;El equilibrio es el único camino para ser feliz.&quot;
                                 </p>
                             </div>
                         </div>
@@ -39,7 +39,7 @@ export function DeputyProfile() {
                                 Biografía
                             </div>
                             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                                Cristian Contreras <span className="text-indigo-600">"Dr. File"</span>
+                                Cristian Contreras <span className="text-indigo-600">&quot;Dr. File&quot;</span>
                             </h2>
                             <p className="text-lg text-gray-600 leading-relaxed">
                                 Periodista, Doctor en Filosofía y escritor. Con una destacada trayectoria en medios de comunicación y una profunda vocación intelectual, ha dedicado su vida a la búsqueda de la verdad y el conocimiento.
@@ -61,7 +61,7 @@ export function DeputyProfile() {
                                     Visión Política
                                 </h3>
                                 <p className="text-gray-700">
-                                    Fundador del movimiento "Centro Unido" y promotor de la "Política del Equilibrio". Busca superar la dicotomía izquierda-derecha mediante soluciones pragmáticas basadas en la razón y la ética.
+                                    Fundador del movimiento &quot;Centro Unido&quot; y promotor de la &quot;Política del Equilibrio&quot;. Busca superar la dicotomía izquierda-derecha mediante soluciones pragmáticas basadas en la razón y la ética.
                                 </p>
                             </Card>
                         </div>
