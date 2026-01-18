@@ -11,7 +11,11 @@ import {
     Utensils,
     Trees,
     Landmark,
-    ArrowRight
+    ArrowRight,
+    AlertCircle,
+    CheckCircle2,
+    Building2,
+    Users
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -26,71 +30,77 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
-            <main className="flex-grow container mx-auto px-4 py-8 md:py-12">
-                <div className="max-w-6xl mx-auto">
+        <div className="min-h-screen bg-slate-950 flex flex-col font-sans text-slate-100">
+            {/* Decorative Background */}
+            <div className="fixed inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5 pointer-events-none"></div>
+            <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 z-0 pointer-events-none"></div>
+            <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 z-0 pointer-events-none"></div>
+
+            <main className="flex-grow container mx-auto px-4 py-8 md:py-12 relative z-10">
+                <div className="max-w-7xl mx-auto">
                     {/* Breadcrumb */}
                     <Link
-                        href="/mi-comuna"
-                        className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-blue-600 transition-colors mb-8 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-100"
+                        href="/#comunas"
+                        className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-amber-400 transition-colors mb-8 bg-slate-900/50 hover:bg-slate-800 px-4 py-2 rounded-full border border-slate-800 backdrop-blur-sm group"
                     >
-                        <ChevronLeft className="h-4 w-4" />
+                        <ChevronLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                         Volver al mapa
                     </Link>
 
                     {/* HERO & IDENTITY SECTION */}
-                    <div className="bg-white rounded-[2rem] p-6 md:p-10 shadow-sm border border-gray-100 mb-10 overflow-hidden relative">
-                        {/* Abstract Background Element */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl opacity-60" />
+                    <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900/60 border border-slate-800 backdrop-blur-md shadow-2xl mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
+                        {/* Gradient Accent */}
+                        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-500/0 via-amber-500 to-amber-500/0 opacity-50"></div>
 
-                        <div className="relative z-10 flex flex-col lg:flex-row gap-10 items-start">
-                            <div className="flex-grow space-y-6">
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-3">
-                                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-100 px-3 py-1 text-sm font-semibold tracking-wide">
+                        <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-12 items-start">
+                            <div className="flex-grow space-y-8">
+                                <div className="space-y-4">
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <Badge variant="outline" className="bg-amber-500/10 text-amber-500 border-amber-500/20 px-4 py-1.5 text-sm font-bold tracking-wider uppercase backdrop-blur-md">
                                             DISTRITO 8
                                         </Badge>
-                                        <Badge variant="outline" className="bg-gray-50 text-gray-600 border-gray-100 px-3 py-1 text-xs uppercase tracking-wider font-bold">
+                                        <Badge variant="outline" className="bg-slate-800/50 text-slate-300 border-slate-700 px-4 py-1.5 text-sm uppercase tracking-wider font-semibold backdrop-blur-md">
+                                            <Users className="w-3 h-3 mr-2 text-indigo-400" />
                                             {detail.population}
                                         </Badge>
                                     </div>
-                                    <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight leading-none">
+                                    <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none bg-clip-text">
                                         {detail.name}
                                     </h1>
                                 </div>
 
-                                <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl font-light">
+                                <p className="text-xl text-slate-300 leading-relaxed max-w-3xl font-light border-l-4 border-amber-500/30 pl-6">
                                     {detail.description}
                                 </p>
 
                                 {/* Identity Box */}
-                                <div className="bg-gradient-to-br from-indigo-50 to-white p-6 rounded-2xl border border-indigo-100 mt-6 inline-flex flex-col sm:flex-row gap-5 items-start">
-                                    <div className="bg-white p-3 rounded-full shadow-sm text-indigo-600">
-                                        <Globe className="h-6 w-6" />
+                                <div className="bg-slate-800/40 p-6 rounded-2xl border border-slate-700/50 inline-flex flex-col sm:flex-row gap-5 items-center sm:items-start backdrop-blur-sm hover:bg-slate-800/60 transition-colors">
+                                    <div className="bg-amber-500/20 p-4 rounded-full text-amber-500 shadow-inner ring-1 ring-amber-500/20">
+                                        <Globe className="h-8 w-8" />
                                     </div>
-                                    <div>
-                                        <h3 className="text-sm font-bold text-indigo-900 uppercase tracking-wider mb-1">
-                                            {detail.identity.badge}
+                                    <div className="text-center sm:text-left">
+                                        <h3 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-2">
+                                            Identidad Local
                                         </h3>
-                                        <p className="text-gray-700 font-medium leading-snug">
-                                            {detail.identity.text}
+                                        <p className="text-lg text-slate-200 font-medium leading-snug max-w-md italic">
+                                            "{detail.identity.text}"
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
                             {/* CTAs */}
-                            <div className="w-full lg:w-auto flex flex-col gap-3 flex-shrink-0 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                <h4 className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-1 text-center lg:text-left">
-                                    Gestión Vecinal
+                            <div className="w-full lg:w-auto flex flex-col gap-4 flex-shrink-0 bg-slate-950/50 p-6 rounded-3xl border border-slate-800/50 backdrop-blur-md lg:min-w-[320px]">
+                                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 text-center">
+                                    Centro de Acción
                                 </h4>
-                                <Button asChild className="w-full bg-blue-600 hover:bg-blue-700 h-14 text-lg shadow-lg shadow-blue-900/10">
+                                <Button asChild className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold h-14 text-lg shadow-lg shadow-amber-900/20 rounded-xl transition-all hover:scale-[1.02]">
                                     <Link href={`/ingresar-caso?comuna=${detail.slug}`}>
                                         <MessageSquarePlus className="h-5 w-5 mr-2" />
                                         Reportar Problema
                                     </Link>
                                 </Button>
-                                <Button asChild variant="outline" className="w-full h-12 border-gray-300 hover:bg-white text-gray-600">
+                                <Button asChild variant="outline" className="w-full h-12 border-slate-700 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl bg-transparent transition-all hover:border-slate-600">
                                     <Link href="/audiencia">
                                         <Phone className="h-4 w-4 mr-2" />
                                         Solicitar Audiencia
@@ -107,25 +117,25 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
 
                             {/* Heritage Section */}
                             {detail.history && detail.history.length > 0 && (
-                                <section>
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                        <div className="bg-amber-100 p-2 rounded-lg text-amber-700">
+                                <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+                                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                        <div className="bg-slate-800 p-2.5 rounded-xl text-amber-500 shadow-md border border-slate-700">
                                             <Landmark className="h-6 w-6" />
                                         </div>
                                         Patrimonio e Historia
                                     </h2>
-                                    <div className="space-y-4">
+                                    <div className="grid gap-4">
                                         {detail.history.map((item, idx) => (
-                                            <Card key={idx} className="p-5 border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                                                <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
-                                                <p className="text-gray-600 leading-relaxed mb-3 text-sm">{item.description}</p>
+                                            <div key={idx} className="group p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 transition-all hover:shadow-lg hover:shadow-amber-900/10 backdrop-blur-sm">
+                                                <h3 className="text-lg font-bold text-amber-100 group-hover:text-amber-400 transition-colors mb-2">{item.title}</h3>
+                                                <p className="text-slate-400 leading-relaxed mb-4 text-sm">{item.description}</p>
                                                 {item.location && (
-                                                    <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-400 bg-gray-50 inline-flex px-2 py-1 rounded">
+                                                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 bg-slate-950/50 inline-flex px-3 py-1.5 rounded-lg border border-slate-800">
                                                         <MapPin className="h-3 w-3" />
                                                         {item.location}
                                                     </div>
                                                 )}
-                                            </Card>
+                                            </div>
                                         ))}
                                     </div>
                                 </section>
@@ -133,25 +143,25 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
 
                             {/* Nature Section */}
                             {detail.nature && detail.nature.length > 0 && (
-                                <section>
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                        <div className="bg-emerald-100 p-2 rounded-lg text-emerald-700">
+                                <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+                                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                        <div className="bg-slate-800 p-2.5 rounded-xl text-emerald-400 shadow-md border border-slate-700">
                                             <Trees className="h-6 w-6" />
                                         </div>
                                         Naturaleza y Entorno
                                     </h2>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         {detail.nature.map((item, idx) => (
-                                            <Card key={idx} className="p-5 border-emerald-100 bg-emerald-50/30 shadow-none">
-                                                <h3 className="text-lg font-bold text-emerald-900 mb-2">{item.title}</h3>
-                                                <p className="text-emerald-800/80 text-sm leading-relaxed mb-3">{item.description}</p>
+                                            <div key={idx} className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-900/50 border border-slate-800 hover:border-emerald-500/50 transition-all hover:bg-slate-800/30">
+                                                <h3 className="text-lg font-bold text-emerald-300 mb-2">{item.title}</h3>
+                                                <p className="text-slate-400 text-sm leading-relaxed mb-4">{item.description}</p>
                                                 {item.location && (
-                                                    <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-600">
+                                                    <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500/80">
                                                         <MapPin className="h-3 w-3" />
                                                         {item.location}
                                                     </div>
                                                 )}
-                                            </Card>
+                                            </div>
                                         ))}
                                     </div>
                                 </section>
@@ -159,24 +169,24 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
 
                             {/* Gastronomy Section */}
                             {detail.gastronomy && detail.gastronomy.length > 0 && (
-                                <section>
-                                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                        <div className="bg-orange-100 p-2 rounded-lg text-orange-700">
+                                <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
+                                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                                        <div className="bg-slate-800 p-2.5 rounded-xl text-orange-400 shadow-md border border-slate-700">
                                             <Utensils className="h-6 w-6" />
                                         </div>
                                         Vida Local y Gastronomía
                                     </h2>
                                     <div className="space-y-4">
                                         {detail.gastronomy.map((item, idx) => (
-                                            <div key={idx} className="flex gap-4 items-start group">
-                                                <div className="w-2 h-2 rounded-full bg-orange-300 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform" />
+                                            <div key={idx} className="flex gap-5 items-start p-4 hover:bg-slate-900/50 rounded-2xl transition-colors border border-transparent hover:border-slate-800/50 group">
+                                                <div className="w-2 h-2 rounded-full bg-orange-400 mt-2.5 flex-shrink-0 group-hover:scale-125 group-hover:shadow-[0_0_10px_rgba(251,146,60,0.5)] transition-all" />
                                                 <div>
-                                                    <h3 className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors">
+                                                    <h3 className="font-bold text-slate-200 group-hover:text-orange-400 transition-colors text-lg">
                                                         {item.title}
                                                     </h3>
-                                                    <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+                                                    <p className="text-slate-400 text-sm mt-1 leading-relaxed">{item.description}</p>
                                                     {item.location && (
-                                                        <p className="text-xs text-gray-400 mt-1 italic">{item.location}</p>
+                                                        <p className="text-xs text-slate-600 mt-2 italic font-mono">{item.location}</p>
                                                     )}
                                                 </div>
                                             </div>
@@ -188,61 +198,63 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
                         </div>
 
                         {/* RIGHT COLUMN: POLITICAL MANAGEMENT (Sticky Sidebar) - Spans 5 cols */}
-                        <div className="xl:col-span-5 space-y-8">
+                        <div className="xl:col-span-5 space-y-8 animate-in fade-in slide-in-from-right-8 duration-700 delay-500">
 
-                            {/* Priorities Card */}
-                            <Card className="border-none shadow-xl shadow-blue-900/5 bg-white overflow-hidden rounded-3xl ring-1 ring-gray-100">
-                                <div className="bg-gray-50 p-6 border-b border-gray-100 flex justify-between items-center">
-                                    <h2 className="font-bold text-gray-900 text-lg flex items-center gap-2">
-                                        <div className="w-1.5 h-6 bg-red-500 rounded-full" />
+                            {/* Looking for Problems/Needs/Priorities */}
+                            <Card className="border-0 bg-slate-900 shadow-2xl shadow-black/20 overflow-hidden rounded-[2rem] ring-1 ring-slate-800">
+                                <div className="bg-slate-800/50 p-6 border-b border-slate-800 flex justify-between items-center backdrop-blur-sm">
+                                    <h2 className="font-bold text-white text-lg flex items-center gap-3">
+                                        <AlertCircle className="h-5 w-5 text-red-500" />
                                         Urgencias Comunales
                                     </h2>
-                                    <Badge variant="secondary" className="bg-white text-xs font-bold border border-gray-200">
+                                    <Badge variant="secondary" className="bg-slate-950 text-slate-300 text-xs font-bold border border-slate-800 shadow-inner">
                                         {detail.priorities.length} Activas
                                     </Badge>
                                 </div>
-                                <div className="p-2">
+                                <div className="divide-y divide-slate-800/50">
                                     {detail.priorities.map((p, idx) => (
-                                        <div key={idx} className="p-4 hover:bg-gray-50 rounded-xl transition-colors border-b last:border-0 border-gray-50 border-dashed">
+                                        <div key={idx} className="p-5 hover:bg-slate-800/30 transition-colors group">
                                             <div className="flex items-center gap-2 mb-2">
-                                                <Badge className={`h-5 text-[10px] uppercase font-bold border-none px-2 ${p.status === "CRITICO" ? "bg-red-100 text-red-700" :
-                                                    p.status === "ALTA" ? "bg-orange-100 text-orange-700" :
-                                                        "bg-blue-100 text-blue-700"
+                                                <Badge className={`h-5 text-[10px] uppercase font-bold border-none px-2 tracking-wide ${p.status === "CRITICO" ? "bg-red-500/20 text-red-400 group-hover:bg-red-500/30" :
+                                                    p.status === "ALTA" ? "bg-orange-500/20 text-orange-400 group-hover:bg-orange-500/30" :
+                                                        "bg-blue-500/20 text-blue-400 group-hover:bg-blue-500/30"
                                                     }`}>
                                                     {p.status}
                                                 </Badge>
                                             </div>
-                                            <h3 className="font-bold text-gray-900 text-sm mb-1">{p.title}</h3>
-                                            <p className="text-xs text-gray-500 leading-relaxed">
+                                            <h3 className="font-bold text-slate-100 text-sm mb-1.5">{p.title}</h3>
+                                            <p className="text-xs text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
                                                 {p.description}
                                             </p>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="p-4 bg-gray-50 text-center">
-                                    <Link href="/participa" className="text-sm font-bold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1">
+                                <div className="p-5 bg-slate-950/30 text-center border-t border-slate-800">
+                                    <Link href="/participa" className="text-sm font-bold text-amber-500 hover:text-amber-400 inline-flex items-center gap-2 transition-colors hover:gap-3">
                                         Votar prioridades
-                                        <ArrowRight className="h-3 w-3" />
+                                        <ArrowRight className="h-4 w-4" />
                                     </Link>
                                 </div>
                             </Card>
 
                             {/* Gestiones Widget */}
-                            <div className="bg-white rounded-3xl border border-gray-200 p-6">
-                                <h3 className="font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                    <History className="h-5 w-5 text-gray-400" />
-                                    Últimas Gestiones
+                            <div className="bg-slate-900 rounded-[2rem] border border-slate-800 p-8 shadow-xl">
+                                <h3 className="font-bold text-white mb-8 flex items-center gap-3">
+                                    <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                                    Últimos Avances
                                 </h3>
-                                <div className="space-y-6 relative">
+                                <div className="space-y-8 relative">
                                     {/* Timeline Line */}
-                                    <div className="absolute left-1.5 top-2 bottom-2 w-0.5 bg-gray-100" />
+                                    <div className="absolute left-2.5 top-3 bottom-3 w-px bg-gradient-to-b from-slate-700 via-slate-800 to-transparent" />
 
                                     {detail.gestiones.map((g, idx) => (
-                                        <div key={idx} className="relative pl-6">
-                                            <div className="absolute left-0 top-1.5 w-3.5 h-3.5 bg-white border-2 border-blue-500 rounded-full z-10" />
-                                            <p className="text-xs font-bold text-gray-400 mb-1 uppercase tracking-wider">{g.date}</p>
-                                            <h4 className="font-semibold text-gray-900 text-sm mb-2">{g.title}</h4>
-                                            <Badge variant="outline" className="h-5 text-[10px] bg-gray-50 text-gray-600 border-gray-200">
+                                        <div key={idx} className="relative pl-10 group">
+                                            <div className="absolute left-0 top-1.5 w-5 h-5 bg-slate-900 border-2 border-emerald-500/50 rounded-full z-10 group-hover:border-emerald-500 group-hover:shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all">
+                                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full absolute inset-0 m-auto opacity-50 group-hover:opacity-100 transition-opacity" />
+                                            </div>
+                                            <p className="text-[10px] font-bold text-slate-500 mb-1 uppercase tracking-widest">{g.date}</p>
+                                            <h4 className="font-bold text-slate-200 text-sm mb-2 group-hover:text-emerald-400 transition-colors">{g.title}</h4>
+                                            <Badge variant="outline" className="h-5 text-[10px] bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-2">
                                                 {g.status.replace("_", " ")}
                                             </Badge>
                                         </div>
@@ -251,16 +263,19 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
                             </div>
 
                             {/* Contact Box */}
-                            <div className="bg-slate-900 rounded-3xl p-6 text-white shadow-lg">
-                                <h3 className="font-bold mb-4 flex items-center gap-2">
-                                    <Phone className="h-4 w-4 text-slate-400" />
-                                    Teléfonos Clave
+                            <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-[2rem] p-8 text-white shadow-lg shadow-orange-900/20 relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                                    <Phone className="w-32 h-32 rotate-12 -translate-y-8 translate-x-8" />
+                                </div>
+                                <h3 className="font-bold mb-6 flex items-center gap-2 relative z-10 text-lg">
+                                    <Phone className="h-5 w-5" />
+                                    Teléfonos Directos
                                 </h3>
-                                <div className="grid gap-3">
+                                <div className="grid gap-4 relative z-10">
                                     {detail.contacts.map((c, idx) => (
-                                        <div key={idx} className="flex items-center justify-between text-sm py-2 border-b border-slate-800 last:border-0">
-                                            <span className="text-slate-300">{c.label}</span>
-                                            <span className="font-mono font-bold text-amber-400">{c.phone}</span>
+                                        <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between text-sm py-3 border-b border-white/20 last:border-0 hover:bg-white/10 rounded-lg px-2 -mx-2 transition-colors">
+                                            <span className="text-amber-100 font-medium">{c.label}</span>
+                                            <span className="font-mono font-bold text-white text-base tracking-wider">{c.phone}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -271,10 +286,14 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
                 </div>
             </main>
 
-            <footer className="py-8 bg-white border-t border-gray-100 mt-auto">
+            <footer className="py-8 bg-slate-950 border-t border-slate-900 mt-auto relative z-10">
                 <div className="container mx-auto px-4 text-center">
-                    <p className="text-sm text-gray-400">
-                        Diputado Cristian Contreras • Distrito 8 • Región Metropolitana
+                    <p className="text-sm text-slate-600 flex items-center justify-center gap-2">
+                        <span>Diputado Cristian Contreras</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-700" />
+                        <span>Distrito 8</span>
+                        <span className="w-1 h-1 rounded-full bg-slate-700" />
+                        <span>Región Metropolitana</span>
                     </p>
                 </div>
             </footer>

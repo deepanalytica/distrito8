@@ -69,12 +69,12 @@ export function ConcernsForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-8 animate-in slide-in-from-bottom-5 duration-500">
             <div className="space-y-4">
-                <div className="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg">
+                <div className="bg-blue-50/50 border-l-4 border-blue-500 p-4 rounded-r-lg">
                     <h3 className="font-semibold text-blue-900 flex items-center gap-2">
                         <Shield className="h-5 w-5" />
                         Confidencialidad Garantizada
                     </h3>
-                    <p className="text-sm text-blue-700 mt-1">
+                    <p className="text-sm text-blue-800 mt-1">
                         Esta información es utilizada para análisis estratégico. Tu identidad (si decides compartirla)
                         está protegida bajo estricto secreto profesional.
                     </p>
@@ -83,13 +83,13 @@ export function ConcernsForm() {
 
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                    <Label className="text-base font-semibold">Tipo de Información</Label>
+                    <Label className="text-base font-semibold text-slate-900">Tipo de Información</Label>
                     <Select
                         required
                         value={formData.tipologia}
                         onValueChange={(value) => setFormData({ ...formData, tipologia: value })}
                     >
-                        <SelectTrigger className="h-12">
+                        <SelectTrigger className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500">
                             <SelectValue placeholder="Selecciona categoría" />
                         </SelectTrigger>
                         <SelectContent>
@@ -122,13 +122,13 @@ export function ConcernsForm() {
                 </div>
 
                 <div className="space-y-3">
-                    <Label className="text-base font-semibold">Comuna Afectada</Label>
+                    <Label className="text-base font-semibold text-slate-900">Comuna Afectada</Label>
                     <Select
                         required
                         value={formData.comuna}
                         onValueChange={(value) => setFormData({ ...formData, comuna: value })}
                     >
-                        <SelectTrigger className="h-12">
+                        <SelectTrigger className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500">
                             <SelectValue placeholder="Selecciona comuna" />
                         </SelectTrigger>
                         <SelectContent>
@@ -143,18 +143,18 @@ export function ConcernsForm() {
             </div>
 
             <div className="space-y-3">
-                <Label htmlFor="sector" className="text-base font-semibold">Sector / Barrio (Opcional)</Label>
+                <Label htmlFor="sector" className="text-base font-semibold text-slate-900">Sector / Barrio (Opcional)</Label>
                 <Input
                     id="sector"
                     value={formData.sector}
                     onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
                     placeholder="Ej: Villa Los Héroes, Centro Cívico, etc."
-                    className="h-12"
+                    className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500"
                 />
             </div>
 
             <div className="space-y-3">
-                <Label htmlFor="descripcion" className="text-base font-semibold">Detalle del Reporte</Label>
+                <Label htmlFor="descripcion" className="text-base font-semibold text-slate-900">Detalle del Reporte</Label>
                 <Textarea
                     id="descripcion"
                     required
@@ -162,48 +162,48 @@ export function ConcernsForm() {
                     onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
                     placeholder="Describa la situación con el mayor detalle posible (fechas, horas, implicados, modus operandi)..."
                     rows={6}
-                    className="resize-none"
+                    className="resize-none border-gray-200 focus:border-amber-500 focus:ring-amber-500"
                 />
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                    <Label className="text-base font-semibold">¿Cuenta con evidencia?</Label>
+                    <Label className="text-base font-semibold text-slate-900">¿Cuenta con evidencia?</Label>
                     <RadioGroup
                         value={formData.evidencia}
                         onValueChange={(value) => setFormData({ ...formData, evidencia: value })}
                         className="flex gap-4"
                     >
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="si" id="ev-si" />
-                            <Label htmlFor="ev-si">Sí (Fotos/Videos/Docs)</Label>
+                            <RadioGroupItem value="si" id="ev-si" className="text-amber-500 border-gray-300 focus:ring-amber-500" />
+                            <Label htmlFor="ev-si" className="text-gray-700">Sí (Fotos/Videos/Docs)</Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="no" id="ev-no" />
-                            <Label htmlFor="ev-no">No</Label>
+                            <RadioGroupItem value="no" id="ev-no" className="text-amber-500 border-gray-300 focus:ring-amber-500" />
+                            <Label htmlFor="ev-no" className="text-gray-700">No</Label>
                         </div>
                     </RadioGroup>
                     {formData.evidencia === "si" && (
-                        <p className="text-xs text-amber-600 mt-1">
+                        <p className="text-xs text-amber-600 mt-1 font-medium">
                             * Nuestro equipo le contactará para solicitar la evidencia de forma segura.
                         </p>
                     )}
                 </div>
 
                 <div className="space-y-3">
-                    <Label className="text-base font-semibold">Anonimato</Label>
+                    <Label className="text-base font-semibold text-slate-900">Anonimato</Label>
                     <RadioGroup
                         value={formData.anonimo}
                         onValueChange={(value) => setFormData({ ...formData, anonimo: value })}
                         className="flex gap-4"
                     >
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="si" id="ano-si" />
-                            <Label htmlFor="ano-si">Mantener Anónimo</Label>
+                            <RadioGroupItem value="si" id="ano-si" className="text-amber-500 border-gray-300 focus:ring-amber-500" />
+                            <Label htmlFor="ano-si" className="text-gray-700">Mantener Anónimo</Label>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="no" id="ano-no" />
-                            <Label htmlFor="ano-no">Pueden contactarme</Label>
+                            <RadioGroupItem value="no" id="ano-no" className="text-amber-500 border-gray-300 focus:ring-amber-500" />
+                            <Label htmlFor="ano-no" className="text-gray-700">Pueden contactarme</Label>
                         </div>
                     </RadioGroup>
                 </div>
@@ -211,21 +211,21 @@ export function ConcernsForm() {
 
             {formData.anonimo === "no" && (
                 <div className="space-y-3 animate-in fade-in duration-300">
-                    <Label htmlFor="contacto" className="text-base font-semibold">Email o Teléfono</Label>
+                    <Label htmlFor="contacto" className="text-base font-semibold text-slate-900">Email o Teléfono</Label>
                     <Input
                         id="contacto"
                         required={formData.anonimo === "no"}
                         value={formData.contacto}
                         onChange={(e) => setFormData({ ...formData, contacto: e.target.value })}
                         placeholder="Contacto para seguimiento..."
-                        className="h-12"
+                        className="h-12 border-gray-200 focus:border-amber-500 focus:ring-amber-500"
                     />
                 </div>
             )}
 
             <Button
                 type="submit"
-                className="w-full h-14 text-lg bg-gradient-to-r from-indigo-700 to-blue-700 hover:from-indigo-800 hover:to-blue-800 text-white shadow-xl transition-all"
+                className="w-full h-14 text-lg bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold shadow-lg hover:shadow-xl transition-all"
                 disabled={loading}
             >
                 {loading ? "Encriptando y Enviando..." : "Enviar Reporte Seguro"}

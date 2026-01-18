@@ -1,305 +1,107 @@
 "use client";
 
-import { useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { COMMUNES, VOLUNTEER_AREAS, VOLUNTEER_AVAILABILITY } from "@/lib/constants";
-import { Users, Heart, CheckCircle2, GraduationCap, HeartPulse, Laptop, Megaphone, Scale } from "lucide-react";
-
-const iconMap = {
-    GraduationCap,
-    HeartPulse,
-    Laptop,
-    Megaphone,
-    Scale,
-    Users,
-};
+import { VolunteerForm } from "@/components/forms/VolunteerForm";
+import { Users, Heart, Star, Shield } from "lucide-react";
 
 export default function VoluntariosPage() {
-    const [submitted, setSubmitted] = useState(false);
-    const [formData, setFormData] = useState({
-        nombre: "",
-        email: "",
-        telefono: "",
-        comuna: "",
-        habilidades: "",
-        disponibilidad: "",
-        areasInteres: [] as string[],
-        motivacion: "",
-    });
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        // TODO: Integrate with Supabase
-        console.log("Volunteer registration:", formData);
-        setSubmitted(true);
-    };
-
-    const toggleArea = (areaId: string) => {
-        setFormData(prev => ({
-            ...prev,
-            areasInteres: prev.areasInteres.includes(areaId)
-                ? prev.areasInteres.filter(id => id !== areaId)
-                : [...prev.areasInteres, areaId]
-        }));
-    };
-
-    if (submitted) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 flex items-center justify-center p-4">
-                <Card className="max-w-md w-full border-2 border-emerald-300">
-                    <CardContent className="pt-8 text-center">
-                        <div className="mb-6">
-                            <CheckCircle2 className="h-16 w-16 text-emerald-600 mx-auto" />
-                        </div>
-                        <h2 className="text-2xl font-bold mb-4 text-gray-900">¡Gracias por Unirte!</h2>
-                        <p className="text-gray-700 mb-6">
-                            Tu registro ha sido recibido exitosamente. Pronto nos pondremos en contacto contigo
-                            para coordinar tu participación en el equipo.
-                        </p>
-                        <Button
-                            onClick={() => window.location.href = "/"}
-                            className="bg-emerald-600 hover:bg-emerald-700"
-                        >
-                            Volver al Inicio
-                        </Button>
-                    </CardContent>
-                </Card>
-            </div>
-        );
-    }
-
     return (
-        <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50">
+        <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+            {/* Decorative Background */}
+            <div className="fixed inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5 pointer-events-none"></div>
+
             {/* Hero Section */}
-            <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-16">
-                <div className="container mx-auto px-4">
+            <div className="relative bg-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 z-0"></div>
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 z-0"></div>
+
+                <div className="container mx-auto px-4 py-20 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
-                        <Users className="h-16 w-16 mx-auto mb-4" />
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                            Sé Parte del Cambio
+                        <div className="inline-flex items-center gap-2 bg-amber-500/10 text-amber-500 border border-amber-500/20 px-4 py-2 rounded-full text-sm font-bold mb-8 backdrop-blur-sm">
+                            <Users className="h-4 w-4" />
+                            Únete al Equipo
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                            Sé Parte del <span className="text-gradient-gold">Cambio</span>
                         </h1>
-                        <p className="text-xl text-emerald-100">
-                            Únete al equipo que está transformando Chile a través de las 8 Grandes Reformas
+                        <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
+                            Únete al equipo que está transformando el Distrito 8 a través de un trabajo territorial serio, transparente y cercano.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 py-12">
-                <div className="max-w-5xl mx-auto">
-                    {/* Why Volunteer */}
-                    <Card className="mb-8 border-2 border-emerald-200">
-                        <CardHeader>
-                            <CardTitle className="text-2xl flex items-center gap-2">
-                                <Heart className="h-6 w-6 text-emerald-600" />
-                                ¿Por Qué Ser Voluntario?
-                            </CardTitle>
-                        </CardHeader>
-                        <CardContent className="grid md:grid-cols-3 gap-6">
-                            <div>
-                                <h3 className="font-bold text-lg mb-2">Impacto Real</h3>
-                                <p className="text-gray-700">
-                                    Contribuye directamente a la transformación del Estado y el bienestar de tu comuna.
-                                </p>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-lg mb-2">Desarrollo Personal</h3>
-                                <p className="text-gray-700">
-                                    Aprende, crece y conecta con personas comprometidas con el bien común.
-                                </p>
-                            </div>
-                            <div>
-                                <h3 className="font-bold text-lg mb-2">Equilibrio</h3>
-                                <p className="text-gray-700">
-                                    Forma parte de un proyecto basado en sabiduría, justicia y eficiencia.
-                                </p>
-                            </div>
-                        </CardContent>
-                    </Card>
+            <main className="container mx-auto px-4 py-16 -mt-10 relative z-20">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-12 gap-12">
 
-                    {/* Areas de Trabajo */}
-                    <Card className="mb-8 border-2 border-emerald-200">
-                        <CardHeader>
-                            <CardTitle className="text-2xl">Áreas de Trabajo</CardTitle>
-                            <CardDescription>
-                                Selecciona las áreas en las que te gustaría colaborar
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {VOLUNTEER_AREAS.map((area) => {
-                                    const Icon = iconMap[area.icon as keyof typeof iconMap];
-                                    const isSelected = formData.areasInteres.includes(area.id);
-
-                                    return (
-                                        <button
-                                            key={area.id}
-                                            type="button"
-                                            onClick={() => toggleArea(area.id)}
-                                            className={`p-4 rounded-lg border-2 transition-all text-left ${isSelected
-                                                    ? "border-emerald-500 bg-emerald-50"
-                                                    : "border-gray-200 hover:border-emerald-300"
-                                                }`}
-                                        >
-                                            <div className="flex items-center gap-3">
-                                                {Icon && <Icon className="h-5 w-5 text-emerald-600" />}
-                                                <span className="font-medium">{area.name}</span>
-                                            </div>
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Registration Form */}
-                    <Card className="border-2 border-emerald-200">
-                        <CardHeader>
-                            <CardTitle className="text-2xl">Formulario de Registro</CardTitle>
-                            <CardDescription>
-                                Completa tus datos y nos pondremos en contacto contigo
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="nombre">Nombre Completo *</Label>
-                                        <Input
-                                            id="nombre"
-                                            required
-                                            value={formData.nombre}
-                                            onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                                            placeholder="Tu nombre completo"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="email">Email *</Label>
-                                        <Input
-                                            id="email"
-                                            type="email"
-                                            required
-                                            value={formData.email}
-                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            placeholder="tu@email.com"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="telefono">Teléfono</Label>
-                                        <Input
-                                            id="telefono"
-                                            type="tel"
-                                            value={formData.telefono}
-                                            onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                                            placeholder="+56 9 1234 5678"
-                                        />
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="comuna">Comuna *</Label>
-                                        <Select
-                                            required
-                                            value={formData.comuna}
-                                            onValueChange={(value) => setFormData({ ...formData, comuna: value })}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Selecciona tu comuna" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {COMMUNES.map((commune) => (
-                                                    <SelectItem key={commune.slug} value={commune.slug}>
-                                                        {commune.name}
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="disponibilidad">Disponibilidad *</Label>
-                                        <Select
-                                            required
-                                            value={formData.disponibilidad}
-                                            onValueChange={(value) => setFormData({ ...formData, disponibilidad: value })}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Selecciona tu disponibilidad" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {VOLUNTEER_AVAILABILITY.map((option) => (
-                                                    <SelectItem key={option.id} value={option.id}>
-                                                        {option.name}
-                                                    </SelectItem>
-                                                ))}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <Label htmlFor="habilidades">Habilidades Principales</Label>
-                                        <Input
-                                            id="habilidades"
-                                            value={formData.habilidades}
-                                            onChange={(e) => setFormData({ ...formData, habilidades: e.target.value })}
-                                            placeholder="Ej: Diseño gráfico, programación, etc."
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="space-y-2">
-                                    <Label htmlFor="motivacion">¿Por qué quieres ser voluntario? *</Label>
-                                    <Textarea
-                                        id="motivacion"
-                                        required
-                                        value={formData.motivacion}
-                                        onChange={(e) => setFormData({ ...formData, motivacion: e.target.value })}
-                                        placeholder="Cuéntanos tu motivación para unirte al equipo..."
-                                        rows={4}
-                                    />
-                                </div>
-
-                                {formData.areasInteres.length > 0 && (
-                                    <div>
-                                        <Label>Áreas de Interés Seleccionadas:</Label>
-                                        <div className="flex flex-wrap gap-2 mt-2">
-                                            {formData.areasInteres.map((areaId) => {
-                                                const area = VOLUNTEER_AREAS.find(a => a.id === areaId);
-                                                return (
-                                                    <Badge key={areaId} variant="secondary">
-                                                        {area?.name}
-                                                    </Badge>
-                                                );
-                                            })}
+                        {/* Sidebar Info */}
+                        <div className="lg:col-span-4 space-y-8">
+                            <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 sticky top-24">
+                                <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                                    <Heart className="h-6 w-6 text-amber-500 fill-amber-500" />
+                                    ¿Por Qué Unirte?
+                                </h3>
+                                <ul className="space-y-6">
+                                    <li className="flex gap-4">
+                                        <div className="bg-slate-100 p-3 rounded-xl h-fit">
+                                            <Shield className="h-6 w-6 text-slate-700" />
                                         </div>
+                                        <div>
+                                            <h4 className="font-bold text-slate-900 text-lg">Impacto Real</h4>
+                                            <p className="text-gray-600 text-sm leading-relaxed mt-1">
+                                                Contribuye directamente a soluciones concretas para tu barrio y comuna.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li className="flex gap-4">
+                                        <div className="bg-slate-100 p-3 rounded-xl h-fit">
+                                            <Star className="h-6 w-6 text-slate-700" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-slate-900 text-lg">Liderazgo</h4>
+                                            <p className="text-gray-600 text-sm leading-relaxed mt-1">
+                                                Accede a formación política y herramientas de liderazgo social.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li className="flex gap-4">
+                                        <div className="bg-slate-100 p-3 rounded-xl h-fit">
+                                            <Users className="h-6 w-6 text-slate-700" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-slate-900 text-lg">Comunidad</h4>
+                                            <p className="text-gray-600 text-sm leading-relaxed mt-1">
+                                                Conecta con vecinos comprometidos con el bien común.
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div className="mt-8 p-6 bg-slate-900 rounded-2xl text-center relative overflow-hidden group">
+                                    <div className="absolute inset-0 bg-amber-500/10 group-hover:bg-amber-500/20 transition-colors"></div>
+                                    <p className="text-amber-500 font-bold relative z-10 mb-2">¿Tienes dudas?</p>
+                                    <p className="text-white text-sm relative z-10">Escríbenos a <br /><span className="font-bold">voluntarios@cristiancontreras.cl</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Main Form Area */}
+                        <div className="lg:col-span-8">
+                            <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+                                <div className="p-1 bg-gradient-to-r from-amber-500 via-orange-400 to-amber-500"></div>
+                                <div className="p-8 md:p-12">
+                                    <div className="mb-10 text-center md:text-left">
+                                        <h2 className="text-3xl font-bold text-slate-900 mb-4">Formulario de Registro</h2>
+                                        <p className="text-gray-600">Completa tus datos y selecciona las áreas donde te gustaría aportar. ¡No se requiere experiencia previa!</p>
                                     </div>
-                                )}
+                                    <VolunteerForm />
+                                </div>
+                            </div>
+                        </div>
 
-                                <Button
-                                    type="submit"
-                                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-lg h-12"
-                                    disabled={formData.areasInteres.length === 0}
-                                >
-                                    Registrarme como Voluntario
-                                </Button>
-
-                                {formData.areasInteres.length === 0 && (
-                                    <p className="text-sm text-amber-600 text-center">
-                                        Por favor selecciona al menos un área de interés
-                                    </p>
-                                )}
-                            </form>
-                        </CardContent>
-                    </Card>
+                    </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 }

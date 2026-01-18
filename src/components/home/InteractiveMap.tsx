@@ -177,9 +177,15 @@ export function InteractiveMap() {
 
             {/* Tooltip */}
             {hoveredCommune && (
-                <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg border border-white/20">
-                    <p className="text-sm font-medium">{hoveredCommune}</p>
-                    <p className="text-xs text-gray-300 mt-1">Click para ver información</p>
+                <div className="absolute top-4 left-4 glass-card px-5 py-3 rounded-xl border-l-4 border-l-amber-500 animate-fade-in z-20">
+                    <div className="flex items-center gap-2 mb-1">
+                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                        <p className="text-xs text-blue-200 font-semibold uppercase tracking-wider">Distrito 8</p>
+                    </div>
+                    <p className="text-lg font-bold text-white">{hoveredCommune}</p>
+                    <p className="text-xs text-gray-300 mt-1 flex items-center gap-1">
+                        Click para ver detalle <span className="opacity-50">→</span>
+                    </p>
                 </div>
             )}
 
