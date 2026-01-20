@@ -30,6 +30,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
+export function generateStaticParams() {
+    return Object.keys(COMMUNE_DETAILS).map((slug) => ({
+        slug: slug,
+    }));
+}
+
 export default function CommunePage({ params }: { params: { slug: string } }) {
     const detail = COMMUNE_DETAILS[params.slug];
 
