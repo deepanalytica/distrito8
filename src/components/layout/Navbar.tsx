@@ -42,7 +42,7 @@ export function Navbar() {
     const navLinks = [
         { href: "/", label: "Inicio", icon: Home },
         { href: "/biografia", label: "Biografía", icon: BookOpen },
-        { href: "/compromisos", label: "8 Reformas", icon: ShieldCheck },
+        { href: "/compromisos", label: "Propuestas", icon: ShieldCheck },
         { href: "/mi-comuna", label: "Distrito 8", icon: Map },
         { href: "/preocupaciones", label: "Inteligencia T.", icon: MessageSquare },
         { href: "/transparencia", label: "Transparencia", icon: GraduationCap },

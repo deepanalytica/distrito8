@@ -1,7 +1,7 @@
 import { CommuneSelector } from "@/components/home/CommuneSelector";
 import { HeroBanner } from "@/components/home/HeroBanner";
-import { DeputyProfile } from "@/components/home/DeputyProfile";
-import { SimpleInteractiveMap } from "@/components/home/SimpleInteractiveMap";
+import { LegislativePillars } from "@/components/home/LegislativePillars";
+import { TerritorialCommandCenter } from "@/components/home/TerritorialCommandCenter";
 import { QuickServicesGrid } from "@/components/home/QuickServicesGrid";
 
 import Link from "next/link";
@@ -61,10 +61,10 @@ export default function Home() {
                   Mapa Interactivo
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                  Explora el <span className="text-blue-400">Distrito 8</span> en detalle
+                  <span className="text-blue-400">Centro de Mando</span> Territorial
                 </h2>
                 <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-                  Una herramienta poderosa para visualizar el trabajo territorial. Haz click en cualquier comuna para ver información específica, prioridades locales y gestiones en curso en tiempo real.
+                  Una plataforma de control estratégica para visualizar el trabajo directo en cada territorio. Sin intermediarios, datos reales y acciones auditables para el Distrito 8.
                 </p>
                 <ul className="space-y-4 mb-8">
                   {[
@@ -82,16 +82,15 @@ export default function Home() {
                   Ver Mapa Completo <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
-              <div className="h-[500px] w-full glass-card rounded-3xl overflow-hidden border-0 shadow-2xl relative group">
-                <div className="absolute inset-0 bg-blue-500/5 group-hover:bg-transparent transition-colors pointer-events-none z-10"></div>
-                <SimpleInteractiveMap />
+              <div className="w-full">
+                <TerritorialCommandCenter />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Deputy Profile */}
-        <DeputyProfile />
+        {/* Parliamentary Pillars Section */}
+        <LegislativePillars />
 
         {/* Recent Activity Dashboard */}
         <section className="py-24 px-4 bg-slate-950 relative">

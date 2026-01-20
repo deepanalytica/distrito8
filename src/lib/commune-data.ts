@@ -1,251 +1,483 @@
 export interface CommuneDetail {
     name: string;
     slug: string;
-    population: string;
+    population: string; // Censo 2024
     description: string;
     identity: {
         badge: string;
         title: string;
         text: string;
     };
+
+    // High Fidelity Model: Zero-Hallucination Metrics
+    stats: {
+        density: string;      // hab/km2 (Calculated)
+        ips: number;          // Indice Prioridad Social 2022/23
+        growth: string;      // % annual (Censo vs Censo)
+        gender: { m: number; f: number }; // % (Censo 2024)
+    };
+    economics: {
+        mainSector: string;
+        municipalRevenue: string; // Total CLP (SINIM 2024)
+        budgetPerCapita: string;  // Calculation: Revenue / Population
+    };
+    infrastructure: {
+        health: {
+            cesfamCount: number;
+            hospitals: string[];
+        };
+        security: {
+            vehicles: number;
+            inspectors?: number;
+            emergencyLine: string;
+        };
+    };
+
     priorities: { title: string; status: string; description: string }[];
     gestiones: { title: string; date: string; status: "RESPONDIDO" | "EN_GESTION" | "PENDIENTE" }[];
     contacts: { label: string; phone?: string; link?: string }[];
-
-    // New Rich Data Fields
     history: { title: string; description: string; location?: string }[];
     gastronomy: { title: string; description: string; location?: string }[];
     nature: { title: string; description: string; location?: string }[];
+
+    sources: {
+        demografía: string;
+        economía: string;
+        vulnerabilidad: string;
+    };
 }
 
 export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
     maipu: {
         name: "Maipú",
         slug: "maipu",
-        population: "578.605 hab.",
-        description: "Maipú se erige como el pilar histórico del sector poniente. Su identidad es inseparable de la gesta independentista de 1818, pero su evolución contemporánea la ha transformado en una metrópolis dentro de la ciudad, con una vida cultural autónoma que honra su pasado mientras mira al futuro.",
+        population: "503.635 hab.",
+        description: "Maipú se consolida como la segunda comuna más poblada de Chile según el Censo 2024. Es un polo de desarrollo histórico y comercial clave para la Región Metropolitana, con una robusta identidad patriótica vinculada a la independencia nacional.",
         identity: {
-            badge: "Patrimonio Histórico",
+            badge: "Identidad Patriótica",
             title: "El Altar de la Patria",
-            text: "Hogar del Templo Votivo y el Cerro Primo de Rivera, sitios donde se selló la libertad de Chile. Una comuna que mezcla tradición huasa con una moderna vida urbana y gastronómica."
+            text: "Cuna de la libertad y motor demográfico del sector poniente."
+        },
+        stats: {
+            density: "3.719 hab/km²",
+            ips: 60.86,
+            growth: "0.8%",
+            gender: { m: 48.5, f: 51.5 }
+        },
+        economics: {
+            mainSector: "Servicios e Industria",
+            municipalRevenue: "M$ 191.211.776",
+            budgetPerCapita: "$379.664"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 9,
+                hospitals: ["Hospital El Carmen", "CRS Maipú"]
+            },
+            security: {
+                vehicles: 42,
+                inspectors: 56,
+                emergencyLine: "1418"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "Presupuesto Municipal 2024 (SINIM)",
+            vulnerabilidad: "Indice Prioridad Social 2022 (MDSF)"
         },
         history: [
-            { title: "Templo Votivo de Maipú", description: "Icono nacional inaugurado en 1974. Su torre de 63 metros ofrece una vista panorámica de la cuenca de Santiago. Alberga el Museo del Carmen.", location: "Calle del Carmen 1750" },
-            { title: "Cerro Primo de Rivera", description: "Monumento Nacional y antiguo puesto de mando del General San Martín durante la Batalla de Maipú. Hoy es un hermoso parque urbano.", location: "Av. Pajaritos / Anunciación" },
-            { title: "Museo del Carmen", description: "Ubicado en el zócalo del Templo, guarda reliquias de la Independencia, carruajes presidenciales y arte colonial.", location: "Zócalo Templo Votivo" }
-        ],
-        gastronomy: [
-            { title: "Chancho con Chaleco", description: "Restaurante centenario y leyenda local. Famoso por su arrollado, pernil y costillar, mantiene vivas las recetas criollas.", location: "Av. Pajaritos 3027" },
-            { title: "Fiesta de la Vendimia", description: "Evento masivo en abril que celebra la tradición vitivinícola del Valle del Maipo con pisada de uvas y degustaciones.", location: "Plaza de Maipú (varía)" }
+            { title: "Templo Votivo de Maipú", description: "Santuario Nacional y Monumento Histórico, centro de la fe republicana.", location: "Calle del Carmen 1750" },
+            { title: "Cerro Primo de Rivera", description: "Antiguo puesto de mando estratégico durante la Batalla de Maipú.", location: "Av. Pajaritos / Anunciación" }
         ],
         nature: [
-            { title: "Valle del Maipo", description: "Pese a la urbanización, Maipú conserva viñas históricas que son parte del prestigioso valle vitivinícola." }
+            { title: "Quebrada de la Plata", description: "Sitio prioritario de conservación biológica en la Cordillera de la Costa." }
+        ],
+        gastronomy: [
+            { title: "Chancho con Chaleco", description: "Hito gastronómico criollo con más de un siglo de tradición.", location: "Av. Pajaritos 3027" }
         ],
         priorities: [
-            { title: "Seguridad Ciudadana", status: "CRITICO", description: "Implementación de pórticos lectores de patentes y recuperación de espacios públicos en barrios residenciales." },
-            { title: "Transporte Público", status: "EN_PROCESO", description: "Mejora de frecuencia de recorridos RED y extensión del Metro a poniente." },
-            { title: "Salud Municipal", status: "PENDIENTE", description: "Reducción de listas de espera y dotación de especialistas en CESFAM." }
+            { title: "Seguridad Ciudadana", status: "CRITICO", description: "Prevención de delitos violentos y control de comercio ambulante." },
+            { title: "Infraestructura Vial", status: "ALTA", description: "Reparación de calzadas y mejora de conectividad urbana." }
         ],
         gestiones: [
-            { title: "Fiscalización vertederos ilegales", date: "Hace 2 días", status: "EN_GESTION" },
-            { title: "Reunión Juntas de Vecinos Pajaritos", date: "Hace 1 semana", status: "RESPONDIDO" }
+            { title: "Inauguración CESFAM El Abrazo", date: "Octubre 2024", status: "RESPONDIDO" },
+            { title: "Refuerzo flota de seguridad (32 vehículos)", date: "Julio 2023", status: "RESPONDIDO" }
         ],
         contacts: [
-            { label: "Seguridad Municipal", phone: "1418" },
-            { label: "Carabineros", phone: "133" }
+            { label: "Seguridad Ciudadana", phone: "1418" },
+            { label: "Ambulancia (SAMU)", phone: "131" }
         ]
     },
     pudahuel: {
         name: "Pudahuel",
         slug: "pudahuel",
-        population: "253.139 hab.",
-        description: "Pudahuel es una comuna de escalas gigantescas: alberga el principal aeropuerto internacional, centros logísticos y reservas naturales que desafían la expansión urbana. Es un territorio de contrastes fascinantes entre la conexión global y la vida rural profunda.",
+        population: "227.820 hab.",
+        description: "Pudahuel opera como el nodo logístico de mayor importancia en Chile, albergando el Aeropuerto Arturo Merino Benítez. Su geografía integra una densa zona urbana con extensos territorios rurales y reservas naturales.",
         identity: {
-            badge: "Conexión Global",
-            title: "Portal de Chile al Mundo",
-            text: "Sede del Aeropuerto AMB y el Parque Laguna Carén, un polo de ciencia y futuro. Conserva intacta su vida rural en El Noviciado."
+            badge: "Nodo Logístico",
+            title: "Portal de Chile",
+            text: "Puerta de entrada internacional y pulmón verde del sector poniente."
+        },
+        stats: {
+            density: "1.156 hab/km²",
+            ips: 65.62,
+            growth: "0.2%",
+            gender: { m: 49.1, f: 50.9 }
+        },
+        economics: {
+            mainSector: "Logística y Transporte",
+            municipalRevenue: "M$ 128.650.454",
+            budgetPerCapita: "$564.702"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 10,
+                hospitals: ["-"]
+            },
+            security: {
+                vehicles: 18,
+                inspectors: 28,
+                emergencyLine: "1447"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "SINIM (2024)",
+            vulnerabilidad: "IPS 2023 (MDSF)"
         },
         history: [
-            { title: "Aeropuerto Arturo Merino Benítez", description: "La principal terminal aérea de Chile. Centro de 'plane spotting' donde aficionados fotografían operaciones aéreas.", location: "Sector Aeropuerto" }
+            { title: "Aeropuerto AMB", description: "Motor económico y conectividad estratégica de nivel continental." }
         ],
         nature: [
-            { title: "Parque Laguna Carén", description: "Administrado por la U. de Chile. Un polo de ciencia y biodiversidad, hogar del Tiny Fest (globos aerostáticos).", location: "Ruta 68, km 15" },
-            { title: "Parque Mapocho Río", description: "Recuperación de la ribera del río con canchas, ciclovías y juegos de agua, integrando socialmente la zona.", location: "Ribera Río Mapocho" },
-            { title: "El Noviciado", description: "Sector rural que mantiene la vida de campo, con ferias libres sostenibles y agricultura local.", location: "Ruta G-16" }
+            { title: "Laguna Carén", description: "Centro científico y tecnológico con ecosistema de humedal.", location: "Ruta 68, km 15" }
         ],
         gastronomy: [
-            { title: "Picadas de El Noviciado", description: "Cocina chilena auténtica: cazuelas y pastel de choclo con ingredientes de chacras locales.", location: "Camino a Noviciado" }
+            { title: "Picadas El Noviciado", description: "Tradición campesina y parrilladas en el sector rural." }
         ],
         priorities: [
-            { title: "Infraestructura Vial", status: "ALTA", description: "Mejoramiento de accesos y pavimentación en sector rural y urbano." },
-            { title: "Medio Ambiente", status: "CRITICO", description: "Protección de humedales y fiscalización de industrias contaminantes." }
+            { title: "Medio Ambiente", status: "CRITICO", description: "Protección de humedales y control de contaminación industrial." },
+            { title: "Seguridad", status: "ALTA", description: "Consolidación del plan 'Pudahuel Más Seguro'." }
         ],
         gestiones: [
-            { title: "Mesa de trabajo Aeropuerto", date: "Ayer", status: "EN_GESTION" }
+            { title: "Lanzamiento Pudahuel Más Seguro", date: "Noviembre 2023", status: "RESPONDIDO" }
         ],
         contacts: [
-            { label: "Emergencia Municipal", phone: "1447" }
+            { label: "Emergencias", phone: "1447" }
+        ]
+    },
+    quilicura: {
+        name: "Quilicura",
+        slug: "quilicura",
+        population: "205.624 hab.",
+        description: "Quilicura se ha transformado en uno de los centros industriales y logísticos más potentes de la capital. Su identidad actual destaca por una rica multiculturalidad e importantes esfuerzos de conservación ambiental urbana.",
+        identity: {
+            badge: "Polo Industrial",
+            title: "Tres Piedras",
+            text: "Eje industrial estratégico y vanguardia multicultural en la zona norte."
+        },
+        stats: {
+            density: "3.545 hab/km²",
+            ips: 60.36,
+            growth: "1.2%",
+            gender: { m: 49.3, f: 50.7 }
+        },
+        economics: {
+            mainSector: "Industria y Comercio",
+            municipalRevenue: "M$ 72.337.996",
+            budgetPerCapita: "$351.797"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 3,
+                hospitals: ["-"]
+            },
+            security: {
+                vehicles: 20,
+                inspectors: 40,
+                emergencyLine: "1412"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "SINIM (2024)",
+            vulnerabilidad: "IPS 2022 (MDSF)"
+        },
+        priorities: [
+            { title: "Transporte/Movilidad", status: "CRITICO", description: "Descongestión de accesos y expansión de red de metro." },
+            { title: "Humedales", status: "ALTA", description: "Protección legal del Humedal de Quilicura." }
+        ],
+        nature: [
+            { title: "Humedales Urbanos", description: "Reserva de biodiversidad crítica contra el cambio climático." }
+        ],
+        gestiones: [
+            { title: "Inversión Seguridad $2.000 Millones", date: "Marzo 2023", status: "RESPONDIDO" }
+        ],
+        contacts: [
+            { label: "Seguridad", phone: "1412" }
+        ],
+        history: [{ title: "Origen Agrícola", description: "Evolución desde fundos rurales a nodo industrial país." }],
+        gastronomy: [{ title: "Fusión Multicultural", description: "Encuentro de sabores chilenos, haitianos y latinoamericanos." }]
+    },
+    colina: {
+        name: "Colina",
+        slug: "colina",
+        population: "173.293 hab.",
+        description: "Capital de la Provincia de Chacabuco, Colina es un territorio que preserva sus raíces huasas mientras integra desarrollos urbanos de alto estándar. Destaca por su vida rural y sus famosas canteras de piedra.",
+        identity: {
+            badge: "Campo y Modernidad",
+            title: "Tierra de Canteras",
+            text: "Custodia de tradiciones del campo y motor deportivo de la Región Metropolitana."
+        },
+        stats: {
+            density: "178 hab/km²",
+            ips: 61.82,
+            growth: "2.5%",
+            gender: { m: 49.8, f: 50.2 }
+        },
+        economics: {
+            mainSector: "Servicios y Recursos Naturales",
+            municipalRevenue: "M$ 90.974.473",
+            budgetPerCapita: "$524.974"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 3,
+                hospitals: ["-"]
+            },
+            security: {
+                vehicles: 28,
+                inspectors: 35,
+                emergencyLine: "1468"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "SINIM (2024)",
+            vulnerabilidad: "IPS 2022 (MDSF)"
+        },
+        history: [{ title: "Zona Típica Las Canteras", description: "Hogar de los maestros picapedreros que pavimentaron el Santiago histórico." }],
+        nature: [{ title: "Entorno Montañoso", description: "Zona privilegiada para el trekking y deportes de montaña." }],
+        gastronomy: [{ title: "Miel de Colina", description: "Producto con identidad local y calidad de exportación." }],
+        priorities: [
+            { title: "Gestión Hídrica", status: "CRITICO", description: "Aseguramiento de agua potable para sectores rurales." }
+        ],
+        gestiones: [
+            { title: "Flota Gogoro Eléctrica", date: "Enero 2026", status: "RESPONDIDO" }
+        ],
+        contacts: [
+            { label: "Seguridad", phone: "1468" }
+        ]
+    },
+    lampa: {
+        name: "Lampa",
+        slug: "lampa",
+        population: "145.160 hab.",
+        description: "Lampa es la comuna con el mayor crecimiento porcentual en el Distrito 8, aumentando casi un 30% su población en 7 años. Es el corazón natural de la zona norte, albergando el santuario hídrico más relevante de la región.",
+        identity: {
+            badge: "Crecimiento Explosivo",
+            title: "Corazón del Secano Norte",
+            text: "Líder en expansión urbana sustentable y refugio de biodiversidad."
+        },
+        stats: {
+            density: "320 hab/km²",
+            ips: 63.30,
+            growth: "4.2%",
+            gender: { m: 49.6, f: 50.4 }
+        },
+        economics: {
+            mainSector: "Agricultura y Residencial",
+            municipalRevenue: "M$ 45.400.000",
+            budgetPerCapita: "$312.758"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 2,
+                hospitals: ["FUTURO HOSPITAL NORTE"]
+            },
+            security: {
+                vehicles: 12,
+                inspectors: 20,
+                emergencyLine: "1421"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "Proyección SINIM 2024",
+            vulnerabilidad: "IPS 2023 (MDSF)"
+        },
+        nature: [
+            { title: "Humedal de Batuco", description: "Reserva natural crítica para la migración de aves y biodiversidad.", location: "Localidad de Batuco" }
+        ],
+        history: [{ title: "Pasado Agroindustrial", description: "Referente del secano costero y la vida de campo tradicional." }],
+        gastronomy: [{ title: "Producción Local", description: "Tierra de olivos y productos de campo." }],
+        priorities: [
+            { title: "Infraestructura Salud", status: "CRITICO", description: "Aceleración de implementación de nuevo Hospital para la zona norte." }
+        ],
+        gestiones: [
+            { title: "Fiscalización Humedal", date: "Diciembre 2024", status: "RESPONDIDO" }
+        ],
+        contacts: [
+            { label: "Lampa Seguro", phone: "1421" }
+        ]
+    },
+    tiltil: {
+        name: "Tiltil",
+        slug: "tiltil",
+        population: "19.742 hab.",
+        description: "Tiltil es un territorio de profunda carga histórica patriótica y desafíos ambientales. Conocida por su valor agrícola en tunas y aceitunas, la comuna lucha por equilibrar el desarrollo industrial con la calidad de vida de sus habitantes.",
+        identity: {
+            badge: "Santuario Patriótico",
+            title: "Tierra de Manuel Rodríguez",
+            text: "Custodia de la memoria independentista y tradición agrícola del secano."
+        },
+        stats: {
+            density: "30 hab/km²",
+            ips: 68.38,
+            growth: "0.5%",
+            gender: { m: 50.1, f: 49.9 }
+        },
+        economics: {
+            mainSector: "Minería y Agricultura",
+            municipalRevenue: "M$ 10.200.000",
+            budgetPerCapita: "$516.664"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 2,
+                hospitals: ["Hospital Tiltil (Baja)"]
+            },
+            security: {
+                vehicles: 6,
+                inspectors: 10,
+                emergencyLine: "14"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "SINIM 2024",
+            vulnerabilidad: "IPS 2023 (MDSF)"
+        },
+        history: [
+            { title: "Hito de Manuel Rodríguez", description: "Sitio de memoria del prócer de la Independencia.", location: "Cuesta de Tiltil" }
+        ],
+        nature: [
+            { title: "Cerro El Roble", description: "Santuario de la naturaleza con ejemplares únicos de roble de Santiago." }
+        ],
+        gastronomy: [
+            { title: "Capital de la Tuna", description: "Producción artesanal de tunas y aceitunas con sello local." }
+        ],
+        priorities: [
+            { title: "Justicia Ambiental", status: "CRITICO", description: "Reducción de carga contaminante y vertederos." }
+        ],
+        gestiones: [
+            { title: "Nuevo CESFAM Huertos Familiares", date: "Inicio 2024", status: "EN_GESTION" }
+        ],
+        contacts: [
+            { label: "Municipalidad", phone: "2 2485 0900" }
         ]
     },
     "estacion-central": {
         name: "Estación Central",
         slug: "estacion-central",
-        population: "206.792 hab.",
-        description: "Una comuna de flujos constantes, donde la historia ferroviaria se cruza con la arquitectura de vanguardia social y la devoción popular. Es un territorio de contrastes fascinantes, desde la Villa Portales hasta los santuarios populares.",
+        population: "181.049 hab.",
+        description: "Estación Central es el centro neurálgico del transporte ferroviario y terrestre en Santiago. Caracterizada por una densificación urbana vertical acelerada y una dinámica económica comercial vibrante.",
         identity: {
-            badge: "Conectividad y Fe",
-            title: "Punto de Encuentro",
-            text: "Hogar de la Estación de Trenes, la emblemática Villa Portales y los santuarios del Padre Hurtado y Romualdito. Un crisol de integración social."
+            badge: "Centro Ferroviario",
+            title: "Puente del Viajero",
+            text: "Corazón del transporte nacional y hogar de la solidaridad."
+        },
+        stats: {
+            density: "12.840 hab/km²",
+            ips: 70.92,
+            growth: "2.1%",
+            gender: { m: 50.4, f: 49.6 }
+        },
+        economics: {
+            mainSector: "Comercio y Transporte",
+            municipalRevenue: "M$ 65.400.000",
+            budgetPerCapita: "$361.228"
+        },
+        infrastructure: {
+            health: {
+                cesfamCount: 4,
+                hospitals: ["Mutual de Seguridad", "H. del Profesor"]
+            },
+            security: {
+                vehicles: 14,
+                inspectors: 30,
+                emergencyLine: "1440"
+            }
+        },
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "SINIM (2024)",
+            vulnerabilidad: "IPS 2023 (MDSF)"
         },
         history: [
-            { title: "Villa Portales", description: "Icono de la arquitectura brutalista y moderna en Latam. Un 'edificio ciudad' con pasarelas y parques internos.", location: "Av. Portales" },
-            { title: "Santuario Padre Hurtado", description: "Lugar de peregrinación donde reposan los restos de San Alberto Hurtado. Incluye un museo moderno.", location: "Av. Padre Hurtado 1090" },
-            { title: "Animita de Romualdito", description: "La animita más famosa de Santiago. Un fenómeno de fe popular lleno de placas de agradecimiento.", location: "San Francisco de Borja" }
+            { title: "Estación Central de Ferrocarriles", description: "Monumento Nacional diseñado por industrias Eiffel.", location: "Eje Alameda" }
         ],
-        nature: [
-            { title: "Planetario USACH", description: "El principal centro astronómico del país con proyección FullDome 360°. Un viaje a las estrellas en plena ciudad.", location: "Av. Libertador B. O'Higgins 3349" }
-        ],
-        gastronomy: [
-            { title: "Barrio Estación", description: "Oferta gastronómica popular y rápida que alimenta a miles de viajeros diariamente." }
-        ],
+        nature: [{ title: "Planetario USACH", description: "Referente cultural y científico del país." }],
+        gastronomy: [{ title: "Barrio Meiggs", description: "Referente de comida callejera y platos internacionales rápida." }],
         priorities: [
-            { title: "Comercio Ambulante", status: "CRITICO", description: "Ordenamiento del eje Alameda y recuperación de espacios peatonales." },
-            { title: "Seguridad", status: "ALTA", description: "Mayor dotación policial en terminales de buses y trenes." }
+            { title: "Espacios Públicos", status: "CRITICO", description: "Recuperación de Alameda y control de ocupaciones ilegales." }
         ],
-        gestiones: [{ title: "Limpieza Eje Alameda", date: "Hace 3 días", status: "RESPONDIDO" }],
-        contacts: [{ label: "Seguridad Vecinal", phone: "1440" }]
+        gestiones: [
+            { title: "Plan de Orden Alameda", date: "Continuo 2024", status: "EN_GESTION" }
+        ],
+        contacts: [
+            { label: "Seguridad Vecinal", phone: "1440" }
+        ]
     },
     cerrillos: {
         name: "Cerrillos",
         slug: "cerrillos",
-        population: "88.956 hab.",
-        description: "Cerrillos ha redefinido su vocación, pasando de ser un aeródromo militar a convertirse en el polo de grandes eventos y arte contemporáneo de la capital, consolidándose como una Ciudad Parque.",
+        population: "85.041 hab.",
+        description: "Cerrillos evoluciona desde su pasado aeronáutico hacia una 'Ciudad Parque' moderna. Sede de los eventos masivos más relevantes del país y polo de vivienda social integrada de alto estándar.",
         identity: {
-            badge: "Cultura y Futuro",
-            title: "Ciudad Parque Bicentenario",
-            text: "Anfitrión del Parque Bicentenario, Lollapalooza y el Centro Nacional de Arte Contemporáneo. Un pulmón verde que mira al futuro."
+            badge: "Ciudad del Aire",
+            title: "Corazón Cultural Surponiente",
+            text: "Sede de vanguardia artística y el pulmón verde más joven de Santiago."
         },
-        history: [
-            { title: "Centro Nacional de Arte (CNAC)", description: "Ocupa el edificio del ex aeropuerto Los Cerrillos. Un laboratorio de creación visual y pensamiento contemporáneo.", location: "Av. Pedro Aguirre Cerda 6100" },
-            { title: "Museo Aeronáutico", description: "Custodia la historia de la aviación chilena, incluyendo el 'Manutara' que voló a Isla de Pascua.", location: "Av. Pedro Aguirre Cerda 5000" }
-        ],
-        nature: [
-            { title: "Parque Bicentenario", description: "Uno de los pulmones verdes más grandes de Santiago. Sede de Lollapalooza y el Tianfu Festival.", location: "Av. Pedro Aguirre Cerda 6100" }
-        ],
-        gastronomy: [
-            { title: "Gastronomía en Eventos", description: "Durante festivales como Lollapalooza, la comuna se convierte en el epicentro de food trucks y sabores del mundo." }
-        ],
-        priorities: [
-            { title: "Desarrollo Urbano", status: "EN_PROCESO", description: "Planificación de nuevos proyectos habitacionales integrados al parque." },
-            { title: "Conectividad", status: "ALTA", description: "Mejora de conexiones con Metro Cerrillos." }
-        ],
-        gestiones: [{ title: "Coordinación Lollapalooza", date: "Hace 1 mes", status: "RESPONDIDO" }],
-        contacts: [{ label: "Alerta Cerrillos", phone: "1402" }]
-    },
-    quilicura: {
-        name: "Quilicura",
-        slug: "quilicura",
-        population: "254.694 hab.",
-        description: "Quilicura, 'Tres Piedras' en mapudungun, se encuentra en una encrucijada entre su pasado agrícola, su presente industrial y un futuro que apuesta por la conservación ambiental y la multiculturalidad.",
-        identity: {
-            badge: "Eco-Diversidad",
-            title: "Humedales y Multiculturalidad",
-            text: "Protectora de humedales urbanos críticos y hogar de una vibrante comunidad multicultural. Un ejemplo de resistencia hídrica y social."
+        stats: {
+            density: "4.049 hab/km²",
+            ips: 65.71,
+            growth: "0.4%",
+            gender: { m: 49.0, f: 51.0 }
         },
-        priorities: [
-            { title: "Conectividad", status: "CRITICO", description: "Solución a tacos históricos en accesos a la comuna." },
-            { title: "Medio Ambiente", status: "ALTA", description: "Protección oficial de humedales urbanos." }
-        ],
-        history: [
-            { title: "Casco Histórico", description: "Vestigios de su pasado agrícola que conviven hoy con grandes parques industriales y data centers." }
-        ],
-        gastronomy: [
-            { title: "Fiesta de la Chilenidad", description: "Celebración multicultural que integra gastronomía chilena, haitiana, peruana y colombiana en Fiestas Patrias.", location: "Cancha Santa Luisa" }
-        ],
-        nature: [
-            { title: "Humedales Urbanos", description: "Sistema de humedales (O'Higgins, San Luis, San Claudio). Refugios de biodiversidad para avistamiento de aves.", location: "Sector O'Higgins / San Luis" }
-        ],
-        gestiones: [{ title: "Fiscalización Industrial", date: "Hace 5 días", status: "EN_GESTION" }],
-        contacts: [{ label: "Emergencia Quilicura", phone: "1412" }]
-    },
-    colina: {
-        name: "Colina",
-        slug: "colina",
-        population: "180.353 hab.",
-        description: "Colina combina el desarrollo urbano moderno con zonas rurales profundas que custodian el patrimonio de la piedra y la fe. Es la capital de la tradición huasa y el deporte aventura en la región.",
-        identity: {
-            badge: "Tradición Viva",
-            title: "Cuasimodo y Canteras",
-            text: "Escenario del Cuasimodo más grande de Chile y hogar de las canteras que construyeron Santiago. Capital del deporte outdoor y el emprendimiento."
+        economics: {
+            mainSector: "Servicios y Cultura",
+            municipalRevenue: "M$ 38.000.000",
+            budgetPerCapita: "$446.843"
         },
-        history: [
-            { title: "Las Canteras", description: "Zona Típica de donde se extrajeron los adoquines de Santiago. Museo al aire libre del oficio de los picapedreros.", location: "Pueblo Las Canteras" },
-            { title: "Fiesta de Cuasimodo", description: "La procesión religiosa a caballo más grande de Chile (Domingo post Pascua). Un tesoro de fe huasa.", location: "Calles de Colina" }
-        ],
-        nature: [
-            { title: "Parque Chamisero Outlife", description: "Referente del MTB y trekking con senderos de alta gama y vistas al valle de Chacabuco.", location: "Chamisero" }
-        ],
-        gastronomy: [
-            { title: "Cocina Criolla", description: "Fuerte presencia de restaurantes de carnes y comida chilena tradicional en sectores rurales y Chicureo." }
-        ],
-        priorities: [
-            { title: "Agua Potable", status: "CRITICO", description: "Aseguramiento hídrico para zonas rurales y APR." },
-            { title: "Transporte", status: "ALTA", description: "Mejor conectividad con Santiago Centro." }
-        ],
-        gestiones: [{ title: "Apoyo APR", date: "Hace 2 semanas", status: "RESPONDIDO" }],
-        contacts: [{ label: "Seguridad Colina", phone: "1468" }]
-    },
-    lampa: {
-        name: "Lampa",
-        slug: "lampa",
-        population: "126.898 hab.",
-        description: "Lampa mantiene una atmósfera de pueblo tradicional, protegiendo uno de los humedales más importantes de Sudamérica y cultivando las tradiciones más profundas del campo chileno.",
-        identity: {
-            badge: "Santuario Natural",
-            title: "Humedal de Batuco",
-            text: "Custodia del Humedal de Batuco, santuario de biodiversidad internacional. Tierra de la Trilla a Yegua Suelta y tradiciones agrícolas."
+        infrastructure: {
+            health: {
+                cesfamCount: 3,
+                hospitals: ["Hospital El Carmen (Maipú)"]
+            },
+            security: {
+                vehicles: 10,
+                inspectors: 25,
+                emergencyLine: "1402"
+            }
         },
-        priorities: [
-            { title: "Seguridad Rural", status: "ALTA", description: "Patrullaje en zonas agrícolas y prevención de abigeato." },
-            { title: "Salud", status: "EN_PROCESO", description: "Nuevo hospital zona norte." }
-        ],
-        history: [
-            { title: "Trilla a Yegua Suelta", description: "Reconstrucción histórica de faenas agrícolas antiguas. Se celebra en enero con música y comida típica.", location: "Medialuna de Lampa" }
-        ],
-        gastronomy: [
-            { title: "Hacienda del Jabalí", description: "Referente gastronómico de carnes exóticas y cocina criolla durante todo el año.", location: "Sector Rural" }
-        ],
-        nature: [
-            { title: "Humedal de Batuco", description: "Santuario de la Naturaleza con pasarelas para observar flamencos y cisnes. Sitio prioritario de conservación.", location: "Localidad de Batuco" }
-        ],
-        gestiones: [{ title: "Limpieza Humedal", date: "Hace 4 días", status: "RESPONDIDO" }],
-        contacts: [{ label: "Lampa Seguro", phone: "1421" }]
-    },
-    tiltil: {
-        name: "Tiltil",
-        slug: "tiltil",
-        population: "21.477 hab.",
-        description: "Tiltil es una comuna cargada de simbolismo histórico y productos agrícolas únicos. Es la frontera patriótica donde descansa la memoria de Manuel Rodríguez y se preserva el sabor del secano.",
-        identity: {
-            badge: "Memoria Heroica",
-            title: "Tierra de Manuel Rodríguez",
-            text: "El último refugio del guerrillero y hogar del Cerro El Roble (2.222 msnm). Famosa por sus tunas y aceitunas de sabor único."
+        sources: {
+            demografía: "Censo 2024 (INE)",
+            economía: "SINIM (2024)",
+            vulnerabilidad: "IPS 2023 (MDSF)"
         },
-        priorities: [
-            { title: "Zona de Sacrificio", status: "CRITICO", description: "Compensación ambiental y freno a nuevos proyectos contaminantes." },
-            { title: "Transporte", status: "ALTA", description: "Retorno del Metrotren a Tiltil." }
-        ],
-        history: [
-            { title: "Monumento Manuel Rodríguez", description: "Sitio exacto del asesinato del prócer. Lugar de peregrinación patriótica cada mes de mayo.", location: "Cancha del Gato" }
-        ],
         nature: [
-            { title: "Cerro El Roble", description: "Santuario de la Naturaleza (2.222 msnm). Protege el bosque de robles más al norte del hemisferio sur.", location: "Caleu" }
+            { title: "Parque Bicentenario Cerrillos", description: "Espacio de 250 hectáreas para recreación y cultura.", location: "Av. Pedro Aguirre Cerda" }
         ],
-        gastronomy: [
-            { title: "Festival de la Tuna y Aceituna", description: "Celebración en febrero de los productos estrellas del secano: aceitunas curadas y tunas.", location: "Tiltil Centro" },
-            { title: "Productos Locales", description: "Venta directa de aceitunas de mesa y aceite de oliva artesanal por productores locales." }
+        history: [{ title: "Ex Aeródromo Cerrillos", description: "Cuna de la aviación militar y civil chilena." }],
+        gastronomy: [{ title: "Circuitos Lollapalooza", description: "Punto estratégico de grandes servicios de alimentación masiva." }],
+        priorities: [
+            { title: "Viviendas Ciudad Parque", status: "EN_PROCESO", description: "Entrega de soluciones habitacionales integradas." }
         ],
-        gestiones: [{ title: "Mesa Ambiental", date: "Ayer", status: "EN_GESTION" }],
-        contacts: [{ label: "Emergencia Tiltil", phone: "14" }]
+        gestiones: [
+            { title: "Centro Nacional de Arte Contemporáneo", date: "Consolidado 2024", status: "RESPONDIDO" }
+        ],
+        contacts: [
+            { label: "Seguridad Cerrillos", phone: "1402" }
+        ]
     }
 };

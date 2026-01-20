@@ -2,70 +2,78 @@
 
 import Link from "next/link";
 import {
-    Scale,
-    HeartPulse,
-    Users,
-    Lightbulb,
-    Shield,
-    Briefcase,
-    ArrowRight
+    Phone,
+    ShieldAlert,
+    Smartphone,
+    MapPin,
+    Stethoscope,
+    AlertTriangle,
+    ArrowRight,
+    MessageCircle,
+    HeartPulse
 } from "lucide-react";
 
 export function QuickServicesGrid() {
     const services = [
         {
-            title: "Asesoría Legal",
-            description: "Orientación jurídica gratuita para vecinos.",
-            icon: Scale,
-            href: "/guias?categoria=legal",
-            color: "text-blue-400",
-            bg: "bg-blue-500/10",
-            border: "border-blue-500/20"
+            title: "Emergencias Seguridad",
+            description: "Carabineros (133) y PDI (134) para respuesta inmediata ante delitos.",
+            icon: ShieldAlert,
+            href: "tel:133",
+            color: "text-red-400",
+            bg: "bg-red-500/10",
+            border: "border-red-500/20",
+            actionText: "Llamar 133"
         },
         {
-            title: "Salud y Bienestar",
-            description: "Operativos médicos y gestión de horas.",
+            title: "Violencia de Género",
+            description: "Fono Ayuda (1455) de SERNAMEG. Orientación 24/7 y confidencial.",
             icon: HeartPulse,
-            href: "/guias?categoria=salud",
+            href: "tel:1455",
             color: "text-rose-400",
             bg: "bg-rose-500/10",
-            border: "border-rose-500/20"
+            border: "border-rose-500/20",
+            actionText: "Ayuda 1455"
         },
         {
-            title: "Organizaciones",
-            description: "Apoyo a juntas de vecinos y clubes.",
-            icon: Users,
-            href: "/guias?categoria=social",
+            title: "Denuncia Seguro",
+            description: "Denuncia anónima (*4242) para tráfico de drogas y delitos violentos.",
+            icon: Smartphone,
+            href: "tel:4242",
             color: "text-amber-400",
             bg: "bg-amber-500/10",
-            border: "border-amber-500/20"
+            border: "border-amber-500/20",
+            actionText: "Denunciar *4242"
         },
         {
-            title: "Emprendimiento",
-            description: "Capacitación y fondos concursables.",
-            icon: Lightbulb,
-            href: "/guias?categoria=emprendimiento",
+            title: "Ruidos Molestos",
+            description: "Reporte a fiscalización municipal o Carabineros según la comuna.",
+            icon: AlertTriangle,
+            href: "/preocupaciones?tipo=ruidos",
+            color: "text-orange-400",
+            bg: "bg-orange-500/10",
+            border: "border-orange-500/20",
+            actionText: "Ver Guía"
+        },
+        {
+            title: "Salud Responde",
+            description: "600 360 77 77. Orientación médica telefónica del MINSAL.",
+            icon: Stethoscope,
+            href: "tel:6003607777",
+            color: "text-blue-400",
+            bg: "bg-blue-500/10",
+            border: "border-blue-500/20",
+            actionText: "Llamar"
+        },
+        {
+            title: "Calles y Luminarias",
+            description: "Reporte de baches o fallas en el alumbrado público a tu municipio.",
+            icon: MapPin,
+            href: "/preocupaciones?tipo=infraestructura",
             color: "text-emerald-400",
             bg: "bg-emerald-500/10",
-            border: "border-emerald-500/20"
-        },
-        {
-            title: "Seguridad",
-            description: "Denuncias anónimas y alarmas comunitarias.",
-            icon: Shield,
-            href: "/preocupaciones?tipo=seguridad",
-            color: "text-purple-400",
-            bg: "bg-purple-500/10",
-            border: "border-purple-500/20"
-        },
-        {
-            title: "Empleo",
-            description: "Bolsa laboral y talleres de oficio.",
-            icon: Briefcase,
-            href: "/guias?categoria=empleo",
-            color: "text-cyan-400",
-            bg: "bg-cyan-500/10",
-            border: "border-cyan-500/20"
+            border: "border-emerald-500/20",
+            actionText: "Reportar Problema"
         }
     ];
 
@@ -78,13 +86,13 @@ export function QuickServicesGrid() {
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <span className="text-amber-500 font-bold uppercase tracking-widest text-sm mb-2 block">
-                        Servicios a la Comunidad
+                        Servicios Útiles para el Vecino
                     </span>
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                        Gestión que Soluciona
+                        Información y <span className="text-gradient-gold">Recursos</span>
                     </h2>
                     <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                        Acceso rápido a los servicios y apoyos más solicitados por nuestros vecinos.
+                        Acceso directo a herramientas de reporte, números de emergencia y servicios públicos esenciales del Distrito 8.
                     </p>
                 </div>
 
@@ -108,9 +116,14 @@ export function QuickServicesGrid() {
                             </div>
 
                             <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-                            <p className="text-gray-400 text-sm leading-relaxed">
+                            <p className="text-gray-400 text-sm leading-relaxed mb-6">
                                 {service.description}
                             </p>
+
+                            <div className={`mt-auto inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider ${service.color} group-hover:translate-x-1 transition-transform`}>
+                                {service.actionText}
+                                <ArrowRight className="h-3 w-3" />
+                            </div>
                         </Link>
                     ))}
                 </div>

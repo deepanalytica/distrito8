@@ -15,12 +15,20 @@ import {
     AlertCircle,
     CheckCircle2,
     Building2,
-    Users
+    Users,
+    TrendingUp,
+    Zap,
+    Briefcase,
+    Shield,
+    HeartPulse,
+    GraduationCap,
+    Activity
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 export default function CommunePage({ params }: { params: { slug: string } }) {
     const detail = COMMUNE_DETAILS[params.slug];
@@ -30,273 +38,286 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 flex flex-col font-sans text-slate-100">
+        <div className="min-h-screen bg-slate-950 flex flex-col font-sans text-slate-100 pb-20">
             {/* Decorative Background */}
             <div className="fixed inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5 pointer-events-none"></div>
             <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 z-0 pointer-events-none"></div>
             <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 z-0 pointer-events-none"></div>
 
-            <main className="flex-grow container mx-auto px-4 py-8 md:py-12 relative z-10">
+            <main className="flex-grow container mx-auto px-4 pt-24 relative z-10">
                 <div className="max-w-7xl mx-auto">
-                    {/* Breadcrumb */}
-                    <Link
-                        href="/#comunas"
-                        className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-amber-400 transition-colors mb-8 bg-slate-900/50 hover:bg-slate-800 px-4 py-2 rounded-full border border-slate-800 backdrop-blur-sm group"
-                    >
-                        <ChevronLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                        Volver al mapa
-                    </Link>
+                    {/* Header Controls */}
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 animate-in fade-in slide-in-from-top-4 duration-700">
+                        <Link
+                            href="/#comunas"
+                            className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-amber-400 transition-colors bg-slate-900/50 hover:bg-slate-800 px-4 py-2 rounded-full border border-slate-800 backdrop-blur-sm group w-fit"
+                        >
+                            <ChevronLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                            Regresar al Mando Territorial
+                        </Link>
 
-                    {/* HERO & IDENTITY SECTION */}
-                    <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900/60 border border-slate-800 backdrop-blur-md shadow-2xl mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
-                        {/* Gradient Accent */}
-                        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-500/0 via-amber-500 to-amber-500/0 opacity-50"></div>
+                        <div className="flex items-center gap-3">
+                            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 animate-pulse">
+                                CANAL DE DATOS ACTIVO
+                            </Badge>
+                            <span className="text-xs font-mono text-slate-600">ID_NODE: {detail.slug.toUpperCase()}</span>
+                        </div>
+                    </div>
 
-                        <div className="relative z-10 p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-12 items-start">
-                            <div className="flex-grow space-y-8">
-                                <div className="space-y-4">
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        <Badge variant="outline" className="bg-amber-500/10 text-amber-500 border-amber-500/20 px-4 py-1.5 text-sm font-bold tracking-wider uppercase backdrop-blur-md">
-                                            DISTRITO 8
-                                        </Badge>
-                                        <Badge variant="outline" className="bg-slate-800/50 text-slate-300 border-slate-700 px-4 py-1.5 text-sm uppercase tracking-wider font-semibold backdrop-blur-md">
-                                            <Users className="w-3 h-3 mr-2 text-indigo-400" />
-                                            {detail.population}
-                                        </Badge>
-                                    </div>
-                                    <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none bg-clip-text">
-                                        {detail.name}
-                                    </h1>
-                                </div>
-
-                                <p className="text-xl text-slate-300 leading-relaxed max-w-3xl font-light border-l-4 border-amber-500/30 pl-6">
+                    {/* HERO & STRATEGIC KPIs */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+                        {/* Title & Description Container */}
+                        <div className="lg:col-span-8 space-y-8">
+                            <div className="space-y-4">
+                                <Badge variant="outline" className="bg-amber-500/10 text-amber-500 border-amber-500/20 px-4 py-1.5 text-xs font-bold tracking-widest uppercase">
+                                    CONTROL TERRITORIAL FIDELIDAD ALTA
+                                </Badge>
+                                <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">
+                                    {detail.name}
+                                </h1>
+                                <p className="text-xl text-slate-400 leading-relaxed font-light max-w-3xl">
                                     {detail.description}
                                 </p>
-
-                                {/* Identity Box */}
-                                <div className="bg-slate-800/40 p-6 rounded-2xl border border-slate-700/50 inline-flex flex-col sm:flex-row gap-5 items-center sm:items-start backdrop-blur-sm hover:bg-slate-800/60 transition-colors">
-                                    <div className="bg-amber-500/20 p-4 rounded-full text-amber-500 shadow-inner ring-1 ring-amber-500/20">
-                                        <Globe className="h-8 w-8" />
-                                    </div>
-                                    <div className="text-center sm:text-left">
-                                        <h3 className="text-xs font-bold text-amber-500 uppercase tracking-widest mb-2">
-                                            Identidad Local
-                                        </h3>
-                                        <p className="text-lg text-slate-200 font-medium leading-snug max-w-md italic">
-                                            "{detail.identity.text}"
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
 
-                            {/* CTAs */}
-                            <div className="w-full lg:w-auto flex flex-col gap-4 flex-shrink-0 bg-slate-950/50 p-6 rounded-3xl border border-slate-800/50 backdrop-blur-md lg:min-w-[320px]">
-                                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 text-center">
-                                    Centro de Acción
-                                </h4>
-                                <Button asChild className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold h-14 text-lg shadow-lg shadow-amber-900/20 rounded-xl transition-all hover:scale-[1.02]">
-                                    <Link href={`/ingresar-caso?comuna=${detail.slug}`}>
-                                        <MessageSquarePlus className="h-5 w-5 mr-2" />
-                                        Reportar Problema
-                                    </Link>
-                                </Button>
-                                <Button asChild variant="outline" className="w-full h-12 border-slate-700 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl bg-transparent transition-all hover:border-slate-600">
-                                    <Link href="/audiencia">
-                                        <Phone className="h-4 w-4 mr-2" />
-                                        Solicitar Audiencia
-                                    </Link>
-                                </Button>
+                            {/* Strategic KPI Grid */}
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                {[
+                                    { label: "Población", value: detail.population, icon: Users, color: "text-blue-400" },
+                                    { label: "Prioridad Social", value: detail.stats.ips.toFixed(1), icon: TrendingUp, color: "text-red-400" },
+                                    { label: "Crecimiento Anual", value: detail.stats.growth, icon: Activity, color: "text-emerald-400" },
+                                    { label: "Género (F/M %)", value: `${detail.stats.gender.f}/${detail.stats.gender.m}`, icon: Zap, color: "text-amber-400" },
+                                ].map((kpi, i) => (
+                                    <Card key={i} className="bg-slate-900/40 border-white/5 backdrop-blur-xl group hover:border-amber-500/20 transition-all">
+                                        <CardContent className="p-4 flex flex-col items-center justify-center text-center">
+                                            <kpi.icon className={`h-5 w-5 ${kpi.color} mb-2 group-hover:scale-110 transition-transform`} />
+                                            <span className="text-lg font-bold text-white leading-none tracking-tight">{kpi.value}</span>
+                                            <span className="text-[10px] uppercase font-black text-slate-600 tracking-widest mt-1">{kpi.label}</span>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Action Sidebar */}
+                        <div className="lg:col-span-4 glass-card bg-slate-900/60 p-8 rounded-[3rem] border-white/10 flex flex-col gap-4">
+                            <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest text-center mb-2">Protocolos de Acción</h3>
+                            <Button asChild className="h-16 rounded-2xl bg-white text-slate-950 hover:bg-amber-500 font-black tracking-widest text-lg transition-all hover:scale-[1.02]">
+                                <Link href={`/ingresar-caso?comuna=${detail.slug}`}>
+                                    REPORTAR CASO <ArrowRight className="ml-2 h-5 w-5" />
+                                </Link>
+                            </Button>
+                            <Button variant="outline" asChild className="h-14 rounded-2xl border-white/10 text-white hover:bg-white/5 font-bold">
+                                <Link href="/audiencia">SOLICITAR AUDIENCIA</Link>
+                            </Button>
+
+                            <div className="mt-4 pt-6 border-t border-white/5 space-y-3">
+                                <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Línea de Emergencia {detail.name}</p>
+                                <div className="flex items-center justify-between p-3 bg-slate-950/50 rounded-xl border border-white/5 group cursor-pointer hover:border-emerald-500/30 transition-all">
+                                    <span className="text-xs font-mono text-emerald-500 font-bold">{detail.infrastructure.security.emergencyLine}</span>
+                                    <Phone className="h-4 w-4 text-emerald-500" />
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 md:gap-12">
-
-                        {/* LEFT COLUMN: DISCOVERY (Historical, Nature, Gastronomy) - Spans 7 cols */}
-                        <div className="xl:col-span-7 space-y-12">
-
-                            {/* Heritage Section */}
-                            {detail.history && detail.history.length > 0 && (
-                                <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-                                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                        <div className="bg-slate-800 p-2.5 rounded-xl text-amber-500 shadow-md border border-slate-700">
-                                            <Landmark className="h-6 w-6" />
-                                        </div>
-                                        Patrimonio e Historia
-                                    </h2>
-                                    <div className="grid gap-4">
-                                        {detail.history.map((item, idx) => (
-                                            <div key={idx} className="group p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 transition-all hover:shadow-lg hover:shadow-amber-900/10 backdrop-blur-sm">
-                                                <h3 className="text-lg font-bold text-amber-100 group-hover:text-amber-400 transition-colors mb-2">{item.title}</h3>
-                                                <p className="text-slate-400 leading-relaxed mb-4 text-sm">{item.description}</p>
-                                                {item.location && (
-                                                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 bg-slate-950/50 inline-flex px-3 py-1.5 rounded-lg border border-slate-800">
-                                                        <MapPin className="h-3 w-3" />
-                                                        {item.location}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        ))}
+                    {/* INTELLIGENCE GRID: ECONOMICS & INFRASTRUCTURE */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                        {/* Economic Pulse */}
+                        <Card className="bg-slate-900/40 border-white/10 rounded-[3rem] p-8 overflow-hidden relative border-l-4 border-l-amber-500">
+                            <h3 className="text-xl font-bold text-white mb-8 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="bg-amber-500/20 p-2 rounded-xl text-amber-500">
+                                        <Briefcase className="h-5 w-5" />
                                     </div>
-                                </section>
-                            )}
-
-                            {/* Nature Section */}
-                            {detail.nature && detail.nature.length > 0 && (
-                                <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-                                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                        <div className="bg-slate-800 p-2.5 rounded-xl text-emerald-400 shadow-md border border-slate-700">
-                                            <Trees className="h-6 w-6" />
-                                        </div>
-                                        Naturaleza y Entorno
-                                    </h2>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        {detail.nature.map((item, idx) => (
-                                            <div key={idx} className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-900/50 border border-slate-800 hover:border-emerald-500/50 transition-all hover:bg-slate-800/30">
-                                                <h3 className="text-lg font-bold text-emerald-300 mb-2">{item.title}</h3>
-                                                <p className="text-slate-400 text-sm leading-relaxed mb-4">{item.description}</p>
-                                                {item.location && (
-                                                    <div className="flex items-center gap-1.5 text-xs font-medium text-emerald-500/80">
-                                                        <MapPin className="h-3 w-3" />
-                                                        {item.location}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </section>
-                            )}
-
-                            {/* Gastronomy Section */}
-                            {detail.gastronomy && detail.gastronomy.length > 0 && (
-                                <section className="animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
-                                    <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                        <div className="bg-slate-800 p-2.5 rounded-xl text-orange-400 shadow-md border border-slate-700">
-                                            <Utensils className="h-6 w-6" />
-                                        </div>
-                                        Vida Local y Gastronomía
-                                    </h2>
-                                    <div className="space-y-4">
-                                        {detail.gastronomy.map((item, idx) => (
-                                            <div key={idx} className="flex gap-5 items-start p-4 hover:bg-slate-900/50 rounded-2xl transition-colors border border-transparent hover:border-slate-800/50 group">
-                                                <div className="w-2 h-2 rounded-full bg-orange-400 mt-2.5 flex-shrink-0 group-hover:scale-125 group-hover:shadow-[0_0_10px_rgba(251,146,60,0.5)] transition-all" />
-                                                <div>
-                                                    <h3 className="font-bold text-slate-200 group-hover:text-orange-400 transition-colors text-lg">
-                                                        {item.title}
-                                                    </h3>
-                                                    <p className="text-slate-400 text-sm mt-1 leading-relaxed">{item.description}</p>
-                                                    {item.location && (
-                                                        <p className="text-xs text-slate-600 mt-2 italic font-mono">{item.location}</p>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </section>
-                            )}
-
-                        </div>
-
-                        {/* RIGHT COLUMN: POLITICAL MANAGEMENT (Sticky Sidebar) - Spans 5 cols */}
-                        <div className="xl:col-span-5 space-y-8 animate-in fade-in slide-in-from-right-8 duration-700 delay-500">
-
-                            {/* Looking for Problems/Needs/Priorities */}
-                            <Card className="border-0 bg-slate-900 shadow-2xl shadow-black/20 overflow-hidden rounded-[2rem] ring-1 ring-slate-800">
-                                <div className="bg-slate-800/50 p-6 border-b border-slate-800 flex justify-between items-center backdrop-blur-sm">
-                                    <h2 className="font-bold text-white text-lg flex items-center gap-3">
-                                        <AlertCircle className="h-5 w-5 text-red-500" />
-                                        Urgencias Comunales
-                                    </h2>
-                                    <Badge variant="secondary" className="bg-slate-950 text-slate-300 text-xs font-bold border border-slate-800 shadow-inner">
-                                        {detail.priorities.length} Activas
-                                    </Badge>
+                                    Fuerza Económica 2024
                                 </div>
-                                <div className="divide-y divide-slate-800/50">
-                                    {detail.priorities.map((p, idx) => (
-                                        <div key={idx} className="p-5 hover:bg-slate-800/30 transition-colors group">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <Badge className={`h-5 text-[10px] uppercase font-bold border-none px-2 tracking-wide ${p.status === "CRITICO" ? "bg-red-500/20 text-red-400 group-hover:bg-red-500/30" :
-                                                    p.status === "ALTA" ? "bg-orange-500/20 text-orange-400 group-hover:bg-orange-500/30" :
-                                                        "bg-blue-500/20 text-blue-400 group-hover:bg-blue-500/30"
-                                                    }`}>
-                                                    {p.status}
-                                                </Badge>
-                                            </div>
-                                            <h3 className="font-bold text-slate-100 text-sm mb-1.5">{p.title}</h3>
-                                            <p className="text-xs text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">
-                                                {p.description}
-                                            </p>
+                                <Badge variant="outline" className="text-[9px] border-amber-500/20 text-amber-500 uppercase tracking-widest">Fuente: SINIM</Badge>
+                            </h3>
+
+                            <div className="space-y-8 relative z-10">
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1">Actividad Principal</p>
+                                        <p className="text-xl font-bold text-white">{detail.economics.mainSector}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1">Presupuesto p/c</p>
+                                        <p className="text-xl font-bold text-white">{detail.economics.budgetPerCapita}</p>
+                                    </div>
+                                </div>
+
+                                <div className="p-6 bg-slate-950/50 border border-white/5 rounded-[2rem]">
+                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-2">Ingresos Municipales Totales</p>
+                                    <p className="text-4xl font-black text-amber-500 tabular-nums">{detail.economics.municipalRevenue}</p>
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                                        <p className="text-[9px] text-slate-600 uppercase font-bold italic font-mono">Verificado via Transparencia Activa</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+
+                        {/* Infrastructure Index */}
+                        <Card className="bg-slate-900/40 border-white/10 rounded-[3rem] p-8 border-l-4 border-l-blue-500">
+                            <h3 className="text-xl font-bold text-white mb-8 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="bg-blue-500/20 p-2 rounded-xl text-blue-400">
+                                        <Activity className="h-5 w-5" />
+                                    </div>
+                                    Dotación e Infraestructura
+                                </div>
+                                <Badge variant="outline" className="text-[9px] border-blue-500/20 text-blue-400 uppercase tracking-widest">Fidelidad Alta</Badge>
+                            </h3>
+
+                            <div className="space-y-6">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-4 bg-slate-950 rounded-2xl border border-white/5">
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <HeartPulse className="h-4 w-4 text-emerald-500" />
+                                            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">CESFAM</span>
+                                        </div>
+                                        <p className="text-2xl font-black text-white">{detail.infrastructure.health.cesfamCount}</p>
+                                        <p className="text-[9px] text-slate-600 font-mono mt-1">{detail.infrastructure.health.hospitals[0]}</p>
+                                    </div>
+                                    <div className="p-4 bg-slate-950 rounded-2xl border border-white/5">
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <Shield className="h-4 w-4 text-blue-500" />
+                                            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Vehículos</span>
+                                        </div>
+                                        <p className="text-2xl font-black text-white">{detail.infrastructure.security.vehicles}</p>
+                                        <p className="text-[9px] text-slate-600 font-mono mt-1">Patrullaje Activo</p>
+                                    </div>
+                                </div>
+
+                                <div className="p-4 bg-slate-950/30 rounded-2xl border border-dashed border-white/10">
+                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-3">Red de Salud Principal</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {detail.infrastructure.health.hospitals.map((h, i) => (
+                                            <Badge key={i} variant="secondary" className="bg-slate-900 text-xs font-bold text-slate-400 py-1">{h}</Badge>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>
+
+                    {/* RED SECTION: SOCIAL PRIORITY CITATION */}
+                    <div className="mb-16 p-8 rounded-[3rem] bg-red-950/10 border border-red-500/10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <TrendingUp className="h-32 w-32 text-red-500" />
+                        </div>
+                        <div className="bg-red-500/20 p-6 rounded-3xl text-red-500">
+                            <TrendingUp className="h-10 w-10" />
+                        </div>
+                        <div className="flex-grow">
+                            <div className="flex items-center gap-2 mb-2">
+                                <h4 className="text-xl font-black text-white leading-none">Indice de Prioridad Social: {detail.stats.ips}</h4>
+                                <Badge className="bg-red-500 text-[10px] font-black uppercase">Crítico</Badge>
+                            </div>
+                            <p className="text-slate-400 text-sm max-w-2xl leading-relaxed">
+                                Este territorio presenta un índice IPS de <b>{detail.stats.ips}</b>. Nuestra gestión parlamentaria prioriza cerrar las brechas identificadas por el MDSF en vivienda, salud y capital humano para esta comuna.
+                            </p>
+                        </div>
+                        <div className="text-right shrink-0">
+                            <p className="text-[10px] font-black text-red-500/50 uppercase tracking-widest">Fuente Citada</p>
+                            <p className="text-xs font-mono text-slate-600 font-bold">MDSF Metropolitano 2023</p>
+                        </div>
+                    </div>
+
+                    {/* CONTENT TABS: HERITAGE, NATURE, GESTION */}
+                    <div className="grid grid-cols-1 xl:grid-cols-12 gap-12">
+                        {/* Discovery Column */}
+                        <div className="xl:col-span-8 space-y-16">
+                            {/* Heritage */}
+                            <section>
+                                <h4 className="text-xs font-black text-amber-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                                    <div className="w-12 h-px bg-amber-500"></div>
+                                    Identidad & Patrimonio
+                                </h4>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    {detail.history.map((item, idx) => (
+                                        <div key={idx} className="glass-card bg-slate-900/40 p-6 rounded-3xl border-white/5 hover:border-amber-500/30 transition-all group">
+                                            <Landmark className="h-8 w-8 text-slate-700 mb-4 group-hover:text-amber-500 transition-colors" />
+                                            <h5 className="text-lg font-bold text-white mb-2">{item.title}</h5>
+                                            <p className="text-sm text-slate-400 font-light leading-relaxed">{item.description}</p>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="p-5 bg-slate-950/30 text-center border-t border-slate-800">
-                                    <Link href="/participa" className="text-sm font-bold text-amber-500 hover:text-amber-400 inline-flex items-center gap-2 transition-colors hover:gap-3">
-                                        Votar prioridades
-                                        <ArrowRight className="h-4 w-4" />
-                                    </Link>
+                            </section>
+
+                            {/* Natural Resources */}
+                            <section>
+                                <h4 className="text-xs font-black text-emerald-500 uppercase tracking-[0.3em] mb-8 flex items-center gap-4">
+                                    <div className="w-12 h-px bg-emerald-500"></div>
+                                    Recursos Naturales
+                                </h4>
+                                <div className="space-y-4">
+                                    {detail.nature.map((item, idx) => (
+                                        <div key={idx} className="flex gap-6 items-start p-6 bg-slate-900/20 rounded-[2rem] border border-white/5">
+                                            <div className="bg-emerald-500/10 p-4 rounded-2xl text-emerald-500">
+                                                <Trees className="h-6 w-6" />
+                                            </div>
+                                            <div>
+                                                <h5 className="text-lg font-bold text-white mb-2">{item.title}</h5>
+                                                <p className="text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                                                {item.location && <p className="text-[10px] font-mono text-emerald-500/60 mt-3 uppercase font-bold tracking-widest">LOCALIZADA EN: {item.location}</p>}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        </div>
+
+                        {/* Ledger Column */}
+                        <div className="xl:col-span-4 space-y-8">
+                            {/* Urgent Matters */}
+                            <Card className="bg-slate-900 border-white/10 rounded-[3rem] overflow-hidden">
+                                <div className="p-8 border-b border-white/5 bg-slate-800/20">
+                                    <h3 className="font-bold text-white flex items-center gap-3">
+                                        <AlertCircle className="h-5 w-5 text-red-500" />
+                                        Prioridades Críticas
+                                    </h3>
+                                </div>
+                                <div className="p-4 space-y-2">
+                                    {detail.priorities.map((p, idx) => (
+                                        <div key={idx} className="p-4 rounded-2xl bg-slate-950/40 border border-white/5">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${p.status === 'CRITICO' ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-500'}`}>
+                                                    {p.status}
+                                                </span>
+                                            </div>
+                                            <h6 className="font-bold text-white text-sm mb-1">{p.title}</h6>
+                                            <p className="text-xs text-slate-500 leading-relaxed">{p.description}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </Card>
 
-                            {/* Gestiones Widget */}
-                            <div className="bg-slate-900 rounded-[2rem] border border-slate-800 p-8 shadow-xl">
+                            {/* Latest Actions */}
+                            <div className="p-8 bg-slate-950/40 rounded-[3rem] border border-white/5">
                                 <h3 className="font-bold text-white mb-8 flex items-center gap-3">
                                     <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                                    Últimos Avances
+                                    Libro de Gestión
                                 </h3>
                                 <div className="space-y-8 relative">
-                                    {/* Timeline Line */}
-                                    <div className="absolute left-2.5 top-3 bottom-3 w-px bg-gradient-to-b from-slate-700 via-slate-800 to-transparent" />
-
+                                    <div className="absolute left-2.5 top-0 bottom-0 w-px bg-slate-800" />
                                     {detail.gestiones.map((g, idx) => (
-                                        <div key={idx} className="relative pl-10 group">
-                                            <div className="absolute left-0 top-1.5 w-5 h-5 bg-slate-900 border-2 border-emerald-500/50 rounded-full z-10 group-hover:border-emerald-500 group-hover:shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all">
-                                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full absolute inset-0 m-auto opacity-50 group-hover:opacity-100 transition-opacity" />
+                                        <div key={idx} className="relative pl-10">
+                                            <div className="absolute left-0 top-1.5 w-5 h-5 bg-slate-950 border-2 border-slate-800 rounded-full z-10 flex items-center justify-center">
+                                                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
                                             </div>
-                                            <p className="text-[10px] font-bold text-slate-500 mb-1 uppercase tracking-widest">{g.date}</p>
-                                            <h4 className="font-bold text-slate-200 text-sm mb-2 group-hover:text-emerald-400 transition-colors">{g.title}</h4>
-                                            <Badge variant="outline" className="h-5 text-[10px] bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-2">
-                                                {g.status.replace("_", " ")}
-                                            </Badge>
+                                            <p className="text-[10px] font-black text-slate-600 mb-1 uppercase tracking-widest">{g.date}</p>
+                                            <h6 className="font-bold text-slate-200 text-sm mb-2">{g.title}</h6>
+                                            <Badge variant="outline" className="text-[9px] bg-slate-900 border-white/5">{g.status}</Badge>
                                         </div>
                                     ))}
                                 </div>
                             </div>
-
-                            {/* Contact Box */}
-                            <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-[2rem] p-8 text-white shadow-lg shadow-orange-900/20 relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                                    <Phone className="w-32 h-32 rotate-12 -translate-y-8 translate-x-8" />
-                                </div>
-                                <h3 className="font-bold mb-6 flex items-center gap-2 relative z-10 text-lg">
-                                    <Phone className="h-5 w-5" />
-                                    Teléfonos Directos
-                                </h3>
-                                <div className="grid gap-4 relative z-10">
-                                    {detail.contacts.map((c, idx) => (
-                                        <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between text-sm py-3 border-b border-white/20 last:border-0 hover:bg-white/10 rounded-lg px-2 -mx-2 transition-colors">
-                                            <span className="text-amber-100 font-medium">{c.label}</span>
-                                            <span className="font-mono font-bold text-white text-base tracking-wider">{c.phone}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </main>
-
-            <footer className="py-8 bg-slate-950 border-t border-slate-900 mt-auto relative z-10">
-                <div className="container mx-auto px-4 text-center">
-                    <p className="text-sm text-slate-600 flex items-center justify-center gap-2">
-                        <span>Diputado Cristian Contreras</span>
-                        <span className="w-1 h-1 rounded-full bg-slate-700" />
-                        <span>Distrito 8</span>
-                        <span className="w-1 h-1 rounded-full bg-slate-700" />
-                        <span>Región Metropolitana</span>
-                    </p>
-                </div>
-            </footer>
         </div>
     );
 }
