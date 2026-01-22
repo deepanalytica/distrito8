@@ -17,24 +17,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { COMMUNES } from "@/lib/constants";
 import { SimpleInteractiveMap } from "./SimpleInteractiveMap";
+import { COMMUNE_INTELLIGENCE } from "@/lib/map-intelligence-data";
 import Link from "next/link";
 
 export function TerritorialCommandCenter() {
     const [selectedId, setSelectedId] = useState<string>("maipu");
 
     const activeCommune = useMemo(() => COMMUNES.find(c => c.slug === selectedId) || COMMUNES[0], [selectedId]);
-
-    // Simplified budget and growth data for display
-    const intel = {
-        maipu: { growth: 1.2, budget: 345 },
-        pudahuel: { growth: 0.9, budget: 512 },
-        quilicura: { growth: 1.5, budget: 320 },
-        colina: { growth: 2.1, budget: 480 },
-        lampa: { growth: 1.8, budget: 310 },
-        tiltil: { growth: 0.5, budget: 420 },
-        "estacion-central": { growth: 3.2, budget: 298 },
-        cerrillos: { growth: 0.7, budget: 380 }
-    }[selectedId] || { growth: 0, budget: 0 };
+    const intel = COMMUNE_INTELLIGENCE[selectedId];
 
     return (
         <div className="flex flex-col lg:flex-row gap-8 min-h-[600px]">
@@ -107,7 +97,7 @@ export function TerritorialCommandCenter() {
                                 <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
                                     <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest mb-1">Presupuesto p/c</p>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-2xl font-bold text-white">${intel.budget}K</span>
+                                        <span className="text-2xl font-bold text-white">${intel.budgetPerCapita / 1000}K</span>
                                         <Zap className="h-4 w-4 text-amber-500" />
                                     </div>
                                 </div>

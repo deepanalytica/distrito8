@@ -16,6 +16,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+import { Playfair_Display } from "next/font/google";
+
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "700", "900"] });
+
 const PILLARS = [
     {
         icon: ShieldAlert,
@@ -69,26 +73,28 @@ const PILLARS = [
 
 export function LegislativePillars() {
     return (
-        <section className="py-24 px-4 relative overflow-hidden bg-slate-900/50">
-            {/* Background Decorations */}
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[100px] -z-10"></div>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[100px] -z-10"></div>
+        <section className="py-24 px-4 relative overflow-hidden bg-slate-950">
 
-            <div className="container mx-auto max-w-7xl">
+            {/* Background Decorations */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] -z-10"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] -z-10"></div>
+
+            <div className="container mx-auto max-w-7xl relative z-10">
                 <div className="text-center mb-16 px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <Badge className="bg-amber-500/20 text-amber-500 border-amber-500/20 mb-6 py-1.5 px-4 rounded-full text-xs font-bold tracking-widest uppercase">
-                            Objetivos Parlamentarios
+                        <Badge className="bg-amber-500/10 text-amber-500 border-amber-500/20 mb-6 py-1.5 px-6 rounded-none text-xs font-bold tracking-[0.2em] uppercase">
+                            OFENSIVA PARLAMENTARIA
                         </Badge>
-                        <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
-                            Las Propuestas <span className="text-gradient-gold">Reales</span> para Chile
+                        <h2 className={`${playfair.className} text-5xl md:text-7xl font-black text-white mb-6 tracking-tight leading-none`}>
+                            Pilares de la <span className="text-amber-500 italic">Gestión</span>
                         </h2>
-                        <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-                            No es solo política, es un plan de acción concreto para transformar el Estado y devolverle la soberanía a los ciudadanos.
+                        <div className="w-24 h-1 bg-amber-500 mx-auto mb-8"></div>
+                        <p className="text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                            Una ruta estratégica diseñada con rigor para restaurar el equilibrio y la soberanía en cada rincón del Distrito 8.
                         </p>
                     </motion.div>
                 </div>
@@ -97,45 +103,47 @@ export function LegislativePillars() {
                     {PILLARS.map((pillar, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="glass-card group hover:scale-[1.02] transition-all duration-500 bg-slate-950/40 border border-white/5 rounded-3xl p-8 relative overflow-hidden"
+                            className="group bg-slate-900/40 border border-white/5 p-8 relative overflow-hidden flex flex-col h-full"
                         >
-                            {/* Card Background Glow */}
-                            <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition-colors duration-500"></div>
+                            {/* Squared corner accent */}
+                            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-amber-500/20 group-hover:border-amber-500 transition-colors"></div>
 
-                            <div className="relative z-10">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="bg-white/5 p-4 rounded-2xl group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300 shadow-xl border border-white/10">
+                            <div className="relative z-10 flex flex-col h-full">
+                                <div className="flex justify-between items-start mb-8">
+                                    <div className="bg-slate-950 p-4 border border-white/10 text-amber-500 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500">
                                         <pillar.icon className="h-8 w-8" />
                                     </div>
-                                    <Badge variant="outline" className="border-white/10 text-gray-400 font-bold px-3 py-1 bg-white/5">
+                                    <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">
                                         {pillar.status}
-                                    </Badge>
+                                    </span>
                                 </div>
 
-                                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-amber-500 transition-colors">
+                                <h3 className={`${playfair.className} text-2xl font-bold text-white mb-4 group-hover:text-amber-500 transition-colors`}>
                                     {pillar.title}
                                 </h3>
 
-                                <p className="text-gray-400 text-sm leading-relaxed mb-8 font-light min-h-[60px]">
+                                <p className="text-slate-400 text-sm leading-relaxed mb-8 font-light flex-grow">
                                     {pillar.description}
                                 </p>
 
-                                <div className="space-y-3 mb-8">
+                                <div className="space-y-3 mb-10">
                                     {pillar.details.map((detail, dIndex) => (
-                                        <div key={dIndex} className="flex items-center gap-3 text-xs text-gray-300 font-medium bg-white/5 py-2 px-3 rounded-lg border border-white/5">
-                                            <CheckCircle2 className="h-3.5 w-3.5 text-amber-500" />
+                                        <div key={dIndex} className="flex items-center gap-3 text-[11px] text-slate-300 font-bold uppercase tracking-wider">
+                                            <div className="w-1.5 h-1.5 bg-amber-500 rotate-45" />
                                             {detail}
                                         </div>
                                     ))}
                                 </div>
 
-                                <Button variant="ghost" className="w-full text-amber-500 hover:text-amber-400 hover:bg-amber-500/10 justify-between group/btn text-sm font-bold border border-amber-500/20 rounded-xl">
-                                    Ver Proyecto de Ley
-                                    <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                                <Button asChild variant="outline" className="w-full border-white/10 bg-transparent text-white hover:bg-white hover:text-slate-950 rounded-none h-12 font-bold tracking-widest text-xs uppercase group-hover:border-amber-500 transition-all">
+                                    <Link href="/transparencia">
+                                        EXPEDIENTE LEGISLATIVO
+                                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
                                 </Button>
                             </div>
                         </motion.div>
@@ -143,10 +151,9 @@ export function LegislativePillars() {
                 </div>
 
                 <div className="mt-20 text-center">
-                    <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-12 py-7 text-xl rounded-2xl shadow-2xl shadow-amber-900/20 transform hover:scale-105 transition-all">
-                        <Link href="/transparencia" className="flex items-center gap-3">
-                            <SearchCheck className="h-6 w-6" />
-                            Ver Plan de Gestión Completo
+                    <Button asChild size="lg" className="bg-slate-100 hover:bg-amber-500 text-slate-950 font-black px-16 py-8 text-sm tracking-[0.3em] uppercase rounded-none transition-all hover:scale-105 active:scale-95">
+                        <Link href="#agenda" className="flex items-center gap-4">
+                            ACCEDER AL PLAN MAESTRO
                         </Link>
                     </Button>
                 </div>

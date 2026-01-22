@@ -53,6 +53,12 @@ export const REFORMAS = [
         icon: "GraduationCap",
         description: "Incorporar la Filosofía Perfecta en todos los establecimientos educativos. Educación de calidad, integral y gratuita.",
         color: "blue",
+        details: [
+            "Implementación de la 'Filosofía Perfecta' como eje transversal en el currículum escolar.",
+            "Enfoque en el desarrollo del pensamiento crítico, la ética y el equilibrio emocional desde la infancia.",
+            "Gratuidad total y calidad garantizada por el Estado como inversión social estratégica.",
+            "Formación docente de alto rigor académico en humanismo y ciencias exactas."
+        ]
     },
     {
         id: 2,
@@ -60,6 +66,12 @@ export const REFORMAS = [
         icon: "Heart",
         description: "Restaurar la soberanía individual. Derechos fundamentales: casa digna, trabajo bien remunerado, salud integral, educación gratuita.",
         color: "rose",
+        details: [
+            "Consagración constitucional de la dignidad humana como valor superior del Estado.",
+            "Garantía de vivienda digna y propia como pilar de la estabilidad familiar.",
+            "Salario mínimo calculado con base en el costo real de una vida plena (equilibrio vital).",
+            "Protección de la soberanía individual frente al avance de la burocracia desmedida."
+        ]
     },
     {
         id: 3,
@@ -67,6 +79,12 @@ export const REFORMAS = [
         icon: "TrendingUp",
         description: "Equilibrar grandes empresas con PYMES. Redistribuir equitativamente la riqueza global de Chile.",
         color: "emerald",
+        details: [
+            "Ley de Justicia Tributaria para PYMES: Cero impuesto en el primer año de vida.",
+            "Desconcentración de mercados: Fomento de la competencia real y combate a los monopolios.",
+            "Inversión estatal en industrias estratégicas con participación ciudadana.",
+            "Modelo de economía circular y sostenible enfocado en el bienestar nacional."
+        ]
     },
     {
         id: 4,
@@ -74,6 +92,12 @@ export const REFORMAS = [
         icon: "Award",
         description: "Instaurar la meritocracia en el Estado. Eliminar nepotismo y corrupción. Incentivar la noble carrera funcionaria.",
         color: "amber",
+        details: [
+            "Concursos públicos transparentes y obligatorios para todos los cargos del Estado.",
+            "Creación del Departamento de Eficiencia Gubernamental para auditar procesos en tiempo real.",
+            "Penas de 'muerte cívica' (inhabilitación perpetua) para funcionarios corruptos.",
+            "Digitalización total de la burocracia para eliminar la discrecionalidad política."
+        ]
     },
     {
         id: 5,
@@ -81,6 +105,12 @@ export const REFORMAS = [
         icon: "Scale",
         description: "Centrar actividad pública en valores y virtudes. Penas severas para actividades corruptas. Enfoque en Bien Común.",
         color: "purple",
+        details: [
+            "Reducción de ministerios y racionalización del gasto político (menos asesores, más eficiencia).",
+            "Plebiscitos ciudadanos periódicos sobre temas de soberanía nacional.",
+            "Código de ética parlamentario con sanciones inmediatas ante conflictos de interés.",
+            "Fomento de la participación directa a través de cabildos digitales vinculantes."
+        ]
     },
     {
         id: 6,
@@ -88,6 +118,12 @@ export const REFORMAS = [
         icon: "HeartPulse",
         description: "Incorporar salud integral, consciente y profunda. Comisión científica autónoma para investigar causas de enfermedades crónicas.",
         color: "cyan",
+        details: [
+            "Fusión de medicina alopática con medicinas integrativas validadas científicamente.",
+            "Enfoque preventivo: Nutrición consciente y salud mental desde la atención primaria.",
+            "Autonomía sanitaria: Revisión de protocolos internacionales que afecten la salud local.",
+            "Investigación independiente sobre enfermedades crónicas no transmisibles."
+        ]
     },
     {
         id: 7,
@@ -95,6 +131,12 @@ export const REFORMAS = [
         icon: "Sparkles",
         description: "Religar a la Persona Humana con el Universo. Enseñanza de sabiduría de grandes filósofos. Cultivar alta espiritualidad cósmica.",
         color: "indigo",
+        details: [
+            "Fomento de las artes y la cultura como herramientas de sanación y cohesión social.",
+            "Preservación y difusión de la sabiduría de los sabios de la historia y pueblos originarios.",
+            "Espacios públicos diseñados para la contemplación, el arte y el encuentro espiritual.",
+            "Educación en astronomía y ciencias cósmicas para comprender nuestro lugar en el universo."
+        ]
     },
     {
         id: 8,
@@ -102,6 +144,12 @@ export const REFORMAS = [
         icon: "Clock",
         description: "Mantener calendario científico e incorporar calendario sagrado (13 meses). Concepción espiral del tiempo.",
         color: "violet",
+        details: [
+            "Evaluación de los beneficios del calendario de 13 meses en la productividad y salud biológica.",
+            "Respeto a los ciclos naturales de la tierra en la planificación de la actividad nacional.",
+            "Fomento de la conciliación vida-trabajo basada en ritmos orgánicos (Tiempo Natural).",
+            "Revalorización del tiempo como un recurso sagrado, no solo como una medida económica."
+        ]
     },
 ] as const;
 

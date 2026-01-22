@@ -1,7 +1,6 @@
 "use client";
 
 import { COMMUNES } from "@/lib/constants";
-import { COMMUNE_INTELLIGENCE } from "@/lib/map-intelligence-data";
 import { COMMUNE_DETAILS } from "@/lib/commune-data";
 import {
     MapPin,
@@ -72,7 +71,6 @@ export default function MiComunaIndex() {
             <main className="container mx-auto px-4 py-16">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
                     {COMMUNES.map((commune, index) => {
-                        const intel = COMMUNE_INTELLIGENCE[commune.slug];
                         const detail = COMMUNE_DETAILS[commune.slug];
 
                         return (

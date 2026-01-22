@@ -3,25 +3,18 @@ import { COMMUNE_DETAILS } from "@/lib/commune-data";
 import { notFound } from "next/navigation";
 import {
     ChevronLeft,
-    MapPin,
-    MessageSquarePlus,
     Phone,
-    Globe,
-    History,
-    Utensils,
     Trees,
     Landmark,
     ArrowRight,
     AlertCircle,
     CheckCircle2,
-    Building2,
     Users,
     TrendingUp,
     Zap,
     Briefcase,
     Shield,
     HeartPulse,
-    GraduationCap,
     Activity,
     CalendarClock,
     FileCheck,
@@ -34,7 +27,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 
 export function generateStaticParams() {
     return Object.keys(COMMUNE_DETAILS).map((slug) => ({

@@ -11,11 +11,14 @@ import { COMMUNES } from "@/lib/constants";
 import { CheckCircle2, Shield, Eye, FileWarning, Lightbulb, Lock, Send, ShieldCheck, MapPin, Activity } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export function ConcernsForm() {
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [step, setStep] = useState(1);
+    const searchParams = useSearchParams();
     const [formData, setFormData] = useState({
         tipologia: "",
         comuna: "",
@@ -25,6 +28,13 @@ export function ConcernsForm() {
         contacto: "",
         anonimo: "si"
     });
+
+    useEffect(() => {
+        const tipo = searchParams.get("tipo");
+        if (tipo) {
+            setFormData(prev => ({ ...prev, tipologia: tipo }));
+        }
+    }, [searchParams]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

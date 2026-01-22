@@ -4,147 +4,154 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, Quote, Star, Award, Mic, GraduationCap, Users } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Star,
+  Award,
+  Mic,
+  GraduationCap,
+  Users,
+  Shield,
+  Activity,
+  Target,
+  Zap,
+  Scale,
+  Search
+} from "lucide-react";
 import Link from "next/link";
+import { Playfair_Display } from "next/font/google";
+
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "700", "900"] });
 
 export default function BiographyPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-slate-900">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[url('/images/pattern-grid.svg')] bg-repeat opacity-10"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/80 to-slate-900"></div>
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-amber-500 selection:text-slate-950">
+      {/* Background Architecture */}
+      <div className="fixed inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5 pointer-events-none"></div>
+      <div className="fixed top-0 right-0 w-[800px] h-[800px] bg-amber-500/5 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/2 z-0 pointer-events-none"></div>
+      <div className="fixed bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] translate-y-1/2 -translate-x-1/2 z-0 pointer-events-none"></div>
 
-        <div className="container relative z-10 px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Badge className="mb-6 bg-amber-500 hover:bg-amber-600 text-slate-900 px-4 py-1 text-sm font-bold tracking-wider">
-              MI TRAYECTORIA
-            </Badge>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-              El Camino del <span className="text-gradient-gold">Equilibrio</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
-              Desde el periodismo y la filosofía hasta el servicio público. Una vida dedicada a la búsqueda de la verdad y el bienestar de Chile.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* IMMERSIVE HEADER: STRATEGIC DOSSIER */}
+      <section className="relative pt-32 pb-20 px-4 overflow-hidden border-b border-white/5">
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+            <div className="lg:col-span-8 space-y-8">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <Badge className="bg-amber-500/10 text-amber-500 border-amber-500/20 px-6 py-1.5 rounded-none text-xs font-black tracking-[0.3em] uppercase">
+                    Registro de Trayectoria Pública
+                  </Badge>
+                  <div className="flex gap-1">
+                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <div className="w-1.5 h-1.5 bg-emerald-500/50 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-emerald-500/30 rounded-full"></div>
+                  </div>
+                </div>
+                <h1 className={`${playfair.className} text-6xl md:text-8xl lg:text-9xl font-black text-white leading-none tracking-tighter uppercase`}>
+                  CRISTIAN <br />
+                  <span className="text-amber-500 italic">CONTRERAS</span>
+                </h1>
+              </motion.div>
 
-      {/* Intro Section with Photo */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex flex-wrap gap-8 pt-8 border-t border-white/10"
+              >
+                <div>
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2">Representación</p>
+                  <p className="text-xl font-bold font-mono uppercase">Distrito 8</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2">FILOSOFÍA</p>
+                  <p className="text-xl font-bold font-mono">SENTIDO COMÚN</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2">GRADO</p>
+                  <p className="text-xl font-bold font-mono text-amber-500">ACADÉMICO / DIPUTADO</p>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="lg:col-span-4 relative group">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+                className="relative aspect-[4/5] bg-slate-900 border border-white/10 overflow-hidden"
+              >
                 <Image
                   src="/images/cristian/cristian_hero_principal.png"
-                  alt="Cristian Contreras"
+                  alt="Cristian Contreras Official Dossier"
                   fill
-                  className="object-cover bg-slate-100"
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-80 group-hover:opacity-100"
                 />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 max-w-xs">
-                <Quote className="h-8 w-8 text-amber-500 mb-2" />
-                <p className="text-slate-800 font-medium italic">
-                  &quot;El equilibrio es el único camino para ser genuinamente feliz y construir una sociedad justa.&quot;
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-                Periodista, Filósofo y Político
-              </h2>
-              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
-                <p>
-                  Cristian Contreras Radovic, conocido popularmente como &quot;Dr. File&quot;, ha dedicado su vida al estudio profundo de la realidad, cuestionando los paradigmas establecidos y buscando soluciones integrales para los desafíos de nuestra sociedad.
-                </p>
-                <p>
-                  Doctor en Filosofía y reconocido periodista, su carrera ha estado marcada por la valentía de abordar temas complejos y la capacidad de comunicar ideas profundas de manera accesible.
-                </p>
-                <p>
-                  Hoy, como Diputado electo por el Distrito 8, canaliza toda su experiencia y sabiduría en un proyecto político transformador: las 8 Grandes Reformas del Estado, fundamentadas en la filosofía del equilibrio y la meritocracia.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 pt-4">
-                <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                  <BookOpen className="h-6 w-6 text-blue-600 mb-2" />
-                  <h4 className="font-bold text-slate-900">Doctor en Filosofía</h4>
-                  <p className="text-sm text-gray-500">U. Autónoma de Barcelona</p>
+                {/* HUD Overlays */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-amber-500/50"></div>
+                  <div className="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-amber-500/50"></div>
+                  <div className="absolute top-1/4 right-4 text-[8px] font-mono text-amber-500/40 writing-vertical-rl">RECONSTRUYENDO EL EQUILIBRIO...</div>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                  <Mic className="h-6 w-6 text-amber-600 mb-2" />
-                  <h4 className="font-bold text-slate-900">Comunicador</h4>
-                  <p className="text-sm text-gray-500">Más de 20 años de trayectoria</p>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-20 bg-slate-50 overflow-hidden">
-        <div className="container mx-auto max-w-5xl px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">Hitos de una Vida</h2>
-            <div className="h-1 w-20 bg-amber-500 mx-auto rounded-full"></div>
-          </div>
+      {/* THE CORE: PHILOSOPHY & ACTION */}
+      <section className="py-24 px-4 bg-slate-900/40 relative border-b border-white/5">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="space-y-10"
+            >
+              <div className="space-y-4">
+                <h2 className={`${playfair.className} text-4xl md:text-5xl font-bold text-white`}>
+                  La Fuerza del <span className="text-amber-500 italic">Conocimiento</span>
+                </h2>
+                <div className="w-20 h-1 bg-amber-500"></div>
+              </div>
 
-          <div className="relative">
-            {/* Vertical Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-slate-200 hidden md:block"></div>
+              <div className="space-y-6 text-lg text-slate-400 leading-relaxed font-light">
+                <p>
+                  Cristian Contreras Radovic no es solo un parlamentario; es un <span className="text-white font-bold">pensador en acción</span>. Con un Doctorado en Filosofía de la Ciencia, su enfoque trasciende la política tradicional para buscar soluciones basadas en la estructura misma de la realidad.
+                </p>
+                <p>
+                  Como comunicador, ha liderado un diálogo ciudadano masivo, buscando soluciones reales a la ineficiencia estatal para proponer un camino de <span className="text-amber-500 font-bold uppercase tracking-wider">sentido común y equilibrio</span>.
+                </p>
+                <p className="p-8 bg-slate-950 border-l-4 border-amber-500 italic text-slate-300">
+                  &quot;Para reconstruir Chile Primero debemos reconstruir la lógica de nuestras instituciones. El Estado debe ser un motor de eficiencia, no una carga para el ciudadano.&quot;
+                </p>
+              </div>
+            </motion.div>
 
-            {/* Timeline Items */}
-            <div className="space-y-12">
-              {TIMELINE_EVENTS.map((event, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { icon: GraduationCap, title: "Rigor Académico", desc: "Doctor en Filosofía de la Ciencia (UAB) y Periodista.", color: "blue" },
+                { icon: Activity, title: "Conocimiento Social", desc: "Análisis profundo de la realidad y contextos ciudadanos.", color: "amber" },
+                { icon: Shield, title: "Autoridad Ética", desc: "Defensa intransigente de la probidad y la transparencia.", color: "emerald" },
+                { icon: Target, title: "Visión Reformista", desc: "Arquitecto de las 8 Grandes Reformas del Estado.", color: "red" },
+              ].map((item, i) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative flex items-center md:justify-between ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-8 bg-slate-900 border border-white/5 hover:border-amber-500/30 transition-all group"
                 >
-                  {/* Content */}
-                  <div className={`w-full md:w-[45%] ${index % 2 === 0 ? "md:text-right" : "md:text-left"
-                    }`}>
-                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
-                      <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-bold mb-3 border border-blue-100">
-                        {event.year}
-                      </span>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">{event.title}</h3>
-                      <p className="text-gray-600">{event.description}</p>
-                    </div>
-                  </div>
-
-                  {/* Icon/Dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-amber-500 shadow-lg z-10 hidden md:flex">
-                    <event.icon className="h-5 w-5 text-amber-600" />
-                  </div>
-
-                  {/* Spacer for mobile */}
-                  <div className="hidden md:block w-[45%]"></div>
+                  <item.icon className={`h-10 w-10 mb-6 text-slate-500 group-hover:text-amber-500 transition-colors`} />
+                  <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
+                  <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -152,34 +159,104 @@ export default function BiographyPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5"></div>
-        <div className="container mx-auto px-4 text-center relative z-10 max-w-4xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Únete al Movimiento del Equilibrio</h2>
-          <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-            Este no es solo un proyecto político, es un llamado a transformar nuestra nación desde sus cimientos. Tu participación es fundamental para construir el Chile que soñamos.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-amber-500 text-slate-900 hover:bg-amber-400 font-bold h-14 px-8 text-lg rounded-full"
-            >
-              <Link href="/voluntarios">
-                Quiero ser Voluntario <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="bg-transparent border-white text-white hover:bg-white/10 h-14 px-8 text-lg rounded-full"
-            >
-              <Link href="/preocupaciones">
-                Reportar un Problema
-              </Link>
-            </Button>
+      {/* TACTICAL HISTORY: THE TIMELINE */}
+      <section className="py-32 px-4 relative overflow-hidden bg-slate-950">
+        <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 -z-10"></div>
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-24 gap-8">
+            <div>
+              <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 mb-4 rounded-none text-[10px] font-black tracking-widest">
+                CRONOLOGÍA DE SERVICIO
+              </Badge>
+              <h2 className={`${playfair.className} text-5xl md:text-7xl font-black text-white`}>Trayectoria <span className="text-blue-500 italic">Sistémica</span></h2>
+            </div>
+            <div className="max-w-md text-right hidden md:block">
+              <p className="text-slate-500 text-sm italic font-mono uppercase tracking-tighter">
+                Trayectoria desde la academia hacia la representación ciudadana
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12 relative">
+            <div className="absolute left-0 top-0 w-px h-full bg-slate-800 hidden lg:block"></div>
+
+            {TIMELINE_EVENTS.map((event, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="relative pl-12 group"
+              >
+                <div className="absolute left-0 top-1.5 w-4 h-4 bg-slate-950 border-2 border-slate-700 rounded-none z-10 group-hover:border-amber-500 group-hover:rotate-45 transition-all"></div>
+                <div className="space-y-4">
+                  <p className="text-amber-500 font-mono text-sm font-bold tracking-widest">{event.year}</p>
+                  <h3 className="text-2xl font-black text-white group-hover:text-amber-500 transition-colors uppercase tracking-tight">
+                    {event.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm leading-relaxed font-light">
+                    {event.description}
+                  </p>
+                  <div className="pt-4 flex items-center gap-4">
+                    <event.icon className="h-5 w-5 text-slate-700 group-hover:text-amber-500 transition-colors" />
+                    <div className="w-full h-1 bg-slate-900">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100%" }}
+                        transition={{ duration: 1 }}
+                        className="h-full bg-slate-800 group-hover:bg-amber-500/30"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STRATEGIC DOSSIER SELECTION */}
+      <section className="py-24 px-4 bg-slate-900">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-4 bg-slate-950 p-12 border border-white/10 flex flex-col justify-between">
+              <div className="space-y-6">
+                <h3 className={`${playfair.className} text-4xl font-bold text-white leading-tight`}>
+                  El Camino del <span className="text-amber-500">Equilibrio</span>
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  Una propuesta radical para el siglo XXI. Menos burocracia, más soberanía, justicia real.
+                </p>
+              </div>
+              <Button asChild className="mt-12 bg-white text-slate-950 font-black h-16 rounded-none tracking-widest text-xs uppercase hover:bg-amber-500 transition-all">
+                <Link href="/manifiesto">
+                  LEER MANIFIESTO COMPLETO <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5">
+              {[
+                { title: "Células Voluntarias", icon: Users, href: "/voluntarios", desc: "Únete a la red de despliegue territorial." },
+                { title: "Reporte de Gestión", icon: Search, href: "/transparencia", desc: "Accede al historial de fiscalización." },
+                { title: "Misión Nacional", icon: Zap, href: "/#petitorio", desc: "Firma el petitorio nacional por el equilibrio." },
+                { title: "Ejes de Reforma", icon: Scale, iconColor: "text-red-500", href: "/compromisos", desc: "Los 8 pilares estratégicos de nuestra gestión." },
+              ].map((card, i) => (
+                <Link
+                  key={i}
+                  href={card.href}
+                  className="bg-slate-900 p-10 hover:bg-slate-800 transition-all group flex flex-col justify-between"
+                >
+                  <div className="space-y-4">
+                    <card.icon className="h-8 w-8 text-slate-600 group-hover:text-amber-500 transition-colors" />
+                    <h4 className="text-xl font-bold text-white group-hover:text-amber-500 transition-colors">{card.title}</h4>
+                    <p className="text-slate-500 text-sm leading-relaxed">{card.desc}</p>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-slate-700 mt-8 group-hover:translate-x-2 group-hover:text-amber-500 transition-all" />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -190,38 +267,38 @@ export default function BiographyPage() {
 const TIMELINE_EVENTS = [
   {
     year: "1994-1998",
-    title: "Formación Académica",
-    description: "Licenciatura en Comunicación Social y Periodista en la Universidad Diego Portales. Inicio de una carrera marcada por la investigación.",
+    title: "Formación y Rigor",
+    description: "Licenciatura en Comunicación Social y Periodismo (UDP). Inicio del estudio profundo sobre sistemas de información.",
     icon: GraduationCap
   },
   {
     year: "2002-2006",
-    title: "Doctorado en Filosofía",
-    description: "Obtención del grado de Doctor en Filosofía de la Ciencia por la Universidad Autónoma de Barcelona, España.",
+    title: "Profundidad Académica",
+    description: "Doctorado en Filosofía de la Ciencia (Universidad Autónoma de Barcelona). Especialización en la estructura del conocimiento humano.",
     icon: BookOpen
   },
   {
     year: "2010-2020",
-    title: "Periodismo de Investigación",
-    description: "Reconocido por su participación en programas de televisión abordando temas de conspiraciones, ciencia y misterios, ganándose el apodo de 'Dr. File'.",
+    title: "Despertar Ciudadano",
+    description: "Liderazgo en investigación mediática abordando paradigmas alternativos, ciencia y misterio como 'Dr. File'.",
     icon: Mic
   },
   {
     year: "2021",
-    title: "Fundación Centro Unido",
-    description: "Lidera la creación de un nuevo referente político centrado en el equilibrio y la superación de la dicotomía izquierda-derecha.",
+    title: "Arquitectura Política",
+    description: "Fundación de Centro Unido, un movimiento diseñado para romper la dualidad izquierda-derecha hacia el tercer camino.",
     icon: Users
   },
   {
     year: "2024",
-    title: "Candidatura a Diputado",
-    description: "Lanza su candidatura por el Distrito 8 con un programa enfocado en 8 Grandes Reformas para transformar el Estado.",
+    title: "Ofensiva Territorial",
+    description: "Campaña estratégica para el Distrito 8 basada en las 8 Grandes Reformas para la reconstrucción del Estado.",
     icon: Star
   },
   {
     year: "2026",
-    title: "Diputado de la República",
-    description: "Asume como parlamentario con una alta votación, comprometiéndose a trabajar incansablemente por Maipú, Pudahuel y todo el distrito.",
+    title: "Asunción Parlamentaria",
+    description: "Ingreso a la Cámara de Diputados con mandato directo para fiscalizar y transformar el sistema desde su núcleo.",
     icon: Award
   }
 ];

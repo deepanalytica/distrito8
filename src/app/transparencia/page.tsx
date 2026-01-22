@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// No imports needed from ui/card if not used
 import { Badge } from "@/components/ui/badge";
 import { DEPUTY_INFO, LEGISLATIVE_PROJECTS } from "@/lib/constants";
 import {
@@ -125,8 +125,8 @@ export default function TransparenciaPage() {
                                 </div>
                             </section>
 
-                            {/* Proyectos de Ley */}
-                            <section className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12">
+                            {/* Agenda Legislativa Section with ID */}
+                            <section id="agenda" className="bg-slate-900 border border-slate-800 rounded-[2.5rem] p-8 md:p-12">
                                 <div className="flex items-center gap-4 mb-8">
                                     <div className="p-3 bg-blue-500/10 rounded-2xl">
                                         <Shield className="h-8 w-8 text-blue-500" />
@@ -199,7 +199,12 @@ export default function TransparenciaPage() {
                                 <p className="text-indigo-200 text-sm mb-6 z-10 relative">
                                     Si no encuentras lo que buscas, puedes solicitar información vía Ley de Transparencia.
                                 </p>
-                                <Link href="#" className="inline-flex items-center text-amber-500 font-bold hover:text-amber-400 transition-colors z-10 relative gap-2">
+                                <Link
+                                    href="https://www.portaltransparencia.cl/PortalTrasferencia/solicitud/nueva?id=4393"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center text-amber-500 font-bold hover:text-amber-400 transition-colors z-10 relative gap-2"
+                                >
                                     Solicitar Info
                                     <ArrowUpRight className="h-4 w-4" />
                                 </Link>

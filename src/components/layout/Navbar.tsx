@@ -84,16 +84,16 @@ export function Navbar() {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center gap-1 bg-white/5 backdrop-blur-md rounded-full px-2 py-1 border border-white/10">
+                    <div className="hidden lg:flex items-center gap-1 bg-white/5 backdrop-blur-xl rounded-full px-1.5 py-1 border border-white/10 mx-auto">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    "px-4 py-2 rounded-full text-sm font-medium transition-all",
+                                    "px-4 py-2 rounded-full text-[13px] font-bold uppercase tracking-wider transition-all whitespace-nowrap",
                                     pathname === link.href
-                                        ? "bg-amber-500 text-slate-900 shadow-md font-bold"
-                                        : "text-gray-200 hover:text-white hover:bg-white/10"
+                                        ? "bg-amber-500 text-slate-900 shadow-[0_0_15px_rgba(245,158,11,0.3)]"
+                                        : "text-gray-300 hover:text-white hover:bg-white/5"
                                 )}
                             >
                                 {link.label}
@@ -102,12 +102,12 @@ export function Navbar() {
                     </div>
 
                     {/* Desktop Actions */}
-                    <div className="hidden lg:flex items-center gap-4">
+                    <div className="hidden lg:flex items-center min-w-[140px] justify-end">
                         <Button
                             asChild
-                            className="bg-white text-slate-900 hover:bg-gray-100 font-bold shadow-lg transition-transform hover:scale-105 rounded-full"
+                            className="bg-white text-slate-900 hover:bg-amber-500 hover:text-slate-950 font-black shadow-lg transition-all hover:scale-105 rounded-full px-6 h-10 text-xs uppercase tracking-widest"
                         >
-                            <Link href="/voluntarios">Ser Voluntario</Link>
+                            <Link href="/voluntarios">Voluntarios</Link>
                         </Button>
                     </div>
 

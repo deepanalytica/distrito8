@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { ConcernsForm } from "@/components/forms/ConcernsForm";
-import { Shield, FileText, MapPin, Activity, Fingerprint, Lock, Eye } from "lucide-react";
+import { Shield, FileText, Activity, Fingerprint, Lock, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 

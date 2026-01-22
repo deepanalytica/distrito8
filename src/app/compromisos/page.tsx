@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
     GraduationCap,
     Heart,
@@ -12,8 +13,9 @@ import {
     Clock,
     ArrowRight,
     ChevronRight,
-    BookOpen,
-    Shield
+    Shield,
+    X,
+    CheckCircle2
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,8 +34,15 @@ const iconMap = {
 };
 
 export default function CompromisosPage() {
+    const [selectedReformId, setSelectedReformId] = useState<number | null>(null);
+
+    const selectedReform = REFORMAS.find(r => r.id === selectedReformId);
+
     return (
         <div className="min-h-screen bg-slate-950 text-slate-100 font-sans overflow-x-hidden pt-20">
+            {/* Background Architecture */}
+            <div className="fixed inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5 pointer-events-none"></div>
+
             {/* Hero Section - Presidential Style */}
             <section className="relative py-24 md:py-32 px-4 overflow-hidden border-b border-white/5">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-to-b from-amber-500/10 via-transparent to-transparent -z-10 blur-3xl opacity-50"></div>
@@ -101,7 +110,8 @@ export default function CompromisosPage() {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                    className="group relative"
+                                    className="group relative cursor-pointer"
+                                    onClick={() => setSelectedReformId(reforma.id)}
                                 >
                                     <div className="glass-card bg-slate-950/60 border border-white/5 rounded-[2rem] p-8 md:p-10 hover:border-amber-500/30 transition-all duration-500 h-full flex flex-col md:flex-row gap-8 items-start">
 
@@ -125,7 +135,7 @@ export default function CompromisosPage() {
                                             <p className="text-gray-400 text-base leading-relaxed font-light">
                                                 {reforma.description}
                                             </p>
-                                            <div className="pt-4 flex items-center gap-2 text-amber-500/60 font-bold text-xs uppercase tracking-widest group-hover:text-amber-500 transition-colors cursor-pointer">
+                                            <div className="pt-4 flex items-center gap-2 text-amber-500/60 font-bold text-xs uppercase tracking-widest group-hover:text-amber-500 transition-colors">
                                                 Analizar Impacto
                                                 <ChevronRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                                             </div>
@@ -140,6 +150,90 @@ export default function CompromisosPage() {
                     </div>
                 </div>
             </section>
+
+            {/* MODAL OVERLAY */}
+            <AnimatePresence>
+                {selectedReform && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedReformId(null)}
+                            className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-[2.5rem] shadow-2xl overflow-hidden"
+                        >
+                            {/* Modal Header */}
+                            <div className="relative h-32 bg-gradient-to-r from-amber-500/20 to-blue-500/10 flex items-center px-10">
+                                <div className="absolute top-6 right-6">
+                                    <button
+                                        onClick={() => setSelectedReformId(null)}
+                                        className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                                    >
+                                        <X className="h-6 w-6 text-white" />
+                                    </button>
+                                </div>
+                                <div className="flex items-center gap-6">
+                                    <div className="bg-amber-500 p-4 rounded-2xl text-slate-950">
+                                        {(() => {
+                                            const Icon = iconMap[selectedReform.icon as keyof typeof iconMap];
+                                            return <Icon className="h-8 w-8" />;
+                                        })()}
+                                    </div>
+                                    <div>
+                                        <Badge className="bg-amber-500/10 text-amber-500 border-amber-500/20 mb-2">Reforma #{selectedReform.id}</Badge>
+                                        <h3 className="text-3xl font-bold text-white tracking-tight">{selectedReform.name}</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Modal Body */}
+                            <div className="p-10 space-y-8">
+                                <p className="text-xl text-slate-300 italic font-light leading-relaxed">
+                                    &quot;{selectedReform.description}&quot;
+                                </p>
+
+                                <div className="space-y-4">
+                                    <h4 className="text-xs font-black uppercase tracking-[0.2em] text-amber-500">Puntos Clave del Impacto</h4>
+                                    <div className="grid grid-cols-1 gap-4">
+                                        {selectedReform.details.map((detail, i) => (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ opacity: 0, x: -10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: i * 0.1 }}
+                                                className="flex gap-4 items-start p-4 bg-white/5 border border-white/5 rounded-2xl"
+                                            >
+                                                <CheckCircle2 className="h-5 w-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                                                <p className="text-sm text-slate-400 leading-relaxed">{detail}</p>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Modal Footer */}
+                            <div className="p-8 bg-slate-950/50 border-t border-white/5 flex justify-end gap-4">
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setSelectedReformId(null)}
+                                    className="border-white/10 text-white hover:bg-white/5 px-8 rounded-xl font-bold uppercase tracking-widest text-[10px]"
+                                >
+                                    Cerrar Detalles
+                                </Button>
+                                <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-950 px-8 rounded-xl font-bold uppercase tracking-widest text-[10px]">
+                                    <Link href="/voluntarios">Apoyar esta Reforma</Link>
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
 
             {/* Politikon Foundations */}
             <section className="py-32 px-4 relative overflow-hidden">
@@ -200,7 +294,7 @@ export default function CompromisosPage() {
                                 <Button asChild className="bg-amber-500 hover:bg-amber-600 text-slate-900 h-14 px-10 rounded-2xl font-bold text-lg">
                                     <Link href="/voluntarios">Unirse al Equipo</Link>
                                 </Button>
-                                <Button variant="outline" asChild className="border-white/10 text-white hover:bg-white/10 h-14 px-10 rounded-2xl font-bold text-lg">
+                                <Button variant="outline" asChild className="border-white/20 text-white hover:bg-white hover:text-slate-950 h-14 px-10 rounded-2xl font-bold text-lg transition-all">
                                     <Link href="/preocupaciones">Reportar Problema</Link>
                                 </Button>
                             </div>
