@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Map, { Marker, Popup, NavigationControl, FullscreenControl } from "react-map-gl";
+import { Map, Marker, Popup, NavigationControl, FullscreenControl } from "react-map-gl/mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { AlertCircle, MapPin, ShieldAlert, Zap, Clock } from "lucide-react";
 import { NEIGHBOR_REPORTS, NeighborReport } from "@/lib/map-intelligence-data";
