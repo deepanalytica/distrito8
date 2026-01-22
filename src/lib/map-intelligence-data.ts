@@ -22,6 +22,17 @@ export interface MapGestion {
     commune: string;
 }
 
+export interface NeighborReport {
+    id: string;
+    type: "seguridad" | "infraestructura" | "salud" | "otro";
+    title: string;
+    description: string;
+    status: "recibido" | "verificado" | "en_gestion";
+    timestamp: string;
+    coord: [number, number];
+    commune: string;
+}
+
 export const COMMUNE_INTELLIGENCE: Record<string, IntelligenceLayerData> = {
     maipu: {
         density: 4361,
@@ -152,6 +163,195 @@ export const DEPUTY_GESTIONES: MapGestion[] = [
         commune: "cerrillos"
     }
 ];
+
+export const NEIGHBOR_REPORTS: Record<string, NeighborReport[]> = {
+    maipu: [
+        {
+            id: "R-MA-001",
+            type: "seguridad",
+            title: "Robo frustrado en Pajaritos",
+            description: "Vecinos reportan intento de robo de vehículo. Carabineros ya en el lugar.",
+            status: "verificado",
+            timestamp: "2024-01-22T03:30:00Z",
+            coord: [-70.7570, -33.5110],
+            commune: "maipu"
+        },
+        {
+            id: "R-MA-002",
+            type: "infraestructura",
+            title: "Falla de semáforo",
+            description: "Intersección Camino a Melipilla con Américo Vespucio.",
+            status: "recibido",
+            timestamp: "2024-01-22T04:15:00Z",
+            coord: [-70.7750, -33.5300],
+            commune: "maipu"
+        },
+        {
+            id: "R-MA-003",
+            type: "otro",
+            title: "Microbasural detectado",
+            description: "Acumulación de escombros en sitio eriazo sector Rinconada.",
+            status: "en_gestion",
+            timestamp: "2024-01-21T18:00:00Z",
+            coord: [-70.8120, -33.5250],
+            commune: "maipu"
+        }
+    ],
+    pudahuel: [
+        {
+            id: "R-PU-001",
+            type: "infraestructura",
+            title: "Rotura de matriz de agua",
+            description: "Gran fuga de agua en calle Teniente Merino. Aguas Andinas notificada.",
+            status: "en_gestion",
+            timestamp: "2024-01-22T04:45:00Z",
+            coord: [-70.7490, -33.4390],
+            commune: "pudahuel"
+        },
+        {
+            id: "R-PU-002",
+            type: "seguridad",
+            title: "Iluminación deficiente",
+            description: "Paradero 14 de San Pablo sin luz. Riesgo de asaltos.",
+            status: "verificado",
+            timestamp: "2024-01-21T21:30:00Z",
+            coord: [-70.7350, -33.4420],
+            commune: "pudahuel"
+        }
+    ],
+    "estacion-central": [
+        {
+            id: "R-EC-001",
+            type: "seguridad",
+            title: "Comercio ambulante desbordado",
+            description: "Bloqueo total de vereda en salida Metro Estación Central.",
+            status: "recibido",
+            timestamp: "2024-01-22T08:00:00Z",
+            coord: [-70.6780, -33.4510],
+            commune: "estacion-central"
+        },
+        {
+            id: "R-EC-002",
+            type: "infraestructura",
+            title: "Evento (Hoyo) profundo",
+            description: "Socavón en Alameda con General Velásquez puede causar accidentes.",
+            status: "en_gestion",
+            timestamp: "2024-01-21T15:20:00Z",
+            coord: [-70.6920, -33.4540],
+            commune: "estacion-central"
+        }
+    ],
+    quilicura: [
+        {
+            id: "R-QU-001",
+            type: "seguridad",
+            title: "Carreras clandestinas",
+            description: "Ruidos y riesgo en sector industrial Américo Vespucio.",
+            status: "verificado",
+            timestamp: "2024-01-22T01:15:00Z",
+            coord: [-70.7250, -33.3550],
+            commune: "quilicura"
+        },
+        {
+            id: "R-QU-002",
+            type: "otro",
+            title: "Mal olor persistente",
+            description: "Emanaciones químicas detectadas por vecinos sector Lo Boza.",
+            status: "recibido",
+            timestamp: "2024-01-21T10:45:00Z",
+            coord: [-70.7410, -33.3750],
+            commune: "quilicura"
+        }
+    ],
+    cerrillos: [
+        {
+            id: "R-CE-001",
+            type: "infraestructura",
+            title: "Cunetas obstruidas",
+            description: "Basura acumulada en desagües de Avenida Suiza.",
+            status: "verificado",
+            timestamp: "2024-01-22T09:30:00Z",
+            coord: [-70.7120, -33.4950],
+            commune: "cerrillos"
+        },
+        {
+            id: "R-CE-002",
+            type: "seguridad",
+            title: "Consumo de drogas en plaza",
+            description: "Plaza Bicentenario con baja vigilancia nocturna.",
+            status: "en_gestion",
+            timestamp: "2024-01-21T23:00:00Z",
+            coord: [-70.7050, -33.5150],
+            commune: "cerrillos"
+        }
+    ],
+    colina: [
+        {
+            id: "R-CO-001",
+            type: "otro",
+            title: "Sequía en canal Lo Seco",
+            description: "Bajo caudal afecta a agricultores locales. Posible desvío ilegal.",
+            status: "verificado",
+            timestamp: "2024-01-22T07:15:00Z",
+            coord: [-70.6750, -33.2050],
+            commune: "colina"
+        },
+        {
+            id: "R-CO-002",
+            type: "seguridad",
+            title: "Robo en lugar habitado",
+            description: "Alerta en Condominio Piedra Roja. Guardia de civil herido.",
+            status: "verificado",
+            timestamp: "2024-01-22T02:40:00Z",
+            coord: [-70.6550, -33.3250],
+            commune: "colina"
+        }
+    ],
+    lampa: [
+        {
+            id: "R-LA-001",
+            type: "infraestructura",
+            title: "Caminos de tierra en mal estado",
+            description: "Sector Batuco intransitable tras rotura de cañería.",
+            status: "en_gestion",
+            timestamp: "2024-01-22T06:20:00Z",
+            coord: [-70.8250, -33.2250],
+            commune: "lampa"
+        },
+        {
+            id: "R-LA-002",
+            type: "salud",
+            title: "Posta rural sin insumos",
+            description: "Vecinos informan falta de medicamentos básicos en Posta Lampa.",
+            status: "recibido",
+            timestamp: "2024-01-21T11:00:00Z",
+            coord: [-70.8750, -33.2850],
+            commune: "lampa"
+        }
+    ],
+    tiltil: [
+        {
+            id: "R-TI-001",
+            type: "otro",
+            title: "Olores molestos KDM",
+            description: "Nuevas emanaciones afectan la calidad de vida en el pueblo.",
+            status: "verificado",
+            timestamp: "2024-01-22T05:30:00Z",
+            coord: [-70.7950, -33.0850],
+            commune: "tiltil"
+        },
+        {
+            id: "R-TI-002",
+            type: "infraestructura",
+            title: "Falta de presión de agua",
+            description: "Sector Polpaico con cortes intermitentes desde ayer.",
+            status: "en_gestion",
+            timestamp: "2024-01-21T20:15:00Z",
+            coord: [-70.8250, -33.1250],
+            commune: "tiltil"
+        }
+    ]
+};
 
 export const MAP_THEMES = {
     dark: "mapbox://styles/mapbox/dark-v11",
