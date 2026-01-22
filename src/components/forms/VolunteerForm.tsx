@@ -6,9 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { COMMUNES, VOLUNTEER_AREAS, VOLUNTEER_AVAILABILITY } from "@/lib/constants";
-import { Users, Heart, CheckCircle2, GraduationCap, HeartPulse, Laptop, Megaphone, Scale, ArrowRight } from "lucide-react";
+import { Users, CheckCircle2, GraduationCap, HeartPulse, Laptop, Megaphone, Scale, ArrowRight } from "lucide-react";
 
 const iconMap = {
     GraduationCap,

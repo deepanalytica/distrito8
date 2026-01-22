@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import {
-    Phone,
     ShieldAlert,
     Smartphone,
     MapPin,
     Stethoscope,
     AlertTriangle,
     ArrowRight,
-    MessageCircle,
     HeartPulse
 } from "lucide-react";
 

@@ -7,12 +7,8 @@ import {
     ShieldAlert,
     Building2,
     Scale,
-    Globe,
     TrendingUp,
-    HeartPulse,
-    AlertCircle,
-    CheckCircle2,
-    Clock
+    HeartPulse
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

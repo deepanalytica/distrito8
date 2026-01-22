@@ -51,7 +51,7 @@ export function HeroBanner() {
                             </h1>
 
                             <p className="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-2xl mb-12 font-light italic border-l-2 border-amber-500/30 pl-6">
-                                "No somos una alternativa más, somos la respuesta estratégica a la crisis del Estado. Aquí no se viene a prometer, se viene a ejecutar."
+                                &quot;No somos una alternativa más, somos la respuesta estratégica a la crisis del Estado. Aquí no se viene a prometer, se viene a ejecutar.&quot;
                             </p>
 
                             <div className="flex flex-wrap gap-5">

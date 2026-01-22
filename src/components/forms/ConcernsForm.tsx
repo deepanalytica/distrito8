@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,16 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { COMMUNES } from "@/lib/constants";
-import { CheckCircle2, Shield, Eye, FileWarning, Lightbulb, Lock, Send, ShieldCheck, MapPin, Activity } from "lucide-react";
+import { CheckCircle2, Eye, FileWarning, Lightbulb, Lock, Send, ShieldCheck, MapPin, Activity, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 export function ConcernsForm() {
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [step, setStep] = useState(1);
     const searchParams = useSearchParams();
     const [formData, setFormData] = useState({
         tipologia: "",

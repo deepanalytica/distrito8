@@ -1,16 +1,13 @@
 "use client";
 
-import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { COMMUNES } from "@/lib/constants";
 import { COMMUNE_DETAILS } from "@/lib/commune-data";
 import { motion } from "framer-motion";
-import { ArrowRight, Building2, Trees, GraduationCap, Users, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, MapPin } from "lucide-react";
 
 export function CommuneSelector() {
     const router = useRouter();
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     const handleCommuneClick = (slug: string) => {
         router.push(`/mi-comuna/${slug}`);

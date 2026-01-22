@@ -3,11 +3,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-    AlertTriangle,
     ArrowRight,
     ShieldCheck,
     Zap,
-    MessageSquare,
     MapPin,
     Clock
 } from "lucide-react";
@@ -84,7 +82,7 @@ export function IntelligenceAlerts() {
                         >
                             {/* Accent Line */}
                             <div className={`absolute left-0 top-0 w-1 h-full ${alert.color === 'red' ? 'bg-red-500' :
-                                    alert.color === 'amber' ? 'bg-amber-500' : 'bg-emerald-500'
+                                alert.color === 'amber' ? 'bg-amber-500' : 'bg-emerald-500'
                                 }`} />
 
                             <div className="flex justify-between items-start mb-6">
@@ -107,7 +105,7 @@ export function IntelligenceAlerts() {
                             </h3>
 
                             <p className="text-slate-400 text-sm leading-relaxed mb-8 font-light line-clamp-3 italic">
-                                "{alert.description}"
+                                &quot;{alert.description}&quot;
                             </p>
 
                             <div className="flex items-center justify-between border-t border-white/5 pt-6 mt-auto">

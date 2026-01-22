@@ -53,7 +53,7 @@ export function SignaturePetition() {
                                 <span className="text-gradient-gold uppercase">EQUILIBRIO JUDICIAL</span>
                             </h2>
                             <p className="text-lg text-slate-400 leading-relaxed font-light italic border-l-2 border-amber-500/30 pl-6">
-                                "Exigimos una reforma profunda al sistema procesal penal. No más puertas giratorias para el crimen organizado. Es hora de que la balanza se incline hacia las víctimas."
+                                &quot;Exigimos una reforma profunda al sistema procesal penal. No más puertas giratorias para el crimen organizado. Es hora de que la balanza se incline hacia las víctimas.&quot;
                             </p>
                         </div>
 

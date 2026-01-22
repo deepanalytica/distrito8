@@ -9,9 +9,7 @@ import {
     TrendingUp,
     Scale,
     Users,
-    ArrowRight,
-    SearchCheck,
-    CheckCircle2
+    ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
