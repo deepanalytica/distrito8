@@ -7,6 +7,7 @@ export interface CommuneDetail {
         badge: string;
         title: string;
         text: string;
+        image?: string;
     };
 
     // High Fidelity Model: Zero-Hallucination Metrics
@@ -45,6 +46,12 @@ export interface CommuneDetail {
         economía: string;
         vulnerabilidad: string;
     };
+
+    // Citizen Utility MVP Modules
+    procedures: { id: string; title: string; deadline: string; type: "MUNICIPAL" | "ESTATAL"; url: string }[];
+    benefits: { title: string; target: "ADULTO_MAYOR" | "JOVENES" | "MUJERES" | "GENERAL"; location: string; schedule: string }[];
+    securityTrends: { text: string; value: number; metric: string; source: string };
+    works: { title: string; status: "EJECUCION" | "LICITACION" | "FINALIZADO"; mandante: string; investment: string }[];
 }
 
 export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
@@ -56,7 +63,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Identidad Patriótica",
             title: "El Altar de la Patria",
-            text: "Cuna de la libertad y motor demográfico del sector poniente."
+            text: "Cuna de la libertad y motor demográfico del sector poniente.",
+            image: "/images/communes/maipu.png"
         },
         stats: {
             density: "3.719 hab/km²",
@@ -106,6 +114,28 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         contacts: [
             { label: "Seguridad Ciudadana", phone: "1418" },
             { label: "Ambulancia (SAMU)", phone: "131" }
+        ],
+
+        // Citizen Utility Data (MVP)
+        procedures: [
+            { id: "p1", title: "Pago Patente Comercial", deadline: "31 Enero", type: "MUNICIPAL", url: "#" },
+            { id: "p2", title: "Permiso de Circulación", deadline: "31 Marzo", type: "MUNICIPAL", url: "#" },
+            { id: "p3", title: "Postulación Subsidio Arriendo", deadline: "15 Octubre", type: "ESTATAL", url: "#" }
+        ],
+        benefits: [
+            { title: "Farmacia Municipal", target: "GENERAL", location: "Av. Pajaritos 2000", schedule: "Lun-Vie 09:00 - 18:00" },
+            { title: "Taller Adulto Mayor", target: "ADULTO_MAYOR", location: "CAM Santiago Bueras", schedule: "Mar-Jue 10:00 - 12:00" },
+            { title: "Beca Municipal", target: "JOVENES", location: "DIDECO", schedule: "Postulaciones Marzo" }
+        ],
+        securityTrends: {
+            text: "Disminución en robo de vehículos",
+            value: -12,
+            metric: "Robos Violentos (Var. 12 meses)",
+            source: "CEAD 2024"
+        },
+        works: [
+            { title: "Repavimentación Camino Melipilla", status: "EJECUCION", mandante: "SERVIU", investment: "M$ 4.500.000" },
+            { title: "Nueva Comisaría La Farfana", status: "LICITACION", mandante: "MOP", investment: "M$ 2.100.000" }
         ]
     },
     pudahuel: {
@@ -116,7 +146,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Nodo Logístico",
             title: "Portal de Chile",
-            text: "Puerta de entrada internacional y pulmón verde del sector poniente."
+            text: "Puerta de entrada internacional y pulmón verde del sector poniente.",
+            image: "/images/communes/pudahuel.png"
         },
         stats: {
             density: "1.156 hab/km²",
@@ -163,7 +194,11 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         ],
         contacts: [
             { label: "Emergencias", phone: "1447" }
-        ]
+        ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: []
     },
     quilicura: {
         name: "Quilicura",
@@ -173,7 +208,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Polo Industrial",
             title: "Tres Piedras",
-            text: "Eje industrial estratégico y vanguardia multicultural en la zona norte."
+            text: "Eje industrial estratégico y vanguardia multicultural en la zona norte.",
+            image: "/images/communes/quilicura.png"
         },
         stats: {
             density: "3.545 hab/km²",
@@ -215,6 +251,10 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         contacts: [
             { label: "Seguridad", phone: "1412" }
         ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: [],
         history: [{ title: "Origen Agrícola", description: "Evolución desde fundos rurales a nodo industrial país." }],
         gastronomy: [{ title: "Fusión Multicultural", description: "Encuentro de sabores chilenos, haitianos y latinoamericanos." }]
     },
@@ -226,7 +266,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Campo y Modernidad",
             title: "Tierra de Canteras",
-            text: "Custodia de tradiciones del campo y motor deportivo de la Región Metropolitana."
+            text: "Custodia de tradiciones del campo y motor deportivo de la Región Metropolitana.",
+            image: "/images/communes/colina.png"
         },
         stats: {
             density: "178 hab/km²",
@@ -266,7 +307,11 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         ],
         contacts: [
             { label: "Seguridad", phone: "1468" }
-        ]
+        ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: []
     },
     lampa: {
         name: "Lampa",
@@ -276,7 +321,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Crecimiento Explosivo",
             title: "Corazón del Secano Norte",
-            text: "Líder en expansión urbana sustentable y refugio de biodiversidad."
+            text: "Líder en expansión urbana sustentable y refugio de biodiversidad.",
+            image: "/images/communes/lampa.png"
         },
         stats: {
             density: "320 hab/km²",
@@ -318,7 +364,11 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         ],
         contacts: [
             { label: "Lampa Seguro", phone: "1421" }
-        ]
+        ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: []
     },
     tiltil: {
         name: "Tiltil",
@@ -328,7 +378,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Santuario Patriótico",
             title: "Tierra de Manuel Rodríguez",
-            text: "Custodia de la memoria independentista y tradición agrícola del secano."
+            text: "Custodia de la memoria independentista y tradición agrícola del secano.",
+            image: "/images/communes/tiltil.png"
         },
         stats: {
             density: "30 hab/km²",
@@ -374,7 +425,11 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         ],
         contacts: [
             { label: "Municipalidad", phone: "2 2485 0900" }
-        ]
+        ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: []
     },
     "estacion-central": {
         name: "Estación Central",
@@ -384,7 +439,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Centro Ferroviario",
             title: "Puente del Viajero",
-            text: "Corazón del transporte nacional y hogar de la solidaridad."
+            text: "Corazón del transporte nacional y hogar de la solidaridad.",
+            image: "/images/communes/estacion-central.png"
         },
         stats: {
             density: "12.840 hab/km²",
@@ -426,7 +482,11 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         ],
         contacts: [
             { label: "Seguridad Vecinal", phone: "1440" }
-        ]
+        ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: []
     },
     cerrillos: {
         name: "Cerrillos",
@@ -436,7 +496,8 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         identity: {
             badge: "Ciudad del Aire",
             title: "Corazón Cultural Surponiente",
-            text: "Sede de vanguardia artística y el pulmón verde más joven de Santiago."
+            text: "Sede de vanguardia artística y el pulmón verde más joven de Santiago.",
+            image: "/images/communes/cerrillos.png"
         },
         stats: {
             density: "4.049 hab/km²",
@@ -478,6 +539,10 @@ export const COMMUNE_DETAILS: Record<string, CommuneDetail> = {
         ],
         contacts: [
             { label: "Seguridad Cerrillos", phone: "1402" }
-        ]
+        ],
+        procedures: [],
+        benefits: [],
+        securityTrends: { text: "Análisis en curso", value: 0, metric: "-", source: "CEAD" },
+        works: []
     }
 };

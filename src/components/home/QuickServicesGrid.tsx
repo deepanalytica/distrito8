@@ -26,6 +26,16 @@ export function QuickServicesGrid() {
             actionText: "Llamar 133"
         },
         {
+            title: "Salud Mental",
+            description: "Fono *4141. Prevención del suicidio, atención experta y confidencial 24/7.",
+            icon: HeartPulse,
+            href: "tel:4141",
+            color: "text-indigo-400",
+            bg: "bg-indigo-500/10",
+            border: "border-indigo-500/20",
+            actionText: "Llamar *4141"
+        },
+        {
             title: "Violencia de Género",
             description: "Fono Ayuda (1455) de SERNAMEG. Orientación 24/7 y confidencial.",
             icon: HeartPulse,

@@ -22,7 +22,13 @@ import {
     Shield,
     HeartPulse,
     GraduationCap,
-    Activity
+    Activity,
+    CalendarClock,
+    FileCheck,
+    HardHat,
+    ArrowUpRight,
+    ArrowDownRight,
+    Search
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -47,6 +53,16 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
         <div className="min-h-screen bg-slate-950 flex flex-col font-sans text-slate-100 pb-20">
             {/* Decorative Background */}
             <div className="fixed inset-0 bg-[url('/images/pattern-grid.svg')] opacity-5 pointer-events-none"></div>
+            {detail.identity.image && (
+                <div
+                    className="fixed inset-0 z-0 pointer-events-none opacity-20"
+                    style={{
+                        backgroundImage: `linear-gradient(to bottom, rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 1)), url(${detail.identity.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                ></div>
+            )}
             <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 z-0 pointer-events-none"></div>
             <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3 z-0 pointer-events-none"></div>
 
@@ -127,80 +143,167 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
                         </div>
                     </div>
 
-                    {/* INTELLIGENCE GRID: ECONOMICS & INFRASTRUCTURE */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                        {/* Economic Pulse */}
-                        <Card className="bg-slate-900/40 border-white/10 rounded-[3rem] p-8 overflow-hidden relative border-l-4 border-l-amber-500">
-                            <h3 className="text-xl font-bold text-white mb-8 flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="bg-amber-500/20 p-2 rounded-xl text-amber-500">
-                                        <Briefcase className="h-5 w-5" />
-                                    </div>
-                                    Fuerza Económica 2024
+                    {/* CITIZEN UTILITY LAYER (MVP: Modules 2 & 3) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        {/* Procedures (Trámites) */}
+                        <div className="space-y-6">
+                            <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                                <div className="bg-amber-500/10 p-2 rounded-xl text-amber-500">
+                                    <FileCheck className="h-5 w-5" />
                                 </div>
-                                <Badge variant="outline" className="text-[9px] border-amber-500/20 text-amber-500 uppercase tracking-widest">Fuente: SINIM</Badge>
+                                Trámites y Plazos
                             </h3>
+                            <div className="space-y-4">
+                                {detail.procedures.length > 0 ? detail.procedures.map((proc, i) => (
+                                    <div key={i} className="group relative p-5 bg-slate-900/40 rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all">
+                                        <div className="absolute top-5 right-5 flex items-center gap-2">
+                                            <Badge variant="outline" className="text-[10px] bg-slate-950 border-white/10 text-slate-400">{proc.type}</Badge>
+                                        </div>
+                                        <h4 className="font-bold text-white mb-1 group-hover:text-amber-500 transition-colors">{proc.title}</h4>
+                                        <div className="flex items-center gap-2 text-sm text-slate-400">
+                                            <CalendarClock className="h-4 w-4 text-amber-500" />
+                                            <span>Vence: <strong className="text-slate-200">{proc.deadline}</strong></span>
+                                        </div>
+                                    </div>
+                                )) : (
+                                    <div className="p-6 rounded-2xl border border-dashed border-white/10 text-center text-slate-500 text-sm">
+                                        No hay trámites urgentes activos para este mes.
+                                    </div>
+                                )}
+                            </div>
+                        </div>
 
-                            <div className="space-y-8 relative z-10">
-                                <div className="grid grid-cols-2 gap-6">
-                                    <div>
-                                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1">Actividad Principal</p>
-                                        <p className="text-xl font-bold text-white">{detail.economics.mainSector}</p>
+                        {/* Benefits (Beneficios) */}
+                        <div className="space-y-6">
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                                    <div className="bg-emerald-500/10 p-2 rounded-xl text-emerald-500">
+                                        <Search className="h-5 w-5" />
                                     </div>
-                                    <div>
-                                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1">Presupuesto p/c</p>
-                                        <p className="text-xl font-bold text-white">{detail.economics.budgetPerCapita}</p>
+                                    Red de Beneficios
+                                </h3>
+                                <Badge className="bg-emerald-500 text-slate-950 hover:bg-emerald-400">Activos</Badge>
+                            </div>
+                            <div className="grid grid-cols-1 gap-4">
+                                {detail.benefits.length > 0 ? detail.benefits.map((ben, i) => (
+                                    <div key={i} className="flex gap-4 p-4 bg-slate-900/20 rounded-2xl border border-white/5 hover:bg-slate-900/40 transition-colors">
+                                        <div className="shrink-0 w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center font-bold text-emerald-500 text-xs text-center leading-none px-1">
+                                            {ben.target.substring(0, 3)}
+                                        </div>
+                                        <div>
+                                            <h5 className="font-bold text-white text-sm">{ben.title}</h5>
+                                            <p className="text-xs text-slate-400 mt-1">{ben.location}</p>
+                                            <p className="text-[10px] text-emerald-500 font-mono mt-1 uppercase">{ben.schedule}</p>
+                                        </div>
                                     </div>
+                                )) : (
+                                    <div className="p-6 rounded-2xl border border-dashed border-white/10 text-center text-slate-500 text-sm">
+                                        Consultando red de beneficios...
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SECURITY & WORKS GRID (MVP: Modules 4 & 5) */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        {/* Security Trends (Trends) */}
+                        <Card className="bg-slate-900/40 border-white/10 rounded-[3rem] p-8 border-t-4 border-t-red-500">
+                            <h3 className="text-xl font-bold text-white mb-6 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="bg-red-500/20 p-2 rounded-xl text-red-500">
+                                        <Shield className="h-5 w-5" />
+                                    </div>
+                                    Seguridad y Tendencia
                                 </div>
-
-                                <div className="p-6 bg-slate-950/50 border border-white/5 rounded-[2rem]">
-                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-2">Ingresos Municipales Totales</p>
-                                    <p className="text-4xl font-black text-amber-500 tabular-nums">{detail.economics.municipalRevenue}</p>
-                                    <div className="flex items-center gap-2 mt-2">
-                                        <CheckCircle2 className="h-3 w-3 text-emerald-500" />
-                                        <p className="text-[9px] text-slate-600 uppercase font-bold italic font-mono">Verificado via Transparencia Activa</p>
-                                    </div>
+                                <Badge variant="outline" className="text-[9px] border-white/10 text-slate-400 uppercase tracking-widest">{detail.securityTrends.source}</Badge>
+                            </h3>
+                            <div className="flex items-end gap-4 mb-8">
+                                <div className="text-5xl font-black text-white">{detail.securityTrends.value > 0 ? `+${detail.securityTrends.value}%` : `${detail.securityTrends.value}%`}</div>
+                                <div className={`flex items-center gap-1 text-sm font-bold mb-2 ${detail.securityTrends.value > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                                    {detail.securityTrends.value > 0 ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
+                                    {detail.securityTrends.metric}
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="p-4 bg-slate-950 rounded-2xl border border-white/5">
+                                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Dotación</p>
+                                    <p className="text-xl font-bold text-white">{detail.infrastructure.security.vehicles} Vehículos</p>
+                                </div>
+                                <div className="p-4 bg-slate-950 rounded-2xl border border-white/5">
+                                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Emergencia</p>
+                                    <p className="text-xl font-bold text-red-500">{detail.infrastructure.security.emergencyLine}</p>
                                 </div>
                             </div>
                         </Card>
 
-                        {/* Infrastructure Index */}
-                        <Card className="bg-slate-900/40 border-white/10 rounded-[3rem] p-8 border-l-4 border-l-blue-500">
-                            <h3 className="text-xl font-bold text-white mb-8 flex items-center justify-between">
+                        {/* Public Works (Inversión) */}
+                        <Card className="bg-slate-900/40 border-white/10 rounded-[3rem] p-8 border-t-4 border-t-blue-500">
+                            <h3 className="text-xl font-bold text-white mb-6 flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <div className="bg-blue-500/20 p-2 rounded-xl text-blue-400">
-                                        <Activity className="h-5 w-5" />
+                                        <HardHat className="h-5 w-5" />
                                     </div>
-                                    Dotación e Infraestructura
+                                    Mapa de Obras
                                 </div>
-                                <Badge variant="outline" className="text-[9px] border-blue-500/20 text-blue-400 uppercase tracking-widest">Fidelidad Alta</Badge>
                             </h3>
+                            <div className="space-y-4">
+                                {detail.works.length > 0 ? detail.works.map((work, i) => (
+                                    <div key={i} className="p-4 bg-slate-950/30 rounded-2xl border border-white/5 flex gap-4 items-center">
+                                        <div className={`w-2 h-2 rounded-full ${work.status === 'EJECUCION' ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'}`} />
+                                        <div className="flex-grow">
+                                            <h5 className="text-sm font-bold text-white mb-0.5">{work.title}</h5>
+                                            <p className="text-xl text-white font-black">{work.investment}</p>
+                                            <p className="text-[10px] text-slate-500 uppercase font-black mt-1">{work.mandante} • {work.status}</p>
+                                        </div>
+                                    </div>
+                                )) : (
+                                    <p className="text-sm text-slate-500 italic">No hay obras mayores reportadas en este periodo.</p>
+                                )}
+                            </div>
+                        </Card>
+                    </div>
 
-                            <div className="space-y-6">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-slate-950 rounded-2xl border border-white/5">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <HeartPulse className="h-4 w-4 text-emerald-500" />
-                                            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">CESFAM</span>
-                                        </div>
-                                        <p className="text-2xl font-black text-white">{detail.infrastructure.health.cesfamCount}</p>
-                                        <p className="text-[9px] text-slate-600 font-mono mt-1">{detail.infrastructure.health.hospitals[0]}</p>
-                                    </div>
-                                    <div className="p-4 bg-slate-950 rounded-2xl border border-white/5">
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <Shield className="h-4 w-4 text-blue-500" />
-                                            <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Vehículos</span>
-                                        </div>
-                                        <p className="text-2xl font-black text-white">{detail.infrastructure.security.vehicles}</p>
-                                        <p className="text-[9px] text-slate-600 font-mono mt-1">Patrullaje Activo</p>
-                                    </div>
+                    {/* TRANSPARENCY & INFRASTRUCTURE (MVP: Module 5 & 6) */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 opacity-80 hover:opacity-100 transition-opacity">
+                        {/* Economic Pulse */}
+                        <Card className="bg-slate-900/20 border-white/5 rounded-[2rem] p-6 border-l-2 border-l-slate-700">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <Briefcase className="h-5 w-5 text-slate-500" />
+                                Transparencia Presupuestaria
+                            </h3>
+                            <div className="flex items-center justify-between mb-4">
+                                <div>
+                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1">Presupuesto p/c</p>
+                                    <p className="text-2xl font-bold text-white">{detail.economics.budgetPerCapita}</p>
                                 </div>
+                                <div className="text-right">
+                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-1">Ingresos Totales</p>
+                                    <p className="text-xl font-bold text-slate-300">{detail.economics.municipalRevenue}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2 mt-2">
+                                <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                                <p className="text-[9px] text-slate-600 uppercase font-bold italic font-mono">Verificado via Transparencia Activa</p>
+                            </div>
+                        </Card>
 
-                                <div className="p-4 bg-slate-950/30 rounded-2xl border border-dashed border-white/10">
-                                    <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-3">Red de Salud Principal</p>
-                                    <div className="flex flex-wrap gap-2">
+                        {/* Health Infrastructure */}
+                        <Card className="bg-slate-900/20 border-white/5 rounded-[2rem] p-6 border-l-2 border-l-slate-700">
+                            <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                                <HeartPulse className="h-5 w-5 text-slate-500" />
+                                Infraestructura Salud
+                            </h3>
+                            <div className="flex gap-4">
+                                <div className="p-3 bg-slate-950 rounded-xl border border-white/5">
+                                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">CESFAM</p>
+                                    <p className="text-xl font-black text-white">{detail.infrastructure.health.cesfamCount}</p>
+                                </div>
+                                <div className="flex-grow p-3 bg-slate-950 rounded-xl border border-white/5">
+                                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Hospitals</p>
+                                    <div className="flex flex-wrap gap-1">
                                         {detail.infrastructure.health.hospitals.map((h, i) => (
-                                            <Badge key={i} variant="secondary" className="bg-slate-900 text-xs font-bold text-slate-400 py-1">{h}</Badge>
+                                            <Badge key={i} variant="secondary" className="bg-slate-900 text-[10px] text-slate-400">{h}</Badge>
                                         ))}
                                     </div>
                                 </div>
@@ -322,8 +425,8 @@ export default function CommunePage({ params }: { params: { slug: string } }) {
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
+                </div >
+            </main >
+        </div >
     );
 }
