@@ -58,19 +58,19 @@ export default function Home() {
               <div>
                 <div className="inline-flex items-center gap-2 bg-blue-500/10 text-blue-400 border border-blue-500/20 px-4 py-2 rounded-full text-sm font-bold mb-6">
                   <Map className="h-4 w-4" />
-                  Mapa Interactivo
+                  Presencia en el Territorio
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                  <span className="text-blue-400">Centro de Mando</span> Territorial
+                  <span className="text-blue-400">Trabajo Directo</span> en tu Comuna
                 </h2>
                 <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-                  Una plataforma de control estratégica para visualizar el trabajo directo en cada territorio. Sin intermediarios, datos reales y acciones auditables para el Distrito 8.
+                  Visualiza nuestra gestión y compromiso en cada rincón del Distrito 8. Trabajamos codo a codo con los vecinos para solucionar problemas reales.
                 </p>
                 <ul className="space-y-4 mb-8">
                   {[
-                    "Datos demográficos actualizados",
-                    "Estado de proyectos de ley",
-                    "Alertas comunitarias en tiempo real"
+                    "Fiscalización de servicios públicos",
+                    "Gestión de proyectos locales",
+                    "Atención ciudadana en terreno"
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-300">
                       <div className="h-2 w-2 rounded-full bg-blue-500"></div>
@@ -78,9 +78,6 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-6 text-lg shadow-lg shadow-blue-900/20">
-                  Ver Mapa Completo <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
               </div>
               <div className="w-full">
                 <TerritorialCommandCenter />
